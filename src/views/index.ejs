@@ -5,12 +5,19 @@
 
     <body>
         <h1>Search Here</h1>
-        <form id="searchForm" method="GET" action="/">
-            <label for="searchText">Search:</label>
-            <input type="text" id="searchText" name="searchText">
-            <button type="submit">Search</button>
-        </form>
-
+        <div>
+            <form id="searchForm" method="GET" action="/">
+                <div>
+                    <div>
+                        <label for="searchText">Search:</label>
+                        <input type="text" id="searchText" name="searchText" placeholder="buscar...">
+                    </div>
+                    <div>
+                        <button type="submit">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
         <!-- Footer da pagina -->
         <%- include("./partials/footer") %>
     </body>
