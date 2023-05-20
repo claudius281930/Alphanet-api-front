@@ -1,41 +1,44 @@
 const axios = require("axios");
-const def = require("./default");
+const defaults = require("./defaults");
 
-const url = "box"; //contexto de negocio
+const url = 'box'; //contexto de negocio
 
 const boxRequest = {
-  getBox: () => axios({
-      ...def,
+  getBox: () =>
+    axios({
+      ...defaults,
       method: "get",
       url: `${url}/`,
     }),
 
-  getBox: (id) => axios({
-      ...def,
+  /*getBoxId: (id) =>
+    axios({
+      ...defaults,
       method: "get",
       url: `${url}/${id}`,
-    }),
+    }),*/
 
-  createBox: (box) => axios({
-      ...def,
+  /*createBox: (box) => axios({
+      ...defaultConfig,
       method: "post",
       data: {
         ...box,
       },
       url: `${url}/`,
-    }),
+    }),*/
 
-  updateBox: (id) => axios({
-      ...def,
+  /*updateBox: (box,id) => axios({
+      ...defaultConfig,
       method: "update",
       url: `${url}/${id}`,
-    }),
+      ...box
+    }),*/
 
-  deleteBox: (id) => axios({
-      ...def,
+  /*deleteBox: (id) => axios({
+      ...defaultConfig,
       method: "delete",
       url: `${url}/${id}`,
-    }),
+    }),*/
 };
 
 module.exports = boxRequest;

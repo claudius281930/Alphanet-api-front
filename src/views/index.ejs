@@ -1,23 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <!-- Metadados da pagina -->
-<%- include("./partials/head") %>
+<%- include("./partials/head" )%>
+
+    <!-- Banner -->
+    <div class="banner"></div>
 
     <body>
-        <h1>Search Here</h1>
-        <div>
-            <form id="searchForm" method="GET" action="/">
-                <div>
-                    <div>
-                        <label for="searchText">Search:</label>
-                        <input type="text" id="searchText" name="searchText" placeholder="buscar...">
-                    </div>
-                    <div>
-                        <button type="submit">Search</button>
-                    </div>
-                </div>
-            </form>
-        </div>
+
+        <h1>Boxes</h1>
+        <ul>
+            <% boxes.forEach(function(box) { %>
+                <li>
+                    id: <%= box.id %>
+                </li>
+                <li>
+                    dateModify: <%= box.dateModify %>
+                </li>
+                <li>
+                    nameDescription: <%= box.nameDescription %>
+                </li>
+                <li>
+                    locale: <%= box.locale %>
+                </li>
+                <li>
+                    activeCto: <%= box.activeCto %>
+                </li>
+                <li>
+                    networkTechnology: <%= box.networkTechnology %>
+                </li>
+                <% }); %>
+        </ul>
+
         <!-- Footer da pagina -->
         <%- include("./partials/footer") %>
     </body>
