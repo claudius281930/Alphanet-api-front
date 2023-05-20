@@ -3,8 +3,8 @@ const path = require("path");
 
 const boxRequest = require("../requests/boxRequest");
 
-const boxesFilePath = path.join(__dirname, "../db/config/config.json");
-let initialBoxes = JSON.parse(fs.readFileSync(boxesFilePath, "utf-8"));
+/*const boxesFilePath = path.join(__dirname, "../config/config.json");
+let initialBoxes = JSON.parse(fs.readFileSync(boxesFilePath, "utf-8"));*/
 
 const mainController = {
   getBoxes: (req, res) => {
