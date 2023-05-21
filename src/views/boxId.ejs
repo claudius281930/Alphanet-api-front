@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Metadados da página -->
+<%- include("./partials/head") %>
+
+    <body>
+        <h1>Identificador da Box</h1>
+        <% if (idBox) { %>
+            <ul>
+                <li>ID: <%= idBox.id %>
+                </li>
+                <li>Data de Modificação: <%= idBox.dateModify %>
+                </li>
+                <li>Nome da Descrição: <%= idBox.nameDescription %>
+                </li>
+                <li>Localização: <%= idBox.locale %>
+                </li>
+                <li>Active CTO: <%= idBox.activeCto %>
+                </li>
+                <li>Tecnologia de Rede: <%= idBox.networkTechnology %>
+                </li>
+            </ul>
+            <% } else { %>
+                <p>Box não encontrada.</p>
+                <% } %>
+                    <!-- Footer da pagina -->
+                    <%- include("./partials/footer") %>
+                        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    </body>
+
+</html>

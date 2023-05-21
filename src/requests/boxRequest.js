@@ -1,22 +1,42 @@
 const axios = require("axios");
 const defaults = require("./defaults");
 
-const url = 'box'; //contexto de negocio
+//const urlhome = 'home/';
+const urlbox = "box"; //contexto de negocio
+const urlname = "/name"; // parametrização de rota
+const urlFull = urlbox + urlname;
 
 const boxRequest = {
-  getBox: () =>
+  /*gethome:() =>
     axios({
       ...defaults,
       method: "get",
-      url: `${url}/`,
-    }),
-
-  /*getBoxId: (id) =>
-    axios({
-      ...defaults,
-      method: "get",
-      url: `${url}/${id}`,
+      url: `${urlhome}`,
     }),*/
+
+  getBox: () => {
+    return axios({
+      ...defaults,
+      method: "get",
+      url: `${urlbox}/`,
+    });
+  },
+
+  getBoxId: (id) => {
+    return axios({
+      ...defaults,
+      method: "get",
+      url: `${urlbox}/${id}`,
+    });
+  },
+
+  getBoxName: (name_description) => {
+    return axios({
+      ...defaults,
+      method: "get",
+      url: `${urlFull}/${name_description}`,
+    });
+  },
 
   /*createBox: (box) => axios({
       ...defaultConfig,

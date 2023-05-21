@@ -9,31 +9,36 @@
     <body>
 
         <h1>Boxes</h1>
+
         <ul>
-            <% boxes.forEach(function(box) { %>
+
+            <% boxesAll.forEach(function(box) { %>
+
                 <li>
-                    id: <%= box.id %>
+                    ID: <%= box.id %>
                 </li>
                 <li>
-                    dateModify: <%= box.dateModify %>
+                    Data de Modificação: <%= box.dateModify %>
                 </li>
                 <li>
-                    nameDescription: <%= box.nameDescription %>
+                    Nome da Descrição: <%= box.nameDescription %>
                 </li>
                 <li>
-                    locale: <%= box.locale %>
+                    Localização: <%= box.locale %>
                 </li>
                 <li>
-                    activeCto: <%= box.activeCto %>
+                    Active CTO: <%= box.activeCto %>
                 </li>
                 <li>
-                    networkTechnology: <%= box.networkTechnology %>
+                    Tecnologia de Rede: <%= box.networkTechnology %>
                 </li>
                 <% }); %>
+
         </ul>
 
         <!-- Footer da pagina -->
         <%- include("./partials/footer") %>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     </body>
 
 </html>
