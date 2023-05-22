@@ -3,14 +3,17 @@ const app = express();
 const path = require("path");
 
 const mainRoute = require("../src/routes/mainRouter");
+const createRoute = require("../src/routes/createRouter");
 
-app.use(express.static(path.join(__dirname, "../public")));// precisa definir o caminho certinho para funcionar ../
+app.use(express.static(path.join(__dirname, "../public"))); // precisa definir o caminho certinho para funcionar ../
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/views"));
 
 // rotas da API
 app.use("/", mainRoute);
+app.use("/home", createRoute);
+app.use("/box", createRoute);
 
 // error handler
 app.use(function (err, req, res, next) {

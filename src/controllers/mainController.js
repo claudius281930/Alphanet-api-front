@@ -14,7 +14,7 @@ const mainController = {
         //console.log(apiBoxes);
         res.render("boxes", { boxesAll: apiBoxes });
       })
-      .catch((err) => {
+      .catch((error) => {
         if (error.response) {
           // Erro de resposta da API
           console.log(error.response.status);
@@ -35,7 +35,7 @@ const mainController = {
     try {
       const response = await boxRequest.getBoxId(id);
       const box = response.data;
-      console.log(box)
+      console.log(box);
       if (!box) {
         res.render("error", { msg: "caixa não encontrada" });
       } else {
@@ -62,7 +62,7 @@ const mainController = {
     try {
       const response = await boxRequest.getBoxName(name);
       const box = response.data;
-      console.log(box)
+      console.log(box);
       if (!box) {
         res.render("error", { msg: "caixa não encontrada" });
       } else {
@@ -81,11 +81,12 @@ const mainController = {
         // Outro tipo de erro
         console.log("Erro", error.message);
       }
-      res.render("error", {  msg: "caixa não encontrada"  });
+      res.render("error", { msg: "caixa não encontrada" });
     }
   },
   getFusions: (req, res) => {
-    fusionRequest.getFusion()
+    fusionRequest
+      .getFusion()
       .then((result) => {
         const apiFusion = result.data;
         console.log(apiFusion);
@@ -112,7 +113,7 @@ const mainController = {
     try {
       const response = await fusionRequest.getFusionId(id);
       const fusion = response.data;
-      console.log(fusion)
+      console.log(fusion);
       if (!fusion) {
         res.render("error", { msg: "caixa não encontrada" });
       } else {
