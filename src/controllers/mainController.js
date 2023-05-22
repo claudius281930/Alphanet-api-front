@@ -1,4 +1,5 @@
 const boxRequest = require("../requests/boxRequest");
+const fusionRequest = require("../requests/fusionRequest");
 
 const mainController = {
   /*home: (req, res) => {
@@ -81,6 +82,56 @@ const mainController = {
         console.log("Erro", error.message);
       }
       res.render("error", {  msg: "caixa não encontrada"  });
+    }
+  },
+  getFusions: (req, res) => {
+    fusionRequest.getFusion()
+      .then((result) => {
+        const apiFusion = result.data;
+        console.log(apiFusion);
+        res.render("fusionAll", { fusions: apiFusion });
+      })
+      .catch((error) => {
+        if (error.response) {
+          // Erro de resposta da API
+          console.log(error.response.status);
+          console.log(error.response.data);
+          console.log(error.response.headers);
+        } else if (error.request) {
+          // Erro de requisição (sem resposta)
+          console.log(error.request);
+        } else {
+          // Outro tipo de erro
+          console.log("Erro", error.message);
+        }
+        res.render("error", { nameBox: [] });
+      });
+  },
+  getFusionById: async (req, res) => {
+    const id = req.params.id;
+    try {
+      const response = await fusionRequest.getFusionId(id);
+      const fusion = response.data;
+      console.log(fusion)
+      if (!fusion) {
+        res.render("error", { msg: "caixa não encontrada" });
+      } else {
+        res.render("fusionId", { idFusion: fusion });
+      }
+    } catch (error) {
+      if (error.response) {
+        // Erro de resposta da API
+        console.log(error.response.status);
+        console.log(error.response.data);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        // Erro de requisição (sem resposta)
+        console.log(error.request);
+      } else {
+        // Outro tipo de erro
+        console.log("Erro", error.message);
+      }
+      res.render("error", { nameBox: [] });
     }
   },
 };
