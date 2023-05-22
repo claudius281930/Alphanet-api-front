@@ -4,10 +4,10 @@ const path = require("path");
 
 const mainRoute = require("../src/routes/mainRouter");
 
-app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "views"));
+app.use(express.static(path.join(__dirname, "../public")));// precisa definir o caminho certinho para funcionar ../
 
-app.use(express.static(path.join(__dirname, "public")));
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "/views"));
 
 // rotas da API
 app.use("/", mainRoute);
