@@ -5,16 +5,22 @@
 
     <body>
         <h1>Nome da Box</h1>
-        <li>Nome: <%= nameBox.msg %></li>
+        <!--<li>Nome: <%#= nameBox.msg %></li>-->
         <% if (nameBox) { %>
             <ul>
                 
-                <li>ID: <%= nameBox.box.id %></li>
-                <li>Data de Modificação: <%= nameBox.box.dateModify %></li>
-                <li>Nome da Descrição: <%= nameBox.box.nameDescription %></li>
-                <li>Localização: <%= nameBox.box.locale %></li>
-                <li>Active CTO: <%= nameBox.box.activeCto %></li>
-                <li>Tecnologia de Rede: <%= nameBox.box.networkTechnology %> </li>
+                <li>
+                    <span class="content-list">ID:</span> <%= nameBox.box.id %></li>
+                <li>
+                    <span class="content-list">Data de Modificação:</span> <%= nameBox.box.dateModify %></li>
+                <li>
+                    <span class="content-list">Nome da Descrição:</span> <%= nameBox.box.nameDescription %></li>
+                <li>
+                    <span class="content-list">Localização:</span> <%= nameBox.box.locale %></li>
+                <li>
+                    <span class="content-list">Active CTO:</span> <%= nameBox.box.activeCto %></li>
+                <li>
+                    <span class="content-list">Tecnologia de Rede:</span> <%= nameBox.box.networkTechnology %> </li>
             </ul>
             <% } else { %>
                 <p>Box não encontrada.</p>

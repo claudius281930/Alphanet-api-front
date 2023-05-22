@@ -8,29 +8,27 @@
 
     <body>
 
-        <h1>Boxes</h1>
-
+        <h1>As cinco primeiras Caixas</h1>
         <ul>
-
             <% boxesAll.forEach(function(box) { %>
 
                 <li>
-                    ID: <%= box.id %>
+                    <span class="content-list">ID:</span> <%= box.id %>
                 </li>
                 <li>
-                    Data de Modificação: <%= box.dateModify %>
+                    <span class="content-list">Data de Modificação:</span> <%= box.dateModify %>
                 </li>
                 <li>
-                    Nome da Descrição: <%= box.nameDescription %>
+                    <span class="content-list">Nome da Descrição:</span> <%= box.nameDescription %>
                 </li>
                 <li>
-                    Localização: <%= box.locale %>
+                    <span class="content-list">Localização:</span> <%= box.locale %>
                 </li>
                 <li>
-                    Active CTO: <%= box.activeCto %>
+                    <span class="content-list">Active CTO:</span> <%= box.activeCto %>
                 </li>
                 <li>
-                    Tecnologia de Rede: <%= box.networkTechnology %>
+                    <span class="content-list">Tecnologia de Rede:</span> <%= box.networkTechnology %>
                 </li>
                 <% }); %>
 

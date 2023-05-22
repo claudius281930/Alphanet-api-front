@@ -4,18 +4,23 @@
 <%- include("./partials/head") %>
 
     <body>
-        <h1>Identificador da Fusão</h1>
+        <h1>Identificação da Fusão</h1>
         <% if (idFusion) { %>
             <ul>
-                <li>ID: <%= idFusion.id %>
+                <li>
+                    <span class="content-list">ID:</span> <%= idFusion.id %>
                 </li>
-                <li>Chave estrangeira: <%= idFusion.boxId %>
+                <li>
+                    <span class="content-list">Chave estrangeira:</span> <%= idFusion.boxId %>
                 </li>
-                <li>Data de Modificação: <%= idFusion.dateModify %>
+                <li>
+                    <span class="content-list">Data de Modificação:</span> <%= idFusion.dateModify %>
                 </li>
-                <li>Numero de Fusões: <%= idFusion.numberFusions %>
+                <li>
+                    <span class="content-list">Numero de Fusões:</span> <%= idFusion.numberFusions %>
                 </li>
-                <li>ID do objeto de relacionamento: <%= idFusion.box_id %>
+                <li>
+                    <span class="content-list">ID do objeto de relacionamento:</span> <%= idFusion.box_id %>
                 </li>
 
             </ul>

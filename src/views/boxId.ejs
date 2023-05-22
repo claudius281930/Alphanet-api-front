@@ -4,20 +4,26 @@
 <%- include("./partials/head") %>
 
     <body>
-        <h1>Identificador da Box</h1>
+        <h1>Identificação da Caixa</h1>
         <% if (idBox) { %>
             <ul>
-                <li>ID: <%= idBox.id %>
+                <li>
+                    <span class="content-list">ID:</span> <%= idBox.id %>
                 </li>
-                <li>Data de Modificação: <%= idBox.dateModify %>
+                <li>
+                    <span class="content-list">Data de Modificação:</span> <%= idBox.dateModify %>
                 </li>
-                <li>Nome da Descrição: <%= idBox.nameDescription %>
+                <li>
+                    <span class="content-list">Nome da Descrição:</span> <%= idBox.nameDescription %>
                 </li>
-                <li>Localização: <%= idBox.locale %>
+                <li>
+                    <span class="content-list">Localização:</span> <%= idBox.locale %>
                 </li>
-                <li>Active CTO: <%= idBox.activeCto %>
+                <li>
+                    <span class="content-list">Active CTO:</span> <%= idBox.activeCto %>
                 </li>
-                <li>Tecnologia de Rede: <%= idBox.networkTechnology %>
+                <li>
+                    <span class="content-list">Tecnologia de Rede:</span> <%= idBox.networkTechnology %>
                 </li>
             </ul>
             <% } else { %>

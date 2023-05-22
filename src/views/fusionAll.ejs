@@ -7,27 +7,24 @@
     <div class="banner"></div>
 
     <body>
-
-        <h1>Fusions</h1>
-
+        <h1>As cinco primeiras Fusões</h1>
         <ul>
-
             <% fusions.forEach(function(fus) { %>
 
                 <li>
-                    ID: <%= fus.id %>
+                    <span class="content-list">ID:</span> <%= fus.id %>
                 </li>
                 <li>
-                    Chave estrangeira: <%= fus.boxId %>
+                    <span class="content-list">Chave estrangeira:</span> <%= fus.boxId %>
                 </li>
                 <li>
-                    Data de Modificação: <%= fus.dateModify %>
+                    <span class="content-list">Data de Modificação:</span> <%= fus.dateModify %>
                 </li>
                 <li>
-                    Numero de Fusões: <%= fus.numberFusions %>
+                    <span class="content-list">Numero de Fusões:</span> <%= fus.numberFusions %>
                 </li>
                 <li>
-                    ID do objeto de relacionamento: <%= fus.box_id %>
+                    <span class="content-list">ID do objeto de relacionamento:</span> <%= fus.box_id %>
                 </li>
                 <% }); %>
 
