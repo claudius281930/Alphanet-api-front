@@ -37,28 +37,6 @@ const boxRequest = {
       url: `${urlFull}/${name_description}`,
     });
   },
-
-  /*createBox: (box) => axios({
-      ...defaultConfig,
-      method: "post",
-      data: {
-        ...box,
-      },
-      url: `${url}/`,
-    }),*/
-
-  /*updateBox: (box,id) => axios({
-      ...defaultConfig,
-      method: "update",
-      url: `${url}/${id}`,
-      ...box
-    }),*/
-
-  /*deleteBox: (id) => axios({
-      ...defaultConfig,
-      method: "delete",
-      url: `${url}/${id}`,
-    }),*/
 };
 
 module.exports = boxRequest;

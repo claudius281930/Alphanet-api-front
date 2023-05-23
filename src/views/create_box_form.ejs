@@ -17,36 +17,36 @@
                     <% } %>
             </ul>
             <% } %>
-                <h1>Criação de uma nova CaixaS</h1>
+                <h1>Criação de uma nova Caixa</h1>
 
-                <form action="http://localhost:3000/create/box" method="POST">
+                <form action="/create/box" method="POST">
                     <div>
                         <label for="date">Data de Modificação:</label>
-                        <input type="date" id="data" name="data" required>
+                        <input type="date" id="data" name="dateModify" required>
                     </div>
 
                     <div>
                         <label for="name">Nome Descritivo:</label>
-                        <input id="name" name="name" required></input>
+                        <input id="name" name="nameDescription" value="crispin-fusão-adicionada<%#= box.nameDescription %>" required></input>
                     </div>
 
                     <div>
                         <label for="locale">Localização:</label>
-                        <input type="text" id="locale" name="locale" required>
+                        <input type="text" id="locale" name="locale" value="Prox. praça da goiaba<%#= box.locale %>" required>
                     </div>
 
                     <div>
                         <label for="descricao">Active CTO:</label>
-                        <input type="number" id="descricao" name="descricao" required>
+                        <input type="number" id="descricao" name="activeCto" value="<%#= box.activeCto %>" required>
                     </div>
 
                     <div>
                         <label for="text">Tecnologia de Rede:</label>
-                        <input type="text" id="quantidade" name="quantidade" required>
+                        <input type="text" id="quantidade" name="networkTechnology" value="Epon,Gpon,XGSPon<%#= box.networkTechnology %>" required>
                     </div>
 
                     <div>
-                        <button type="submit">Criar Caixa</button>
+                        <button type="submit">Criar</button>
                     </div>
                 </form>
 

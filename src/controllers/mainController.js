@@ -2,10 +2,10 @@ const boxRequest = require("../requests/boxRequest");
 const fusionRequest = require("../requests/fusionRequest");
 
 const mainController = {
-  /*home: (req, res) => {
-    boxRequest.gethome()
-      res.render("home");
-  },*/
+  //Home
+  home: (req, res) => {
+    res.render("home");
+  },
   getBoxes: (req, res) => {
     boxRequest
       .getBox()

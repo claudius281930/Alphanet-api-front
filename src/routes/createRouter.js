@@ -4,13 +4,7 @@ const router = express.Router();
 const createController = require("../controllers/createController");
 
 //C;
-router.post("/create",createController.create);
-/*router.post("/fusion",createController.createBox);
-router.post("/color",createController.createBox);
-router.post("/link",createController.createBox);*/
-/* --------------------------------------------------------------------- */
+router.get("/",createController.homeFormCreateBox);// mesma rota definida na view no atributo action
 
-//R;
-router.get("/create",createController.homeFormCreateBox);
 
 module.exports = router;

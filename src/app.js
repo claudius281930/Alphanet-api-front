@@ -1,19 +1,22 @@
 const express = require("express");
 const app = express();
+const methodOverride = require("method-override");
 const path = require("path");
 
 const mainRoute = require("../src/routes/mainRouter");
 const createRoute = require("../src/routes/createRouter");
 
 app.use(express.static(path.join(__dirname, "../public"))); // precisa definir o caminho certinho para funcionar ../
+app.use(express.urlencoded({extended: false}));
+app.use(express.json());
+app.use(methodOverride("_method"));
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/views"));
 
 // rotas da API
 app.use("/", mainRoute);
-app.use("/home", createRoute);
-app.use("/box", createRoute);
+app.use("/create", createRoute);
 
 // error handler
 app.use(function (err, req, res, next) {

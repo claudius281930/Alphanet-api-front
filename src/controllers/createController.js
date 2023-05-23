@@ -2,20 +2,22 @@ const moment = require('moment');
 const createRequest = require("../requests/createRequests/createBoxRequest");
 
 const createController = {
-    //Home form create
-    homeFormCreateBox: (req,res) => {
-        res.render("create-box-form");
-      },
+   //Home form create
+  homeFormCreateBox: (req,res) => {
+    res.render("create_box_form");
+  },
     //Creating...
     create: async (req, res) => {
         const msgSucesso = "Caixa criada com sucesso!"
-        const formattedData = moment(dateModify, 'DD/MM/YYYY').format('YYYY/MM/DD');
+        const formattedData = moment(req.body.dateModify, 'DD/MM/YYYY').format('YYYY/MM/DD');
+
+        //Key que precisarão ser passada lá na view no input com os atributos: name="dateModify"/name="nameDescription"
         let body = {
-        dateModify: formattedData.req.body,
-        nameDescription: req.body,
-        locale: req.body,
-        activeCto: req.body,
-        networkTechnology: req.body
+        dateModify: formattedData,
+        nameDescription: req.body.nameDescription,
+        locale: req.body.locale,
+        activeCto: req.body.activeCto,
+        networkTechnology: req.body.networkTechnology
     }
     
     let box = body
@@ -23,7 +25,7 @@ const createController = {
     try {
       const response = await createRequest.createBox(box);
      if(box != undefined){
-        res.redirect("boxes").json({msg: msgSucesso});
+        res.redirect("boxes",response).json({msg: msgSucesso});
      }
       
     } catch (error) {
@@ -46,17 +48,34 @@ module.exports = createController;
 
 /*const moment = require('moment');
 
-// ...
-
 const createController = {
-  createdBox: async (req, res) => {
-    const { data, name, locale, descricao, quantidade } = req.body;
+  create: async (req, res) => {
+    const msgSucesso = "Caixa criada com sucesso!";
+    const { dateModify, nameDescription, locale, activeCto, networkTechnology } = req.body;
 
     // Convertendo a data do formato "dd/mm/aaaa" para "aaaa/mm/dd"
-    const formattedData = moment(data, 'DD/MM/YYYY').format('YYYY/MM/DD');
+    const formattedData = moment(dateModify, 'DD/MM/YYYY').format('YYYY/MM/DD');
 
-    // Resto da lógica para criar o objeto e salvar no banco de dados
-    // ...
+    const box = {
+      dateModify: formattedData,
+      nameDescription,
+      locale,
+      activeCto,
+      networkTechnology
+    };
+
+    console.log(box);
+
+    try {
+      const response = await createRequest.createBox(box);
+      if (box != undefined) {
+        res.redirect("boxes").json({ msg: msgSucesso });
+      }
+      // Resto do código
+    } catch (error) {
+      // Tratar erros
+    }
   }
 };
+
  */
