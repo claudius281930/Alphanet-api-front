@@ -7,9 +7,9 @@ const mainController = {
     res.render("home");
   },
   //Home form create
-  homeFormCreateBox: (req,res) => {
-    const currentDate = new Date().toISOString().split('T')[0];
-    res.render("create_box_form",{currentDate});
+  homeFormCreateBox: (req, res) => {
+    const currentDate = new Date().toISOString().split("T")[0];
+    res.render("create_box_form", { currentDate });
   },
   getBoxes: (req, res) => {
     boxRequest
@@ -139,6 +139,13 @@ const mainController = {
       }
       res.render("error", { nameBox: [] });
     }
+  },
+  deleteBox: (req, res) => {
+    const id = req.params.id;
+    res.render("deleteBox",{id: id});
+  },
+  updateBox: (req, res) => {
+    res.render("updateBox");
   },
 };
 module.exports = mainController;

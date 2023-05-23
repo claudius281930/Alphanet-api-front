@@ -11,5 +11,7 @@ router.get("/fusion", mainController.getFusions);
 router.get("/box/:id",mainController.getBoxById);
 router.get("/fusion/:id", mainController.getFusionById);
 router.get("/box/name/:name_description",mainController.getBoxByName);
+router.get("/delete", mainController.deleteBox);
+
 
 module.exports = router;

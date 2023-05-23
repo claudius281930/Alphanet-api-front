@@ -3,20 +3,22 @@ const app = express();
 const methodOverride = require("method-override");
 const path = require("path");
 
-const mainRoute = require("../src/routes/mainRouter");
-const createRoute = require("../src/routes/createRouter");
+const mainRouter = require("../src/routes/mainRouter");
+const createRouter = require("../src/routes/createRouter");
+const deleteRouter = require("../src/routes/deleteRouter");
 
 app.use(express.static(path.join(__dirname, "../public"))); // precisa definir o caminho certinho para funcionar ../
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(methodOverride("_method"));
 
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "/views"));
+app.set("views", path.join(__dirname, "views"));
 
 // rotas da API
-app.use("/", mainRoute);
-app.use("/create", createRoute);
+app.use("/", mainRouter);
+app.use("/create", createRouter);
+app.use("/box", deleteRouter); //Endpoint(http://localhost:3000/box/:id);
 
 // error handler
 app.use(function (err, req, res, next) {

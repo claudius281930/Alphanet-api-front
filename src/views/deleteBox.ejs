@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<!-- Metadados da pagina -->
+<%- include("./partials/head" )%>
+
+    <body>
+        <!-- Banner -->
+        <div class="banner"></div>
+        <div>
+            <h1>Visualização de Exclusão</h1>
+            <p>Tem certeza de que deseja excluir o objeto?</p>
+            <form action="box/:<%= id %>?_method=DELETE" method="POST">
+                <input type="number" name="id" required><!--  Endpoint(http://localhost:3000/box/:id; -->
+                <button type="submit">Excluir</button>
+            </form>
+        </div>
+        <!-- Footer da pagina -->
+        <%- include("./partials/footer") %>
+            <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    </body>
+
+</html>

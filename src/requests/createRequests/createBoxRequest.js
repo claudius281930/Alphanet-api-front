@@ -1,7 +1,7 @@
 const axios = require("axios");
 const defaults = require("../defaults");
 
-const url = "create/box"; //contexto de negocio
+const url = "create/box"; //contexto de negocio e Endpoint;
 
 const createRequest = {
   createBox: (box) =>
