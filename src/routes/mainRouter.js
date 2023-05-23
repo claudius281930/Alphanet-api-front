@@ -5,6 +5,7 @@ const mainController = require("../controllers/mainController");
 
 //R;
 router.get("/",mainController.home);
+router.get("/create",mainController.homeFormCreateBox)
 router.get("/box",mainController.getBoxes);
 router.get("/fusion", mainController.getFusions);
 router.get("/box/:id",mainController.getBoxById);

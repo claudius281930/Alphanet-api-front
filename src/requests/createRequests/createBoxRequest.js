@@ -1,10 +1,10 @@
 const axios = require("axios");
 const defaults = require("../defaults");
 
-const url = "box"; //contexto de negocio
+const url = "create/box"; //contexto de negocio
 
 const createRequest = {
-  createBox: () =>
+  createBox: (box) =>
     axios({
       ...defaults,
       method: "post",

@@ -2,18 +2,14 @@ const moment = require('moment');
 const createRequest = require("../requests/createRequests/createBoxRequest");
 
 const createController = {
-   //Home form create
-  homeFormCreateBox: (req,res) => {
-    res.render("create_box_form");
-  },
     //Creating...
     create: async (req, res) => {
         const msgSucesso = "Caixa criada com sucesso!"
-        const formattedData = moment(req.body.dateModify, 'DD/MM/YYYY').format('YYYY/MM/DD');
+        //const formattedData = moment(req.body.dateModify, 'DD/MM/YYYY').format('YYYY-MM-DD');
 
         //Key que precisarão ser passada lá na view no input com os atributos: name="dateModify"/name="nameDescription"
         let body = {
-        dateModify: formattedData,
+        dateModify: req.body.dateModify,
         nameDescription: req.body.nameDescription,
         locale: req.body.locale,
         activeCto: req.body.activeCto,
@@ -25,7 +21,7 @@ const createController = {
     try {
       const response = await createRequest.createBox(box);
      if(box != undefined){
-        res.redirect("boxes",response).json({msg: msgSucesso});
+        res.redirect(201, "boxes").json({msg: msgSucesso});//precisa inverter a ordem dos argumentos
      }
       
     } catch (error) {

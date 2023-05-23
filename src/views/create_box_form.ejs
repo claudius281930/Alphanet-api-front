@@ -22,7 +22,7 @@
                 <form action="/create/box" method="POST">
                     <div>
                         <label for="date">Data de Modificação:</label>
-                        <input type="date" id="data" name="dateModify" required>
+                        <input type="date" id="data" name="dateModify" value="<%= currentDate %>" required>
                     </div>
 
                     <div>
@@ -37,7 +37,7 @@
 
                     <div>
                         <label for="descricao">Active CTO:</label>
-                        <input type="number" id="descricao" name="activeCto" value="<%#= box.activeCto %>" required>
+                        <input type="number" id="descricao" name="activeCto" required>
                     </div>
 
                     <div>

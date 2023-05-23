@@ -6,6 +6,11 @@ const mainController = {
   home: (req, res) => {
     res.render("home");
   },
+  //Home form create
+  homeFormCreateBox: (req,res) => {
+    const currentDate = new Date().toISOString().split('T')[0];
+    res.render("create_box_form",{currentDate});
+  },
   getBoxes: (req, res) => {
     boxRequest
       .getBox()
