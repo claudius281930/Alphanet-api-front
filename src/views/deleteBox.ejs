@@ -9,9 +9,14 @@
         <div>
             <h1>Visualização de Exclusão</h1>
             <p>Tem certeza de que deseja excluir o objeto?</p>
-            <form action="box/:<%= id %>?_method=DELETE" method="POST">
-                <input type="number" name="id" required><!--  Endpoint(http://localhost:3000/box/:id; -->
-                <button type="submit">Excluir</button>
+            <form action="box/:<%= id %>?_method=DELETE" method="POST" name="id">
+                <div>
+                    <label for="number">ID:</label>
+                    <input type="number" name="id" required id="number"><!--  Endpoint(http://localhost:3000/box/:id; -->
+                </div>
+                <div>
+                    <button type="submit">Excluir</button>
+                </div>
             </form>
         </div>
         <!-- Footer da pagina -->

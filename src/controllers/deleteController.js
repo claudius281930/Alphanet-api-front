@@ -3,15 +3,15 @@ const deleteRequest = require("../requests/deleteRequests/deleteRequest");
 const deleteController = {
     deleteBox: async (req, res) => {
     try {
-      const id = req.params.id; // Obtém o ID do objeto a ser deletado
+      const id = req.body.id; // Obtém o ID do objeto a ser deletado
 
       // Chama a função de requisição de deleção
       const response = await deleteRequest.deleteBox(id);
-      //console.log(id)
+      console.log(response)
       // Verifica se a deleção foi bem-sucedida
       if (response.status === 200) {
         // Objeto deletado com sucesso
-        res.json({ message: "Objeto deletado com sucesso." });
+        res.status(200,response.status.success).json({ message: "Objeto deletado com sucesso." });
       } else {
         // Houve um erro na deleção
         res.status(response.status).json({ message: "Erro ao deletar objeto." });

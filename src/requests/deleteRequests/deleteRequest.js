@@ -8,7 +8,7 @@ const deleteRequest = {
     axios({
       ...defaults,
       method: "delete",
-      url: `${url}/:${id}`,
+      url: `${url}/${id}`,
     }),
 };
 module.exports = deleteRequest;

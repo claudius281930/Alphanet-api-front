@@ -19,6 +19,10 @@ app.set("views", path.join(__dirname, "views"));
 app.use("/", mainRouter);
 app.use("/create", createRouter);
 app.use("/box", deleteRouter); //Endpoint(http://localhost:3000/box/:id);
+/*app.use("/fusion", mainRouter);//Endpoint(http://localhost:3000/box/:id);
+app.use("/color", mainRouter);//Endpoint(http://localhost:3000/box/:id);
+app.use("/link", mainRouter);//Endpoint(http://localhost:3000/box/:id);
+ */
 
 // error handler
 app.use(function (err, req, res, next) {
