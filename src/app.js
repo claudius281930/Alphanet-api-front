@@ -4,8 +4,6 @@ const methodOverride = require("method-override");
 const path = require("path");
 
 const mainRouter = require("../src/routes/mainRouter");
-const createRouter = require("../src/routes/createRouter");
-const deleteRouter = require("../src/routes/deleteRouter");
 
 app.use(express.static(path.join(__dirname, "../public"))); // precisa definir o caminho certinho para funcionar ../
 app.use(express.urlencoded({ extended: false }));
@@ -17,12 +15,6 @@ app.set("views", path.join(__dirname, "views"));
 
 // rotas da API
 app.use("/", mainRouter);
-app.use("/create", createRouter);
-app.use("/box", deleteRouter); //Endpoint(http://localhost:3000/box/:id);
-/*app.use("/fusion", mainRouter);//Endpoint(http://localhost:3000/box/:id);
-app.use("/color", mainRouter);//Endpoint(http://localhost:3000/box/:id);
-app.use("/link", mainRouter);//Endpoint(http://localhost:3000/box/:id);
- */
 
 // error handler
 app.use(function (err, req, res, next) {

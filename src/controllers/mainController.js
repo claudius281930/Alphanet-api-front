@@ -3,13 +3,47 @@ const fusionRequest = require("../requests/fusionRequest");
 
 const mainController = {
   //Home
-  home: (req, res) => {
+  pageHome: (req, res) => {
     res.render("home");
   },
   //Home form create
-  homeFormCreateBox: (req, res) => {
+  pageFormCreateBox: (req, res) => {
     const currentDate = new Date().toISOString().split("T")[0];
     res.render("create_box_form", { currentDate });
+  },
+  createBox: async (req, res) => {
+    const msgSucesso = "Caixa criada com sucesso!";
+    //const formattedData = moment(req.body.dateModify, 'DD/MM/YYYY').format('YYYY-MM-DD');
+
+    //Key que precisarão ser passadas lá na view no input com os atributos: name="dateModify" ... name="nameDescription"
+    let body = {
+      dateModify: req.body.dateModify,
+      nameDescription: req.body.nameDescription,
+      locale: req.body.locale,
+      activeCto: req.body.activeCto,
+      networkTechnology: req.body.networkTechnology,
+    };
+    let box = body;
+    console.log(box);
+    try {
+      /*const response =*/ await boxRequest.createBox(box);
+      if (box != undefined) {
+        res.redirect(201, "boxes").json({ msg: msgSucesso }); //precisa inverter a ordem dos argumentos do redirect
+      }
+    } catch (error) {
+      if (error.response) {
+        // Erro de resposta da API
+        console.log(error.response.status);
+        console.log(error.response.data);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        // Erro de requisição (sem resposta)
+        console.log(error.request);
+      } else {
+        // Outro tipo de erro
+        console.log("Erro", error.message);
+      }
+    }
   },
   getBoxes: (req, res) => {
     boxRequest
@@ -140,12 +174,66 @@ const mainController = {
       res.render("error", { nameBox: [] });
     }
   },
-  deleteBox: (req, res) => {
-    const id = req.params.id;
-    res.render("deleteBox",{id: id});
+  pageFormUpdateBox: (req, res) => {
+    //const currentDate = new Date().toISOString().split("T")[0];
+    const id = req.body.id;
+    res.render("updateBox", /*{ currentDate },*/ { id: id });
   },
-  updateBox: (req, res) => {
-    res.render("updateBox");
+  updateBox: async (req, res) => {
+    const id = req.body.id;  // Obtém o ID do objeto a ser deletado
+    try {
+      // Chama a função de requisição de atualização
+      const response = await boxRequest.updateBox(id);
+      console.log(response);
+
+      // Verifica se a atualização foi bem-sucedida
+      if (response.status === 200) {
+        // Objeto atualizado com sucesso
+        res
+          .status(200, response.status.success)
+          .json({ message: "Objeto atualizado com sucesso." });
+      } else {
+        // Houve um erro na atualização
+        res
+          .status(response.status)
+          .json({ message: "Erro ao atualizar o objeto." });
+      }
+    } catch (error) {
+      // Houve um erro na requisição de atualização
+      console.log("Erro:", error.message);
+      res.status(500).json({ message: "Erro interno do servidor." });
+    }
+  },
+  pageFormDeleteBox: (req, res) => {
+    const id = req.body.id;
+    res.render("deleteBox", { id: id });
+  },
+  deleteBox: async (req, res) => {
+    // Obtém o ID do objeto a ser deletado
+    const id = req.body.id; 
+    try {
+      // Chama a função de requisição de deleção
+      const response = await boxRequest.deleteBox(id);
+      console.log(response);
+
+      // Verifica se a deleção foi bem-sucedida
+      if (response.status === 200) {
+        // Objeto deletado com sucesso
+        res.status(200, response.status.success).json({ message: "Objeto deletado com sucesso." });
+      } /* if(response) {
+        // 'Box' existente e deletado com sucesso
+        res.status(200).json({ message: "Box existente e deletada com sucesso!" });
+      }*/
+      else{
+        // 'Box' inexistente
+        res.status(404).json({ message: "'Box' inexistente!" });
+      }
+    } catch (error) {
+      // Houve um erro na requisição de deleção
+      console.log("Erro:", error.message);
+      res.status(500).json({ message: "Erro interno do servidor." });
+    }
   },
 };
+
 module.exports = mainController;

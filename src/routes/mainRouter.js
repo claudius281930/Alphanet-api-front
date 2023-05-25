@@ -3,15 +3,29 @@ const router = express.Router();
 
 const mainController = require("../controllers/mainController");
 
-//R;
-router.get("/",mainController.home);
-router.get("/create",mainController.homeFormCreateBox)
-router.get("/box",mainController.getBoxes);
-router.get("/fusion", mainController.getFusions);
-router.get("/box/:id",mainController.getBoxById);
-router.get("/fusion/:id", mainController.getFusionById);
-router.get("/box/name/:name_description",mainController.getBoxByName);
-router.get("/delete", mainController.deleteBox);
+router.get("/", mainController.pageHome);
 
+/* ---- Action get a object ---- */
+router.get("/box", mainController.getBoxes);
+router.get("/fusion", mainController.getFusions);
+router.get("/box/:id", mainController.getBoxById);
+router.get("/fusion/:id", mainController.getFusionById);
+/*router.get("/box/name/:name_description", mainController.findByName);// "/name/:name_description" ;
+router.get("/box/detail/:name_description", mainController.findByLocale); // /detail/:name_description";
+router.get("/box/detail/:name_description", mainController.findDetail);// "/locale/:locale";*/
+
+/* ---- Action that will take the route of a specific object ---- */
+router.get("/create", mainController.pageFormCreateBox);
+router.get("/update", mainController.pageFormUpdateBox);
+router.get("/delete", mainController.pageFormDeleteBox);
+
+/* ---- Action for create a object ---- */
+router.post("/create/box", mainController.createBox);// mesma rota definida na view no atributo action
+
+/* ---- Action for update a object ---- */
+router.put("/box/:id", mainController.updateBox);
+
+/* ---- Action for delete a object ---- */
+router.delete("/box/:id", mainController.deleteBox);// error: currentUrl: 'http://localhost:3000/create//box'
 
 module.exports = router;

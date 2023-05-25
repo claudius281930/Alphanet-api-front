@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <!-- Metadados da pagina -->
 <%- include("./partials/head" )%>
 
@@ -7,16 +8,16 @@
         <!-- Banner -->
         <div class="banner"></div>
         <div>
-            <h1>Visualização de Exclusão</h1>
-            <p>Tem certeza de que deseja excluir o objeto?</p>
-            
-            <form action="box/:<%= id %>?_method=DELETE" method="POST" name="id">
+            <h1>Atualização de Caixa</h1>
+            <p>Digite o numero do objeto para atualizar</p>
+
+            <form action="box/:<%= id %>?_method=PUT" method="POST" name="id"><!--name="id"-->
                 <div>
                     <label for="number">ID:</label>
                     <input type="number" name="id" id="number" required>
                 </div>
                 <div>
-                    <button type="submit">Excluir</button>
+                    <button type="submit">atualizar</button>
                 </div>
             </form>
         </div>
