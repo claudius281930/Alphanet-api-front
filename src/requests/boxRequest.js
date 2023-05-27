@@ -29,7 +29,7 @@ const boxRequest = {
     });
   },
   createBox: (box) => {
-    axios({
+    return axios({
       ...defaults,
       method: "post",
       data: {
@@ -38,8 +38,8 @@ const boxRequest = {
       url: `${urlcreate}/${urlbox}`,
     });
   },
-  updateBox: (box, id) => {
-    axios({
+  updateBox: (box,id) => {
+    return axios({
       ...defaults,
       method: "put",
       data: {
@@ -49,7 +49,7 @@ const boxRequest = {
     });
   },
   deleteBox: (id) => {
-    axios({
+    return axios({
       ...defaults,
       method: "delete",
       url: `${urlbox}/${id}`,

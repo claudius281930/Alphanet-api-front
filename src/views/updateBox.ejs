@@ -8,13 +8,50 @@
         <!-- Banner -->
         <div class="banner"></div>
         <div>
-            <h1>Atualização de Caixa</h1>
-            <p>Digite o numero do objeto para atualizar</p>
+            <div>
+                <h1>Atualização de Caixa</h1>
+                <div>
+                    <h2>Digite o Id do objeto que deseja atualizar</h2>
+                    <p>Selecione qual campo deseja atualizar</p>
+                </div>
+            </div>
 
-            <form action="box/:<%= id %>?_method=PUT" method="POST" name="id"><!--name="id"-->
+            <form method="POST" action="box/<%= id %>?_method=PUT" name="id">
                 <div>
                     <label for="number">ID:</label>
-                    <input type="number" name="id" id="number" required>
+                    <input type="number" name="id" id="number" placeholder="id para consultar" value="<%= id %>"
+                        required autofocus>
+                    <%# if(objectExist) { %>
+<!-- 
+                        <p>Objeto encontrado!</p>
+
+                        <%# } else { %>
+
+                            <p>Objeto não encontrodo!</p>
+
+                            <%# } %> -->
+                </div>
+
+                <div>
+                    <label for="date">Data de Modificação:</label>
+                    <input type="date" id="data" name="dateModify" value="<%#= currentDate %>" required autofocus>
+                </div>
+                <div>
+                    <label for="name">Nome Descritivo:</label>
+                    <input id="name" name="nameDescription" value="<%#= nameDescription %>" required autofocus>
+                </div>
+                <div>
+                    <label for="locale">Localização:</label>
+                    <input type="text" id="locale" name="locale" value="<%#= locale %>" required autofocus>
+                </div>
+                <div>
+                    <label for="descricao">Active CTO:</label>
+                    <input type="number" id="descricao" name="activeCto" value="<%#= activeCto %>" required autofocus>
+                </div>
+                <div>
+                    <label for="networkTechnology">Tecnologia de Rede:</label>
+                    <input type="text" id="networkTechnology" name="networkTechnology" value="<%#= networkTechnology %>"
+                        required autofocus>
                 </div>
                 <div>
                     <button type="submit">atualizar</button>
@@ -24,7 +61,7 @@
 
         <!-- Footer da pagina -->
         <%- include("./partials/footer") %>
-            <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
     </body>
 
 </html>

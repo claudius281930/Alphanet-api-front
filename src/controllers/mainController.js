@@ -174,30 +174,33 @@ const mainController = {
       res.render("error", { nameBox: [] });
     }
   },
-  pageFormUpdateBox: (req, res) => {
-    //const currentDate = new Date().toISOString().split("T")[0];
+  pageFormUpdateBox: async (req, res) => {
+    const currentDate = new Date().toISOString().split("T")[0];
     const id = req.body.id;
-    res.render("updateBox", /*{ currentDate },*/ { id: id });
+    res.render("updateBox", { currentDate, id: id });
   },
   updateBox: async (req, res) => {
-    const id = req.body.id;  // Obtém o ID do objeto a ser deletado
+    // Obtém o ID do objeto a ser atualizar
+    const id = req.body.id; 
+    //verificando se o objeto existe na base;
+    if(boxRequest.getBoxId(id)){
+      console.log("Objeto encontrado");
+    }else{
+      console.log("Objeto não encontrado");
+    }
+    console.log(id);
     try {
+      const body = {
+        dateModify: req.body.dateModify,
+        nameDescription: req.body.nameDescription,
+        locale: req.body.locale,
+        activeCto: req.body.activeCto,
+        networkTechnology: req.body.networkTechnology,
+      };
+      let box = body;
       // Chama a função de requisição de atualização
-      const response = await boxRequest.updateBox(id);
-      console.log(response);
-
-      // Verifica se a atualização foi bem-sucedida
-      if (response.status === 200) {
-        // Objeto atualizado com sucesso
-        res
-          .status(200, response.status.success)
-          .json({ message: "Objeto atualizado com sucesso." });
-      } else {
-        // Houve um erro na atualização
-        res
-          .status(response.status)
-          .json({ message: "Erro ao atualizar o objeto." });
-      }
+      /*const response =*/ await boxRequest.updateBox(box,id);
+      res.status(200).json({msg :"Objeto atualizado!"});
     } catch (error) {
       // Houve um erro na requisição de atualização
       console.log("Erro:", error.message);
@@ -210,7 +213,7 @@ const mainController = {
   },
   deleteBox: async (req, res) => {
     // Obtém o ID do objeto a ser deletado
-    const id = req.body.id; 
+    const id = req.body.id;
     try {
       // Chama a função de requisição de deleção
       const response = await boxRequest.deleteBox(id);
@@ -219,12 +222,13 @@ const mainController = {
       // Verifica se a deleção foi bem-sucedida
       if (response.status === 200) {
         // Objeto deletado com sucesso
-        res.status(200, response.status.success).json({ message: "Objeto deletado com sucesso." });
+        res
+          .status(200, response.status.success)
+          .json({ message: "Objeto deletado com sucesso." });
       } /* if(response) {
         // 'Box' existente e deletado com sucesso
         res.status(200).json({ message: "Box existente e deletada com sucesso!" });
-      }*/
-      else{
+      }*/ else {
         // 'Box' inexistente
         res.status(404).json({ message: "'Box' inexistente!" });
       }
@@ -237,3 +241,16 @@ const mainController = {
 };
 
 module.exports = mainController;
+
+/*
+ update: async (req, res) => {
+      const id = req.params.id
+      const produto = req.body
+      try {
+        await Produto.update(produto, { where: { id } })
+        res.status(201).json({ msg: 'Produto alterado com sucesso!' })
+      } catch (err) {
+        res.status(304).json(err) // 304 = Not Modified
+      }
+    }
+ */

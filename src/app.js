@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const methodOverride = require("method-override");
 const path = require("path");
+//const bodyParser = require("body-parser");
 
 const mainRouter = require("../src/routes/mainRouter");
 
@@ -11,10 +12,11 @@ app.use(express.json());
 app.use(methodOverride("_method"));
 
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "views"));
+app.set("views", path.join(__dirname, "/views"));
 
 // rotas da API
 app.use("/", mainRouter);
+app.use("/box", mainRouter);
 
 // error handler
 app.use(function (err, req, res, next) {

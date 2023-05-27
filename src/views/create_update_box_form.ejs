@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Metadados da pagina -->
+<%- include("./partials/head" )%>
+
+    <body>
+        <!-- Banner -->
+        <div class="banner"></div>
+        <div>
+            <div>
+                <h1>Atualização de Caixa</h1>
+                <div>
+                    <h2>Selecione qual campo deseja atualizar</h2>
+                </div>
+            </div>
+
+            <form action="/box/:<%= id %>?_method=PUT" method="POST" name="id">
+                <!-- <div>
+                    <label for="number" >ID:</label>
+                    <input type="number" name="id" id="number" placeholder="id para consultar" required>
+                </div> -->
+                <div>
+                    <label for="date">Data de Modificação:</label>
+                    <input type="date" id="data" name="dateModify" value="<%#= currentDate %>" required>
+                </div>
+                <div>
+                    <label for="name">Nome Descritivo:</label>
+                    <input id="name" name="nameDescription" value="<%#= box.nameDescription %>" required></input>
+                </div>
+                <div>
+                    <label for="locale">Localização:</label>
+                    <input type="text" id="locale" name="locale" value="<%#= box.locale %>" required>
+                </div>
+                <div>
+                    <label for="descricao">Active CTO:</label>
+                    <input type="number" id="descricao" name="activeCto" required>
+                </div>
+                <div>
+                    <label for="text">Tecnologia de Rede:</label>
+                    <input type="text" id="quantidade" name="networkTechnology" value="<%#= box.networkTechnology %>"
+                        required>
+                </div>
+                <div>
+                    <button type="submit">atualizar</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Footer da pagina -->
+        <%- include("./partials/footer") %>
+            <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    </body>
+
+</html>
