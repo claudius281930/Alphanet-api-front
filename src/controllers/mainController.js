@@ -2,11 +2,40 @@ const boxRequest = require("../requests/boxRequest");
 const fusionRequest = require("../requests/fusionRequest");
 
 const mainController = {
-  //Home
-  pageHome: (req, res) => {
-    res.render("home");
+ 
+  pageHome: (req, res) => { 
+    const name = req.body.name_description;
+    res.render("home", {name: name});
+  
   },
-  //Home form create
+  pageHomeFindByName: async (req, res) => {
+    let name = req.query.nameDescription;
+    console.log(name);
+    try {
+      const response = await boxRequest.getBoxName(name);
+      let box = response.data;
+      console.log(box);
+      if (!box) {
+        res.render("error", { msg: "caixa não encontrada" });
+      } else {
+        res.render("boxName", { nameBox: box });
+      }
+    } catch (error) {
+      if (error.response) {
+        // Erro de resposta da API
+        console.log(error.response.status);
+        console.log(error.response.data);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        // Erro de requisição (sem resposta)
+        console.log(error.request);
+      } else {
+        // Outro tipo de erro
+        console.log("Erro", error.message);
+      }
+      res.render("error", { msg: "caixa não encontrada" });
+    }
+  },
   pageFormCreateBox: (req, res) => {
     const currentDate = new Date().toISOString().split("T")[0];
     res.render("create_box_form", { currentDate });
@@ -241,16 +270,3 @@ const mainController = {
 };
 
 module.exports = mainController;
-
-/*
- update: async (req, res) => {
-      const id = req.params.id
-      const produto = req.body
-      try {
-        await Produto.update(produto, { where: { id } })
-        res.status(201).json({ msg: 'Produto alterado com sucesso!' })
-      } catch (err) {
-        res.status(304).json(err) // 304 = Not Modified
-      }
-    }
- */

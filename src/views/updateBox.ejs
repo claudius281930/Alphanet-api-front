@@ -19,19 +19,8 @@
             <form method="POST" action="box/<%= id %>?_method=PUT" name="id">
                 <div>
                     <label for="number">ID:</label>
-                    <input type="number" name="id" id="number" placeholder="id para consultar" value="<%= id %>"
-                        required autofocus>
-                    <%# if(objectExist) { %>
-<!-- 
-                        <p>Objeto encontrado!</p>
-
-                        <%# } else { %>
-
-                            <p>Objeto não encontrodo!</p>
-
-                            <%# } %> -->
+                    <input type="number" name="id" id="number" placeholder="id para consultar" value="<%= id %>" required autofocus>
                 </div>
-
                 <div>
                     <label for="date">Data de Modificação:</label>
                     <input type="date" id="data" name="dateModify" value="<%#= currentDate %>" required autofocus>
