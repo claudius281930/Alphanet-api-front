@@ -4,13 +4,13 @@ const router = express.Router();
 const mainController = require("../controllers/mainController");
 
 router.get("/", mainController.pageHome);
-
+router.get("/name/:name_description", mainController.getBoxByName);// "/name/:name_description" ;
 /* ---- Action get a object ---- */
 router.get("/box", mainController.getBoxes);
 router.get("/fusion", mainController.getFusions);
 router.get("/box/:id", mainController.getBoxById);
 router.get("/fusion/:id", mainController.getFusionById);
-router.get("/name/:name_description", mainController.pageHomeFindByName);// "/name/:name_description" ;
+
 /*router.get("/box/detail/:name_description", mainController.findByLocale); // /detail/:name_description";
 router.get("/box/detail/:name_description", mainController.findDetail);// "/locale/:locale";*/
 

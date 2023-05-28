@@ -2,20 +2,20 @@ const boxRequest = require("../requests/boxRequest");
 const fusionRequest = require("../requests/fusionRequest");
 
 const mainController = {
- 
-  pageHome: (req, res) => { 
-    const name = req.body.name_description;
-    res.render("home", {name: name});
-  
+  pageHome: async (req, res) => {
+    res.render("home");
   },
-  pageHomeFindByName: async (req, res) => {
-    let name = req.query.nameDescription;
-    console.log(name);
+  getBoxByName: async (req, res) => {
+    const name = req.query.name_description; // Use req.query para obter o valor do parâmetro de consulta
+    // const name = req.params.name_description;
+    // const inputName = req.body.nameDescription;
+    // console.log(inputName);
+
     try {
       const response = await boxRequest.getBoxName(name);
-      let box = response.data;
+      const box = response.data;
       console.log(box);
-      if (!box) {
+      if (!box /*=== inputName*/) {
         res.render("error", { msg: "caixa não encontrada" });
       } else {
         res.render("boxName", { nameBox: box });
@@ -125,33 +125,6 @@ const mainController = {
       res.render("error", { nameBox: [] });
     }
   },
-  getBoxByName: async (req, res) => {
-    const name = req.params.name_description;
-    try {
-      const response = await boxRequest.getBoxName(name);
-      const box = response.data;
-      console.log(box);
-      if (!box) {
-        res.render("error", { msg: "caixa não encontrada" });
-      } else {
-        res.render("boxName", { nameBox: box });
-      }
-    } catch (error) {
-      if (error.response) {
-        // Erro de resposta da API
-        console.log(error.response.status);
-        console.log(error.response.data);
-        console.log(error.response.headers);
-      } else if (error.request) {
-        // Erro de requisição (sem resposta)
-        console.log(error.request);
-      } else {
-        // Outro tipo de erro
-        console.log("Erro", error.message);
-      }
-      res.render("error", { msg: "caixa não encontrada" });
-    }
-  },
   getFusions: (req, res) => {
     fusionRequest
       .getFusion()
@@ -210,11 +183,11 @@ const mainController = {
   },
   updateBox: async (req, res) => {
     // Obtém o ID do objeto a ser atualizar
-    const id = req.body.id; 
+    const id = req.body.id;
     //verificando se o objeto existe na base;
-    if(boxRequest.getBoxId(id)){
+    if (boxRequest.getBoxId(id)) {
       console.log("Objeto encontrado");
-    }else{
+    } else {
       console.log("Objeto não encontrado");
     }
     console.log(id);
@@ -228,8 +201,8 @@ const mainController = {
       };
       let box = body;
       // Chama a função de requisição de atualização
-      /*const response =*/ await boxRequest.updateBox(box,id);
-      res.status(200).json({msg :"Objeto atualizado!"});
+      /*const response =*/ await boxRequest.updateBox(box, id);
+      res.status(200).json({ msg: "Objeto atualizado!" });
     } catch (error) {
       // Houve um erro na requisição de atualização
       console.log("Erro:", error.message);

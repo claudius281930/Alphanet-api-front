@@ -3,23 +3,26 @@
 <!-- Metadados da página -->
 <%- include("./partials/head") %>
 
-    <body> <h1>Home</h1>
-               
-        <form method="GET" action="/name<%# name %>" id="name-description"> <!-- http://localhost:3000/name/name_description -->
-
-            <label for="nameDescription">Faça uma busca</label>
-            <input type="text" id="home" name="nameDescription" placeholder="digite um nome" autofocus>
-
-            <button type="submit">buscar</button>
-            
-        </form>
-        <% if(name) { %>
-            
-            <% }else { %>
-                <p>Consulta configurada erroneamenta ou caixa não existe!</p>
-                <% } %>
+    <body>
+        <h1>Home</h1>
+        <div>
+            <!--<form method="GET" action="/box/name" id="name_form"> Atualize a action para a rota correta -->
+            <form method="GET" action="/name/:name_description" id="name_description"><!-- http://localhost:3000/name/name_description -->
+                <div>
+                    <label for="name_description" autofocus>Faça uma busca</label>
+                    <input type="text" name="name_description" id="name_description">
+                </div>
+                <div>
+                    <button type="submit">buscar</button>
+                </div>
+            </form>
+        </div>
         <!-- Footer da pagina -->
         <%- include("./partials/footer") %>
     </body>
 
 </html>
+<!-- <form method="GET" action="/name<%# name %>" id="name-description"> 
+
+    <label for="nameDescription">Faça uma busca</label>
+    <input type="text" id="home" name="nameDescription" placeholder="digite um nome" autofocus></form> --> 
