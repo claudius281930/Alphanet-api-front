@@ -5,35 +5,40 @@ const mainController = {
   pageHome: async (req, res) => {
     res.render("home");
   },
-  getBoxByName: async (req, res) => {
-    const name = req.query.name_description; // Use req.query para obter o valor do parâmetro de consulta
-    // const name = req.params.name_description;
-    // const inputName = req.body.nameDescription;
-    // console.log(inputName);
+  // Logica usando query string
 
+  // getBoxByName: async (req, res) => {
+  //   const name = req.query.name_description; // Use req.query para obter o valor do parâmetro de consulta
+
+  //   try {
+  //     const response = await boxRequest.getBoxName(name);
+  //     let box = response.data;
+  //     console.log(box);
+  //     if (!box) {
+  //       res.render("error", { msg: "caixa não encontrada" });
+  //     } else {
+  //       res.render("boxName", { nameBox: box });
+  //     }
+  //   } catch (error) {
+  //
+  //     res.render("error", { msg: "caixa não encontrada" });
+  //   }
+  // },
+  getBoxByNameFromBody: async (req, res) => {
+    const name = req.body.name_description;
+    console.log(name);
     try {
       const response = await boxRequest.getBoxName(name);
-      const box = response.data;
+      let box = response.data;
       console.log(box);
-      if (!box /*=== inputName*/) {
-        res.render("error", { msg: "caixa não encontrada" });
+
+      if (box) {
+        return res.render("boxName", { nameBox: box }); // A Key(nameBox) pode ser qualquer nome
       } else {
-        res.render("boxName", { nameBox: box });
+        return res.send("Objeto não encontrado ou não existe");
       }
     } catch (error) {
-      if (error.response) {
-        // Erro de resposta da API
-        console.log(error.response.status);
-        console.log(error.response.data);
-        console.log(error.response.headers);
-      } else if (error.request) {
-        // Erro de requisição (sem resposta)
-        console.log(error.request);
-      } else {
-        // Outro tipo de erro
-        console.log("Erro", error.message);
-      }
-      res.render("error", { msg: "caixa não encontrada" });
+      console.error(error, "Algo deu errado!");
     }
   },
   pageFormCreateBox: (req, res) => {
@@ -43,8 +48,6 @@ const mainController = {
   createBox: async (req, res) => {
     const msgSucesso = "Caixa criada com sucesso!";
     //const formattedData = moment(req.body.dateModify, 'DD/MM/YYYY').format('YYYY-MM-DD');
-
-    //Key que precisarão ser passadas lá na view no input com os atributos: name="dateModify" ... name="nameDescription"
     let body = {
       dateModify: req.body.dateModify,
       nameDescription: req.body.nameDescription,
@@ -55,9 +58,9 @@ const mainController = {
     let box = body;
     console.log(box);
     try {
-      /*const response =*/ await boxRequest.createBox(box);
+      await boxRequest.createBox(box);
       if (box != undefined) {
-        res.redirect(201, "boxes").json({ msg: msgSucesso }); //precisa inverter a ordem dos argumentos do redirect
+        res.redirect(201, "/home"); //precisa inverter a ordem dos argumentos do redirect
       }
     } catch (error) {
       if (error.response) {
@@ -183,26 +186,28 @@ const mainController = {
   },
   updateBox: async (req, res) => {
     // Obtém o ID do objeto a ser atualizar
-    const id = req.body.id;
-    //verificando se o objeto existe na base;
-    if (boxRequest.getBoxId(id)) {
-      console.log("Objeto encontrado");
-    } else {
-      console.log("Objeto não encontrado");
-    }
-    console.log(id);
+    let id = req.body.id;
     try {
-      const body = {
+      //verificando se o objeto existe na base;
+      if (boxRequest.getBoxId(id)) {
+        console.log("Objeto encontrado");
+      } else {
+        console.log("Objeto não encontrado");
+      }
+      //console.log(id);
+      //Pegar os valores passados via body
+      let body = {
         dateModify: req.body.dateModify,
         nameDescription: req.body.nameDescription,
         locale: req.body.locale,
         activeCto: req.body.activeCto,
         networkTechnology: req.body.networkTechnology,
       };
+      //Armazenar
       let box = body;
       // Chama a função de requisição de atualização
-      /*const response =*/ await boxRequest.updateBox(box, id);
-      res.status(200).json({ msg: "Objeto atualizado!" });
+      await boxRequest.updateBox(box, id);
+      res.redirect(200, "/home"); //.json({ msg: "Objeto atualizado!" });
     } catch (error) {
       // Houve um erro na requisição de atualização
       console.log("Erro:", error.message);
@@ -217,26 +222,11 @@ const mainController = {
     // Obtém o ID do objeto a ser deletado
     const id = req.body.id;
     try {
-      // Chama a função de requisição de deleção
-      const response = await boxRequest.deleteBox(id);
-      console.log(response);
-
-      // Verifica se a deleção foi bem-sucedida
-      if (response.status === 200) {
-        // Objeto deletado com sucesso
-        res
-          .status(200, response.status.success)
-          .json({ message: "Objeto deletado com sucesso." });
-      } /* if(response) {
-        // 'Box' existente e deletado com sucesso
-        res.status(200).json({ message: "Box existente e deletada com sucesso!" });
-      }*/ else {
-        // 'Box' inexistente
-        res.status(404).json({ message: "'Box' inexistente!" });
-      }
+      await boxRequest.deleteBox(id); //Mesmo parametro da requisisão esperado pelo AXIOS
+      res.redirect(200, "/home");
     } catch (error) {
       // Houve um erro na requisição de deleção
-      console.log("Erro:", error.message);
+      console.error("Erro:", error);
       res.status(500).json({ message: "Erro interno do servidor." });
     }
   },

@@ -3,14 +3,15 @@ const router = express.Router();
 
 const mainController = require("../controllers/mainController");
 
-router.get("/", mainController.pageHome);
-router.get("/name/:name_description", mainController.getBoxByName);// "/name/:name_description" ;
+//router.get("/", mainController.pageHome);
+router.get("/home", mainController.pageHome);
+//router.get("/name/:name_description", mainController.getBoxByName);// Para uso com query string req.query
+
 /* ---- Action get a object ---- */
 router.get("/box", mainController.getBoxes);
 router.get("/fusion", mainController.getFusions);
 router.get("/box/:id", mainController.getBoxById);
 router.get("/fusion/:id", mainController.getFusionById);
-
 /*router.get("/box/detail/:name_description", mainController.findByLocale); // /detail/:name_description";
 router.get("/box/detail/:name_description", mainController.findDetail);// "/locale/:locale";*/
 
@@ -21,6 +22,7 @@ router.get("/delete", mainController.pageFormDeleteBox);
 
 /* ---- Action for create a object ---- */
 router.post("/create/box", mainController.createBox);// mesma rota definida na view no atributo action
+router.post("/name", mainController.getBoxByNameFromBody); // Rota POST com função de buscar o valor passado pelo body da pagina
 
 /* ---- Action for update a object ---- */
 router.put("/:id", mainController.updateBox);

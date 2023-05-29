@@ -4,10 +4,11 @@
 <%- include("./partials/head") %>
 
     <body>
-        <h1>Home</h1>
+        <h1>AlphanetSLM</h1>
         <div>
-            <!--<form method="GET" action="/box/name" id="name_form"> Atualize a action para a rota correta -->
-            <form method="GET" action="/name/:name_description" id="name_description"><!-- http://localhost:3000/name/name_description -->
+            <!-- action="/name/:name_description" para uso com query string-->
+            <form method="POST" action="/name" id="name_description"><!-- 3000/name/name_description Rota do back-end-->
+                
                 <div>
                     <label for="name_description" autofocus>Faça uma busca</label>
                     <input type="text" name="name_description" id="name_description">
@@ -25,4 +26,4 @@
 <!-- <form method="GET" action="/name<%# name %>" id="name-description"> 
 
     <label for="nameDescription">Faça uma busca</label>
-    <input type="text" id="home" name="nameDescription" placeholder="digite um nome" autofocus></form> --> 
+    <input type="text" id="home" name="nameDescription" placeholder="digite um nome" autofocus></form> -->

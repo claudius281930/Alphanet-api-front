@@ -4,30 +4,44 @@
 <%- include("./partials/head") %>
 
     <body>
-        <h1>Nome da Box</h1>
-        
-        <% if (nameBox) { %>
-            <ul>
-                
-                <li>
-                    <span class="content-list">ID:</span> <%= nameBox.box.id %></li>
-                <li>
-                    <span class="content-list">Data de Modificação:</span> <%= nameBox.box.dateModify %></li>
-                <li>
-                    <span class="content-list">Nome da Descrição:</span> <%= nameBox.box.nameDescription %></li>
-                <li>
-                    <span class="content-list">Localização:</span> <%= nameBox.box.locale %></li>
-                <li>
-                    <span class="content-list">Active CTO:</span> <%= nameBox.box.activeCto %></li>
-                <li>
-                    <span class="content-list">Tecnologia de Rede:</span> <%= nameBox.box.networkTechnology %> </li>
-            </ul>
-            <% } else { %>
-                <p>Box não encontrada.</p>
-                <% } %>
-                    <!-- Footer da pagina -->
-                    <%- include("./partials/footer") %>
-                    
+        <div>
+            <h1>Nome da Caixa</h1>
+        </div>
+        <div>
+            <% if (nameBox) { %>
+                <ul>
+
+                    <li>
+                        <span class="content-list">ID:</span>
+                        <%= nameBox.box.id %>
+                    </li>
+                    <li>
+                        <span class="content-list">Data de Modificação:</span>
+                        <%= nameBox.box.dateModify %>
+                    </li>
+                    <li>
+                        <span class="content-list">Nome da Descrição:</span>
+                        <%= nameBox.box.nameDescription %>
+                    </li>
+                    <li>
+                        <span class="content-list">Localização:</span>
+                        <%= nameBox.box.locale %>
+                    </li>
+                    <li>
+                        <span class="content-list">Active CTO:</span>
+                        <%= nameBox.box.activeCto %>
+                    </li>
+                    <li>
+                        <span class="content-list">Tecnologia de Rede:</span>
+                        <%= nameBox.box.networkTechnology %>
+                    </li>
+                </ul>
+                <% } else { %>
+                    <p>Box não encontrada.</p>
+                    <% } %>
+                        <!-- Footer da pagina -->
+                        <%- include("./partials/footer") %>
+        </div>
     </body>
 
 </html>
