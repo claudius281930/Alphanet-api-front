@@ -1,20 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <!-- Metadados da página -->
 <%- include("./partials/head") %>
 
     <body>
-        <h1>AlphanetSLM</h1>
-        <div>
-            <!-- action="/name/:name_description" para uso com query string-->
-            <form method="POST" action="/name" id="name_description"><!-- 3000/name/name_description Rota do back-end-->
-                
-                <div>
-                    <label for="name_description" autofocus>Faça uma busca</label>
-                    <input type="text" name="name_description" id="name_description">
+        <div class="text-center">
+            <h1>AlphanetSLM</h1>
+            <blockquote class="blockquote">
+                <h3>Início</h3>
+            </blockquote>
+        </div>
+        <div class="container-name">
+
+            <form method="POST" action="box/name" id="name_description">
+
+                <div class="input-group mb-3">
+                    <label for="name-description" class="input-group-text" id="inputGroup-sizing-default"
+                        autofocus>Pesuisar</label>
+                    <!-- Atributo no input (name="name-description") precisa ser igual a rota. 
+                        Assim como o valor do pego no controlador e tbm na rquicição axios. -->
+                    <input type="text" name="name_description" id="name-description"
+                        class="form-control form-control-sm p-2 text-primary-emphasis bg-primary-subtle border border-primary-subtle"
+                        placeholder="Nome" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <button type="submit" class="btn btn-outline-dark">Buscar</button>
                 </div>
-                <div>
-                    <button type="submit">buscar</button>
+
+            </form>
+        </div>
+        <div class="container-id">
+            <form method="POST" action="/box/id" id="id">
+                <div class="input-group mb-3">
+                    <label for="id" class="input-group-text" id="inputGroup-sizing-default" autofocus>Pesuisar</label>
+                    <!-- Atributo no input (name="name-description") precisa ser igual a rota. 
+                        Assim como o valor do pego no controlador e tbm na rquicição axios. -->
+                    <input type="number" name="id" id="id"
+                        class="form-control form-control-sm p-2 text-primary-emphasis bg-primary-subtle border border-primary-subtle"
+                        placeholder="Id" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <button type="submit" class="btn btn-outline-dark">Buscar</button>
+                </div>
+            </form>
+        </div>
+        <div class="container-locale">
+            <form method="POST" action="/locale" id="id">
+                <div class="input-group mb-3">
+                    <label for="locale" class="input-group-text" id="inputGroup-sizing-default"
+                        autofocus>Pesuisar</label>
+                    <input type="text" name="locale" id="locale"
+                        class="form-control form-control-sm p-2 text-primary-emphasis bg-primary-subtle border border-primary-subtle"
+                        placeholder="Local" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-sm">
+                    <button type="submit" class="btn btn-outline-dark">Buscar</button>
                 </div>
             </form>
         </div>
@@ -23,7 +58,3 @@
     </body>
 
 </html>
-<!-- <form method="GET" action="/name<%# name %>" id="name-description"> 
-
-    <label for="nameDescription">Faça uma busca</label>
-    <input type="text" id="home" name="nameDescription" placeholder="digite um nome" autofocus></form> -->

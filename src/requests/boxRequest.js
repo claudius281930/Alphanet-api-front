@@ -2,9 +2,10 @@ const axios = require("axios");
 const defaults = require("./defaults");
 
 const urlcreate = "create";
-const urlbox = "box"; //contexto de negocio
-const urlname = "/name"; // parametrização de rota
-const urlFull = urlbox + urlname; // necesssaria para construir a rota /name/name_description
+const urlbox = "box"; 
+const urlname = "/name"; 
+const urllocale = "/locale";
+const urlFull = urlbox + urlname;
 
 const boxRequest = {
   getBox: () => {
@@ -28,6 +29,13 @@ const boxRequest = {
       url: `${urlFull}/${name_description}`,
     });
   },
+  getBoxLocale: (locale) => {
+    return axios({
+      ...defaults,
+      method: "get",
+      url: `${urllocale}/${locale}`,
+    });
+  },
   createBox: (box) => {
     return axios({
       ...defaults,
@@ -38,7 +46,7 @@ const boxRequest = {
       url: `${urlcreate}/${urlbox}`,
     });
   },
-  updateBox: (box,id) => {
+  updateBox: (box, id) => {
     return axios({
       ...defaults,
       method: "put",

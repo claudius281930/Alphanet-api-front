@@ -7,19 +7,20 @@
     <body>
         <!-- Banner -->
         <div class="banner"></div>
+        <div class="text-center">
+            <h1>AlphanetSLM</h1>
+            <blockquote class="blockquote">
+                <h3>Atualização de Caixa</h3>
+            </blockquote>
+        </div>
         <div>
-            <div>
-                <h1>Atualização de Caixa</h1>
-                <div>
-                    <h2>Digite o Id do objeto que deseja atualizar</h2>
-                    <p>Selecione qual campo deseja atualizar</p>
-                </div>
-            </div>
 
+            <p>Selecione qual campo(os) deseja atualizar</p>
             <form method="POST" action="box/<%= id %>?_method=PUT" name="id">
                 <div>
                     <label for="number">ID:</label>
-                    <input type="number" name="id" id="number" placeholder="id para consultar" value="<%= id %>" required autofocus>
+                    <input type="number" name="id" id="number" placeholder="id para consultar" value="<%= id %>"
+                        required autofocus>
                 </div>
                 <div>
                     <label for="date">Data de Modificação:</label>

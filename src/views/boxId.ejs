@@ -4,7 +4,13 @@
 <%- include("./partials/head") %>
 
     <body>
-        <h1>Identificação da Caixa</h1>
+        <div class="text-center">
+            <h1>AlphanetSLM</h1>
+            <blockquote class="blockquote">
+                <h3>Identificação da Caixa</h3>
+            </blockquote>
+        </div>
+        
         <% if (idBox) { %>
             <ul>
                 <li>
@@ -31,7 +37,6 @@
                 <% } %>
                     <!-- Footer da pagina -->
                     <%- include("./partials/footer") %>
-                        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     </body>
 
 </html>

@@ -16,7 +16,6 @@ app.set("views", path.join(__dirname, "/views"));
 
 // rotas da API
 app.use("/", mainRouter);
-app.use("/box", mainRouter);
 
 // error handler
 app.use(function (err, req, res, next) {

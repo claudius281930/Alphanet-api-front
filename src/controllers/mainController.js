@@ -5,30 +5,28 @@ const mainController = {
   pageHome: async (req, res) => {
     res.render("home");
   },
-  // Logica usando query string
-
-  // getBoxByName: async (req, res) => {
-  //   const name = req.query.name_description; // Use req.query para obter o valor do parâmetro de consulta
-
-  //   try {
-  //     const response = await boxRequest.getBoxName(name);
-  //     let box = response.data;
-  //     console.log(box);
-  //     if (!box) {
-  //       res.render("error", { msg: "caixa não encontrada" });
-  //     } else {
-  //       res.render("boxName", { nameBox: box });
-  //     }
-  //   } catch (error) {
-  //
-  //     res.render("error", { msg: "caixa não encontrada" });
-  //   }
-  // },
   getBoxByNameFromBody: async (req, res) => {
     const name = req.body.name_description;
     console.log(name);
     try {
       const response = await boxRequest.getBoxName(name);
+      let box = response.data;
+      console.log(box);
+
+      if (box) {
+        return res.render("boxName", { nameBox: box }); // A Key(nameBox) pode ser qualquer nome
+      } else {
+        return res.send("Objeto não encontrado ou não existe");
+      }
+    } catch (error) {
+      console.error(error, "Algo deu errado!");
+    }
+  },
+  getBoxByLocaleFromBody: async (req, res) => {
+    const locale = req.body.locale;
+    console.log(locale);
+    try {
+      const response = await boxRequest.getBoxLocale(locale);
       let box = response.data;
       console.log(box);
 
@@ -82,7 +80,6 @@ const mainController = {
       .getBox()
       .then((result) => {
         const apiBoxes = result.data;
-        //console.log(apiBoxes);
         res.render("boxes", { boxesAll: apiBoxes });
       })
       .catch((error) => {
@@ -102,15 +99,16 @@ const mainController = {
       });
   },
   getBoxById: async (req, res) => {
-    const id = req.params.id;
+    const id = req.body.id;
+    console.log({ valor: id})
     try {
       const response = await boxRequest.getBoxId(id);
       const box = response.data;
       console.log(box);
       if (!box) {
-        res.render("error", { msg: "caixa não encontrada" });
+        return res.render("error", { msg: "caixa não encontrada" });
       } else {
-        res.render("boxId", { idBox: box });
+        return res.render("boxId", { idBox: box });
       }
     } catch (error) {
       if (error.response) {
