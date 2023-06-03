@@ -10,8 +10,8 @@ router.get("/box", mainController.getBoxes);
 router.get("/fusion", mainController.getFusions);
 router.get("/box/:id", mainController.getBoxById);
 router.get("/fusion/:id", mainController.getFusionById);
-/*router.get("/box/detail/:name_description", mainController.findByLocale); // /detail/:name_description";
-router.get("/box/detail/:name_description", mainController.findDetail);// "/locale/:locale";*/
+router.get("/detail/:name_description", mainController.getDetailBox);// router.get("/detail/:name_description" no back
+/*router.get("/box/locale/detail/:name_description", mainController.findDetailLocale);// "/locale/:locale";*/
 
 /* ---- Action that will take the route of a specific object ---- */
 router.get("/create", mainController.pageFormCreateBox);

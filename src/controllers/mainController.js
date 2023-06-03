@@ -7,11 +7,9 @@ const mainController = {
   },
   getBoxByNameFromBody: async (req, res) => {
     const name = req.body.name_description;
-    console.log(name);
     try {
       const response = await boxRequest.getBoxName(name);
       let box = response.data;
-      console.log(box);
 
       if (box) {
         return res.render("boxName", { nameBox: box }); // A Key(nameBox) pode ser qualquer nome
@@ -20,6 +18,17 @@ const mainController = {
       }
     } catch (error) {
       console.error(error, "Algo deu errado!");
+    }
+  },
+  getDetailBox: async (req, res) => {
+    let nameForDetail = req.query.name_description;
+    console.log(nameForDetail);
+    try {
+      let response = await boxRequest.detailBox(nameForDetail);
+      let detailForObject = response.data;
+      res.render("detail", { details: detailForObject });
+    } catch (error) {
+      console.error(error);
     }
   },
   getBoxByLocaleFromBody: async (req, res) => {
@@ -100,7 +109,7 @@ const mainController = {
   },
   getBoxById: async (req, res) => {
     const id = req.body.id;
-    console.log({ valor: id})
+    console.log({ valor: id });
     try {
       const response = await boxRequest.getBoxId(id);
       const box = response.data;

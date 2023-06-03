@@ -10,8 +10,50 @@
                 <h3>Detalhes</h3>
             </blockquote>
         </div>
-        <!-- Footer da pagina -->
-        <%- include("./partials/footer") %>
+        <h4>Detalhes do objeto <%= details %>
+        </h4>
+
+        <% if (details && details.length> 0) { %>
+            <% const box=details[0]; %>
+                <ul>
+                    <% if (box.fusions && box.fusions.length> 0) { %>
+                        <% const fusion=box.fusions[0]; %>
+                            <li>Numero de fusões: <%= fusion.numberFusions %>
+                            </li>
+                            <% if (fusion.colouring) { %>
+                                <li>Cores: <%= fusion.colouring.colors %>
+                                </li>
+                                <% if (fusion.colouring.links) { %>
+                                    <li>Nome de referencia do tubet: <%= fusion.colouring.links.refenrenceName %>
+                                    </li>
+                                    <li>Chegada do Link na fibra de cor: <%= fusion.colouring.links.comeLink %>
+                                    </li>
+                                    <li>Cor do tubet da chegada do Link: <%= fusion.colouring.links.colorTubet %>
+                                    </li>
+                                    <% } %>
+                                        <% } %>
+                                            <% } %>
+                </ul>
+                <% } else { %>
+                    <p>Box não encontrada.</p>
+                    <% } %>
+
+                        <!-- Footer da pagina -->
+                        <%- include("./partials/footer") %>
     </body>
 
 </html>
+
+<!--  fusions:
+    "dateModify": "2023-05-09",
+    "numberFusions": 2 
+-->
+<!-- colouring:
+    "colors": "verde-verde, verde-amarelo" 
+-->
+<!-- links:
+    "dateModify": "2023-05-09",
+    "refenrenceName": "Beira do rio",
+    "comeLink": "verde",
+    "colorTubet": "verde"
+-->

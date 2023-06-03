@@ -1,2 +1,7 @@
-const cdn ="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js";
-module.exports = cdn;
+const detailButton = document.querySelector(".detalhe-button");
+  detailButton.addEventListener("click", function () {
+  const nameForObject = detailButton.dataset.name_description;
+  window.location.href = "/detail/" + nameForObject;
+});
+
+module.exports = detailButton;

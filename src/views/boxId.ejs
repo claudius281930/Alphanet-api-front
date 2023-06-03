@@ -10,31 +10,43 @@
                 <h3>Identificação da Caixa</h3>
             </blockquote>
         </div>
-        
+
         <% if (idBox) { %>
             <ul>
                 <li>
-                    <span class="content-list">ID:</span> <%= idBox.id %>
+                    <span class="content-list">ID:</span>
+                    <%= idBox.id %>
                 </li>
                 <li>
-                    <span class="content-list">Data de Modificação:</span> <%= idBox.dateModify %>
+                    <span class="content-list">Data de Modificação:</span>
+                    <%= idBox.dateModify %>
                 </li>
                 <li>
-                    <span class="content-list">Nome da Descrição:</span> <%= idBox.nameDescription %>
+                    <span class="content-list">Nome da Descrição:</span>
+                    <%= idBox.nameDescription %>
                 </li>
                 <li>
-                    <span class="content-list">Localização:</span> <%= idBox.locale %>
+                    <span class="content-list">Localização:</span>
+                    <%= idBox.locale %>
                 </li>
                 <li>
-                    <span class="content-list">Active CTO:</span> <%= idBox.activeCto %>
+                    <span class="content-list">Active CTO:</span>
+                    <%= idBox.activeCto %>
                 </li>
                 <li>
-                    <span class="content-list">Tecnologia de Rede:</span> <%= idBox.networkTechnology %>
+                    <span class="content-list">Tecnologia de Rede:</span>
+                    <%= idBox.networkTechnology %>
                 </li>
             </ul>
             <% } else { %>
                 <p>Box não encontrada.</p>
                 <% } %>
+                    <div>
+                        <form method="GET" action="/detail/name_description" id="detail">
+
+                            <button name="detail">Detalhe</button>
+                        </form>
+                    </div>
                     <!-- Footer da pagina -->
                     <%- include("./partials/footer") %>
     </body>

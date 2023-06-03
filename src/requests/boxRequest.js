@@ -2,9 +2,10 @@ const axios = require("axios");
 const defaults = require("./defaults");
 
 const urlcreate = "create";
-const urlbox = "box"; 
-const urlname = "/name"; 
+const urlbox = "box";
+const urlname = "/name";
 const urllocale = "/locale";
+const urldetail = "detail";
 const urlFull = urlbox + urlname;
 
 const boxRequest = {
@@ -61,6 +62,13 @@ const boxRequest = {
       ...defaults,
       method: "delete",
       url: `${urlbox}/${id}`,
+    });
+  },
+  detailBox: (name_description) => {
+    return axios({
+      ...defaults,
+      method: "get",
+      url: `${urldetail}/${name_description}`,
     });
   },
 };

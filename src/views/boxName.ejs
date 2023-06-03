@@ -43,9 +43,13 @@
                 <% } else { %>
                     <p>Box não encontrada.</p>
                     <% } %>
-                        <!-- Footer da pagina -->
-                        <%- include("./partials/footer") %>
         </div>
+        <form method="GET" action="/detail/name_description" id="detail">
+            <input type="hidden" name="name_description" value="<%= nameBox.box.nameDescription %>">
+            <button name="detail" class="detalhe-button">Detalhe</button>
+        </form>
+        <!-- Footer da pagina -->
+        <%- include("./partials/footer") %>
     </body>
 
 </html>
