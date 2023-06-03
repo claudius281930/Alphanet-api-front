@@ -10,14 +10,14 @@
                 <h3>Detalhes</h3>
             </blockquote>
         </div>
-        <h4>Detalhes do objeto <%= details %>
+        <h4>Detalhes do objeto: <%= box.name_description %>
         </h4>
 
-        <% if (details && details.length> 0) { %>
-            <% const box=details[0]; %>
+        <% if (box && box.length > 0) { %>
+            <% const object = box[0]; %>
                 <ul>
-                    <% if (box.fusions && box.fusions.length> 0) { %>
-                        <% const fusion=box.fusions[0]; %>
+                    <% if (object.fusions && object.fusions.length > 0) { %>
+                        <% const fusion = object.fusions[0]; %>
                             <li>Numero de fusões: <%= fusion.numberFusions %>
                             </li>
                             <% if (fusion.colouring) { %>

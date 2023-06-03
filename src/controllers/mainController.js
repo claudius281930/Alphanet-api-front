@@ -25,8 +25,8 @@ const mainController = {
     console.log(nameForDetail);
     try {
       let response = await boxRequest.detailBox(nameForDetail);
-      let detailForObject = response.data;
-      res.render("detail", { details: detailForObject });
+      let box = response.data.box; // Obtenha a propriedade "box" do objeto de resposta
+      res.render("detail", { box: box });
     } catch (error) {
       console.error(error);
     }
