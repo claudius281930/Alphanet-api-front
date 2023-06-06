@@ -10,25 +10,30 @@
                 <h3>Detalhes</h3>
             </blockquote>
         </div>
-        <h4>Detalhes do objeto: <%= box.name_description %>
-        </h4>
+        <!-- <h4>Detalhes do objeto:<span class="content-name"><%= detailBox.nameDescription %></span></h4> -->
 
-        <% if (box && box.length > 0) { %>
-            <% const object = box[0]; %>
+        <% if (detailBox) { %>
+            <% const object = detailBox[0]; %>
                 <ul>
+                    
                     <% if (object.fusions && object.fusions.length > 0) { %>
                         <% const fusion = object.fusions[0]; %>
-                            <li>Numero de fusões: <%= fusion.numberFusions %>
+                            <li>
+                                <span class="content-list">Numero de fusões:</span> <%= fusion.numberFusions %>
                             </li>
                             <% if (fusion.colouring) { %>
-                                <li>Cores: <%= fusion.colouring.colors %>
+                                <li>
+                                    <span class="content-list">Cores:</span> <%= fusion.colouring.colors %>
                                 </li>
                                 <% if (fusion.colouring.links) { %>
-                                    <li>Nome de referencia do tubet: <%= fusion.colouring.links.refenrenceName %>
+                                    <li>
+                                        <span class="content-list">Nome de referencia do tubet:</span> <%= fusion.colouring.links.refenrenceName %>
                                     </li>
-                                    <li>Chegada do Link na fibra de cor: <%= fusion.colouring.links.comeLink %>
+                                    <li>
+                                        <span class="content-list">Chegada do Link na fibra de cor:</span> <%= fusion.colouring.links.comeLink %>
                                     </li>
-                                    <li>Cor do tubet da chegada do Link: <%= fusion.colouring.links.colorTubet %>
+                                    <li>
+                                        <span class="content-list">Cor do tubet da chegada do Link:</span> <%= fusion.colouring.links.colorTubet %>
                                     </li>
                                     <% } %>
                                         <% } %>

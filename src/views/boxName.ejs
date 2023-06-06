@@ -7,10 +7,10 @@
         <div class="text-center">
             <h1>AlphanetSLM</h1>
             <blockquote class="blockquote">
-                <h3>Nome da Caixa</h3>
+                <h3>Nome</h3>
             </blockquote>
         </div>
-
+        <h4>Nome da Caixa:<span class="content-name"> <%= nameBox.box.nameDescription %></span></h4>
         <div>
             <% if (nameBox) { %>
                 <ul>
@@ -46,8 +46,9 @@
         </div>
         <form method="GET" action="/detail/name_description" id="detail">
             <input type="hidden" name="name_description" value="<%= nameBox.box.nameDescription %>"><!-- captura o nome passado na pesquisa para incluir narota -->
-            <button name="detail" class="detalhe-button">Detalhe</button>
+            <button name="detail" class="detalhe-button" class="alert alert-success" role="alert">Detalhe</button>
         </form>
+        
         <!-- Footer da pagina -->
         <%- include("./partials/footer") %>
     </body>

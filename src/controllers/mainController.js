@@ -21,12 +21,16 @@ const mainController = {
     }
   },
   getDetailBox: async (req, res) => {
-    let nameForDetail = req.query.name_description;
-    console.log(nameForDetail);
+    const nameForDetail = req.query.name_description; // captura o valor passado no input e adiciona a rota url  
     try {
-      let response = await boxRequest.detailBox(nameForDetail);
+      const response = await boxRequest.detailBox(nameForDetail);
       let box = response.data.box; // Obtenha a propriedade "box" do objeto de resposta
-      res.render("detail", { box: box });
+      if(box){
+        res.render("detail", { detailBox: box });
+      }else{
+        return res.send("Detalhes do objeto não encontrado ou não existe");
+      }
+      
     } catch (error) {
       console.error(error);
     }
