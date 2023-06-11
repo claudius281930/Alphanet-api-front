@@ -3,58 +3,63 @@
 <!-- Metadados da página -->
 <%- include("./partials/head") %>
 
-    <body>
-        <div class="text-center">
-            <h1>AlphanetSLM</h1>
-            <blockquote class="blockquote">
-                <h3>Início</h3>
-            </blockquote>
-        </div>
-        <div class="container-name">
+    <body class="vh-100">
+        <%- include("./partials/header") %>
+            <main class="container">
 
-            <form method="POST" action="box/name" id="name_description">
+                <section class="col">
+                    <p class="text-light">Buscar</p>
+                    
+                        <form method="POST" action="box/name" id="name_description">
+                            <div class="input-group">
+                                <label for="name-description" class="input-group-text inputGroup-sizing-default"
+                                    autofocus>Pesuisar</label>
 
-                <div class="input-group mb-3">
-                    <label for="name-description" class="input-group-text" id="inputGroup-sizing-default"
-                        autofocus>Pesuisar</label>
-                    <!-- Atributo no input (name="name-description") precisa ser igual a rota. 
+                                <!-- Atributo no input (name="name-description") precisa ser igual a rota. 
+                                        Assim como o valor do pego no controlador e tbm na rquicição axios. -->
+                                <input type="text" name="name_description" id="name-description"
+                                    class="form-control form-control-sm p-2 text-primary-emphasis bg-dark-subtle border border-primary"
+                                    placeholder="Nome" aria-label="Sizing text input"
+                                    aria-describedby="inputGroup-sizing-sm">
+                                <button type="submit" class="btn btn-outline-light">Buscar</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                        <form method="POST" action="/box/id" id="id">
+                            <div class="input-group ">
+                                <label for="id" class="input-group-text inputGroup-sizing-default"
+                                    autofocus>Pesuisar</label>
+                                <!-- Atributo no input (name="name-description") precisa ser igual a rota. 
                         Assim como o valor do pego no controlador e tbm na rquicição axios. -->
-                    <input type="text" name="name_description" id="name-description"
-                        class="form-control form-control-sm p-2 text-primary-emphasis bg-primary-subtle border border-primary-subtle"
-                        placeholder="Nome" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                    <button type="submit" class="btn btn-outline-dark">Buscar</button>
-                </div>
+                                <input type="number" name="id" id="id"
+                                    class="form-control form-control-sm p-2 text-primary-emphasis bg-dark-subtle border border-primary"
+                                    placeholder="Número" aria-label="Sizing number input"
+                                    aria-describedby="inputGroup-sizing-sm">
+                                <button type="submit" class="btn btn-outline-light">Buscar</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                        <form method="POST" action="/locale" id="id">
+                            <div class="input-group">
+                                <label for="locale" class="input-group-text inputGroup-sizing-default"
+                                    autofocus>Pesuisar</label>
+                                <input type="text" name="locale" id="locale"
+                                    class="form-control form-control-sm p-2 text-primary-emphasis bg-dark-subtle border border-primary"
+                                    placeholder="Local" aria-label="Sizing example input"
+                                    aria-describedby="inputGroup-sizing-sm">
+                                <button type="submit" class="btn btn-outline-light">Buscar</button>
+                            </div>
+                        </form>
+                    </div>
 
-            </form>
-        </div>
-        <div class="container-id">
-            <form method="POST" action="/box/id" id="id">
-                <div class="input-group mb-3">
-                    <label for="id" class="input-group-text" id="inputGroup-sizing-default" autofocus>Pesuisar</label>
-                    <!-- Atributo no input (name="name-description") precisa ser igual a rota. 
-                        Assim como o valor do pego no controlador e tbm na rquicição axios. -->
-                    <input type="number" name="id" id="id"
-                        class="form-control form-control-sm p-2 text-primary-emphasis bg-primary-subtle border border-primary-subtle"
-                        placeholder="Id" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                    <button type="submit" class="btn btn-outline-dark">Buscar</button>
-                </div>
-            </form>
-        </div>
-        <div class="container-locale">
-            <form method="POST" action="/locale" id="id">
-                <div class="input-group mb-3">
-                    <label for="locale" class="input-group-text" id="inputGroup-sizing-default"
-                        autofocus>Pesuisar</label>
-                    <input type="text" name="locale" id="locale"
-                        class="form-control form-control-sm p-2 text-primary-emphasis bg-primary-subtle border border-primary-subtle"
-                        placeholder="Local" aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-sm">
-                    <button type="submit" class="btn btn-outline-dark">Buscar</button>
-                </div>
-            </form>
-        </div>
-        <!-- Footer da pagina -->
-        <%- include("./partials/footer") %>
+                </section>
+
+            </main>
+
+            <!-- Footer da pagina -->
+            <%- include("./partials/footer") %>
     </body>
 
 </html>
