@@ -29,76 +29,78 @@ LG ≥768px,
 XL ≥1200px,
 XXL ≥1400px.
 
-conversão de pix para 'em': 16px = 1em
+conversão de px para 'em': 16px = 1em
 */
 
-/*Pequenas telas: minino 600px (>575px).*/
-@media screen and (min-width: 663px) and (max-width: 768px) {
+/*Pequenas telas: celular 600px - 768px (>756px).*/
+@media screen and (min-width: 768px) {}
 
-}
-
-/*Pequenas telas: minino 600px (>575px).*/
-@media screen and (min-width: 576px) and (max-width:767px) {
-  header {
-    width: 100vw;
-    height: 12vh;
+/*Pequenas telas: minino 600px (=>576px).*/
+@media screen and (min-width: 576px) {
+   header#main-container{
     display: flex;
-    position: relative;
   }
-
-  #img-alphanet {
-    width: max-content;
-    height: max-content;
+ /* ul{
+    border: solid 1px red;
   }
-
-  .fw-bold {
-    font-size: 1em;
+  .content-list{
+    border: solid 1px green;
   }
-
-  .nav-link {
-    text-align: left;
+  li{
+    border: solid 1px blue;
   }
+  span{
+    border: solid 1px goldenrod;
+  }
+  a.nav-link{
+    border: solid 1px black;
+  } */
 }
 
-/*Pequenas telas: até 600px (=< 575px)*/
-@media screen and (max-width: 575px),
+/*Pequenas telas: mximo 600px (=< 575px)*/
+@media screen and (min-width: 320px),
 (orientation: landscape) {
 
-  header {
-    height: 15%;
-    display: block;
-
+  header.navbar-light {
+    width: 100vw;
+    max-height: 100vh;
   }
 
-  #img-alphanet {
+  div > #img-alphanet {
     width: max-content;
-    height: max-content;
   }
 
-  .navbar {
-    height: 35%;
-  }
-
-  .fw-bold {
+  header > nav.navbar {
     width: 100%;
-    height: 100%;
+    min-height: 1%;
+  }
+
+  nav > ul.fw-bold {
     align-items: center;
     padding: 2.5px;
-    
   }
 
-  .nav-link {
-    width: 100vw;
+  span {
+    width: 15vw;
+    display: flex;
+  }
+
+  span>a.nav-link {
+    width: inherit;
     text-align: left;
+    font-size: .7rem;
     margin-right: -12px;
-    
-
-    /* border:solid .5px red; */
   }
 
-  /* .ancor>.atua, .ancor>.dele {
-    width: 100%;
-    margin-right: 50px;
-    border:solid .5px #031633;  
-  } */
+  span a.cria {
+    margin-left: -20px;
+  }
+
+  span a.atualiza {
+    margin-left: -40px;
+  }
+
+  span a.deleta {
+    margin-left: -40px;
+  }
 }
