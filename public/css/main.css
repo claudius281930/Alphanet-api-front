@@ -5,7 +5,6 @@ main.css * {
 }
 
 body {
-
   background-color: #031633;
 }
 
@@ -13,6 +12,58 @@ footer {
   color: #fff;
 }
 
+/*Pequenas telas: celular 600px - 768px (>756px).*/
+@media screen and (min-width: 1200px) {
+  header.nav {
+    display: flex;
+  }
+  header>nav.navbar {
+    width: 100%;
+    letter-spacing: .1em;
+  }
+}
+
+/*Pequenas telas: minino 600px (=>576px).*/
+@media screen and (min-width: 576px) {
+  nav ul div.row {
+    display: flex;
+    justify-content: flex-end;
+  }
+  header nav.navbar-content{
+    letter-spacing: .1em;
+  }
+}
+
+/*Pequenas telas: mximo 600px (=< 575px)*/
+@media screen and (min-width: 320px),
+(orientation: landscape) {
+
+  header.navbar-light {
+    width: 100vw;
+    max-height: 100vh;
+  }
+
+  div>#img-alphanet {
+    width: max-content;
+  }
+
+  header>nav.navbar {
+    width: 100%;
+    margin-right: .8em;
+  }
+
+  a.nav-link {
+    padding-left: .5em;
+    font-size: .6rem;
+    box-shadow: 1px 2px 5px #031633;
+  }
+
+  a.nav-link:hover {
+    color: #031633;
+    background-color: #f8f9fa;
+    text-shadow: 1px 1px 5px #8b7e7b;
+  }
+}
 /* Mobile First 
 TYPICAL DEVICE BREAKPOINTS.
 ---------------------------
@@ -31,76 +82,3 @@ XXL ≥1400px.
 
 conversão de px para 'em': 16px = 1em
 */
-
-/*Pequenas telas: celular 600px - 768px (>756px).*/
-@media screen and (min-width: 768px) {}
-
-/*Pequenas telas: minino 600px (=>576px).*/
-@media screen and (min-width: 576px) {
-   header#main-container{
-    display: flex;
-  }
- /* ul{
-    border: solid 1px red;
-  }
-  .content-list{
-    border: solid 1px green;
-  }
-  li{
-    border: solid 1px blue;
-  }
-  span{
-    border: solid 1px goldenrod;
-  }
-  a.nav-link{
-    border: solid 1px black;
-  } */
-}
-
-/*Pequenas telas: mximo 600px (=< 575px)*/
-@media screen and (min-width: 320px),
-(orientation: landscape) {
-
-  header.navbar-light {
-    width: 100vw;
-    max-height: 100vh;
-  }
-
-  div > #img-alphanet {
-    width: max-content;
-  }
-
-  header > nav.navbar {
-    width: 100%;
-    min-height: 1%;
-  }
-
-  nav > ul.fw-bold {
-    align-items: center;
-    padding: 2.5px;
-  }
-
-  span {
-    width: 15vw;
-    display: flex;
-  }
-
-  span>a.nav-link {
-    width: inherit;
-    text-align: left;
-    font-size: .7rem;
-    margin-right: -12px;
-  }
-
-  span a.cria {
-    margin-left: -20px;
-  }
-
-  span a.atualiza {
-    margin-left: -40px;
-  }
-
-  span a.deleta {
-    margin-left: -40px;
-  }
-}
