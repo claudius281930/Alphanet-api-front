@@ -1,17 +1,23 @@
 <!-- Metadados da página -->
 <%- include("./partials/head") %>
 
-    <body class="vh-100">
+    <body class=" min-w-100 min-vh-100">
+        <!-- <div class="p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
+            Example element with utilities
+          </div> -->
         <%- include("./partials/header") %>
-            <main class="container">
 
-                <section class="col">
-                    <p class="text-light">Buscar</p>
-                    
+            <main class="container-fluid">
+                <section class="container-fluid container-sm">
+
+                    <p class="text-light h1 text-center mb-5">Buscar</p>
+                    <div class="content-form">
+
                         <form method="POST" action="box/name" id="name_description">
-                            <div class="input-group">
+                            <div class="input-group mb-2">
+
                                 <label for="name-description" class="input-group-text inputGroup-sizing-default"
-                                    autofocus>Pesuisar</label>
+                                    autofocus>Pesquisar</label>
 
                                 <!-- Atributo no input (name="name-description") precisa ser igual a rota. 
                                         Assim como o valor do pego no controlador e tbm na rquicição axios. -->
@@ -22,12 +28,12 @@
                                 <button type="submit" class="btn btn-outline-light">Buscar</button>
                             </div>
                         </form>
-                    </div>
-                    
+
                         <form method="POST" action="/box/id" id="id">
-                            <div class="input-group ">
+                            <div class="input-group mb-2">
+
                                 <label for="id" class="input-group-text inputGroup-sizing-default"
-                                    autofocus>Pesuisar</label>
+                                    autofocus>Pesquisar</label>
                                 <!-- Atributo no input (name="name-description") precisa ser igual a rota. 
                         Assim como o valor do pego no controlador e tbm na rquicição axios. -->
                                 <input type="number" name="id" id="id"
@@ -37,12 +43,12 @@
                                 <button type="submit" class="btn btn-outline-light">Buscar</button>
                             </div>
                         </form>
-                    </div>
-                    
+
                         <form method="POST" action="/locale" id="id">
-                            <div class="input-group">
+                            <div class="input-group mb-2">
+
                                 <label for="locale" class="input-group-text inputGroup-sizing-default"
-                                    autofocus>Pesuisar</label>
+                                    autofocus>Pesquisar</label>
                                 <input type="text" name="locale" id="locale"
                                     class="form-control form-control-sm p-2 text-primary-emphasis bg-dark-subtle border border-primary"
                                     placeholder="Local" aria-label="Sizing example input"
@@ -50,8 +56,8 @@
                                 <button type="submit" class="btn btn-outline-light">Buscar</button>
                             </div>
                         </form>
+                        
                     </div>
-
                 </section>
 
             </main>
@@ -60,4 +66,4 @@
             <%- include("./partials/footer") %>
     </body>
 
-</html>
+    </html>

@@ -8,18 +8,21 @@ body {
   background-color: #031633;
 }
 
-footer {
-  color: #fff;
-}
-
 /*Pequenas telas: celular 600px - 768px (>756px).*/
 @media screen and (min-width: 1200px) {
   header.nav {
     display: flex;
   }
+
   header>nav.navbar {
     width: 100%;
     letter-spacing: .1em;
+  }
+
+  /* Body */
+  section.container-fluid {
+    width: 50%;
+    height: 50%;
   }
 }
 
@@ -29,8 +32,15 @@ footer {
     display: flex;
     justify-content: flex-end;
   }
-  header nav.navbar-content{
+
+  header nav.navbar-content {
     letter-spacing: .1em;
+  }
+
+  /* Body*/
+  section.container-fluid {
+    width: 80%;
+    height: 50%;
   }
 }
 
@@ -38,6 +48,7 @@ footer {
 @media screen and (min-width: 320px),
 (orientation: landscape) {
 
+  /* Header */
   header.navbar-light {
     width: 100vw;
     max-height: 100vh;
@@ -49,7 +60,6 @@ footer {
 
   header>nav.navbar {
     width: 100%;
-    margin-right: .8em;
   }
 
   a.nav-link {
@@ -63,7 +73,19 @@ footer {
     background-color: #f8f9fa;
     text-shadow: 1px 1px 5px #8b7e7b;
   }
+
+  /* Body */
+  main.container-fluid {
+    height: 50vh;
+    display: flex;
+    align-items: center;
+  }
+
+  main section.container-fluid {
+    height: 50%;
+  }
 }
+
 /* Mobile First 
 TYPICAL DEVICE BREAKPOINTS.
 ---------------------------
