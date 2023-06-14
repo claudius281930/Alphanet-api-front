@@ -5,7 +5,15 @@ main.css * {
 }
 
 body {
+  min-height: 100vh;
   background-color: #031633;
+}
+
+footer {
+  height: 35vh;
+  display: flex;
+  justify-content: center;
+  align-items: last baseline;
 }
 
 /*Pequenas telas: celular 600px - 768px (>756px).*/

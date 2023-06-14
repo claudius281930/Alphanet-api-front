@@ -3,47 +3,65 @@
 
   <body>
     <%- include("./partials/header") %>
+      <main class="container-fluid">
+        <section class="container-fluid">
 
-    <div class="text-center">
-      <h1>AlphanetSLM</h1>
-      <blockquote class="blockquote">
-        <h3>Criação de uma nova Caixa</h3>
-      </blockquote>
-    </div>
+          <p class="text-light text-center h1 mb-5">Criação de uma nova caixa</p>
+          <div class="content-form-create">
 
-    <form action="/create/box" method="POST">
-      <div>
-        <label for="date">Data de Modificação:</label>
-        <input type="date" id="data" name="dateModify" value="<%= currentDate %>" required autofocus>
-      </div>
+            <form action="/create/box" method="POST">
+              <div class="input-group input-group mb-3">
 
-      <div>
-        <label for="name">Nome Descritivo:</label>
-        <input id="name" name="nameDescription" value="crispin-fusão-adicionada" required autofocus></input>
-      </div>
+                <label for="date" class="input-group-text inputGroup-sizing-default" autofocus>
+                  Data de Modificação:</label>
+                <input type="date" id="data" name="dateModify" value="<%= currentDate %>" required autofocus
+                  class="form-control form-control-sm p-2 text-primary-emphasis bg-dark-subtle border border-primary"
+                  aria-label="Sizing text input" aria-describedby="inputGroup-sizing-sm">
+              </div>
 
-      <div>
-        <label for="locale">Localização:</label>
-        <input type="text" id="locale" name="locale" value="Prox. praça da goiaba" required>
-      </div>
+              <div class="input-group input-group mb-3">
+                <label for="name" class="input-group-text inputGroup-sizing-default">Nome Descritivo:
+                </label>
+                <input id="name" name="nameDescription" value="crispin-fusão-adicionada" required autofocus
+                  class="form-control form-control-sm p-2 text-primary-emphasis bg-dark-subtle border border-primary"
+                  aria-label="Sizing text input" aria-describedby="inputGroup-sizing-sm">
+              </div>
 
-      <div>
-        <label for="descricao">Active CTO:</label>
-        <input type="number" id="descricao" name="activeCto" required>
-      </div>
+              <div class="input-group input-group mb-3">
+                <label for="locale" class="input-group-text inputGroup-sizing-default">Localização:
+                </label>
+                <input type="text" id="locale" name="locale" value="Prox. praça da goiaba" required autofocus
+                  class="form-control form-control-sm p-2 text-primary-emphasis bg-dark-subtle border border-primary"
+                  aria-label="Sizing text input" aria-describedby="inputGroup-sizing-sm">
+              </div>
 
-      <div>
-        <label for="networkTechnology">Tecnologia de Rede:</label>
-        <input type="text" id="networkTechnology" name="networkTechnology" value="Epon" required autofocus>
-      </div>
+              <div class="input-group input-group mb-3">
+                <label for="descricao" class="input-group-text inputGroup-sizing-default">Active CTO:
+                </label>
+                <input type="number" id="descricao" name="activeCto" required autofocus
+                  class="form-control form-control-sm p-2 text-primary-emphasis bg-dark-subtle border border-primary"
+                  aria-label="Sizing text input" aria-describedby="inputGroup-sizing-sm">
+              </div>
 
-      <div>
-        <button type="submit">Criar</button>
-      </div>
-    </form>
+              <div class="input-group input-group mb-3">
+                <label for="networkTechnology" class="input-group-text inputGroup-sizing-default">Tecnologia de Rede:
+                </label>
+                <input type="text" id="networkTechnology" name="networkTechnology" value="Epon" required autofocus
+                  class="form-control form-control-sm p-2 text-primary-emphasis bg-dark-subtle border border-primary"
+                  aria-label="Sizing text input" aria-describedby="inputGroup-sizing-sm">
+              </div>
 
-    <!-- Footer da pagina -->
-    <%- include("./partials/footer") %>
+              <div class="input-group input-group">
+                <button type="submit" class="btn btn btn-outline-light">Criar</button>
+              </div>
+            </form>
+
+          </div>
+        </section>
+
+      </main>
+      <!-- Footer da pagina -->
+      <%- include("./partials/footer") %>
   </body>
 
-</html>
+  </html>
