@@ -6,33 +6,22 @@ main.css * {
 
 body {
   min-height: 100vh;
+  position: relative;
   background-color: #031633;
 }
 
 footer {
-  height: 35vh;
+  width: 100vw;
+  height: calc(9vh - 1em) ;
+  position: absolute;
+  margin: 3.5em auto;
   display: flex;
   justify-content: center;
-  align-items: last baseline;
+  align-items: center;
 }
 
 /*Pequenas telas: celular 600px - 768px (>756px).*/
-@media screen and (min-width: 1200px) {
-  header.nav {
-    display: flex;
-  }
-
-  header>nav.navbar {
-    width: 100%;
-    letter-spacing: .1em;
-  }
-
-  /* Body */
-  section.container-fluid {
-    width: 50%;
-    height: 50%;
-  }
-}
+/* @media screen and (min-width: 1200px) {} */
 
 /*Pequenas telas: minino 600px (=>576px).*/
 @media screen and (min-width: 576px) {
@@ -46,9 +35,13 @@ footer {
   }
 
   /* Body*/
+  main.container-fluid {
+    height: calc(100vh - 20em);
+  }
+
   section.container-fluid {
     width: 80%;
-    height: 50%;
+
   }
 }
 
@@ -84,13 +77,14 @@ footer {
 
   /* Body */
   main.container-fluid {
-    height: 50vh;
+    height: calc(100vh - 16em);
     display: flex;
     align-items: center;
+    margin-bottom: calc(2vh - 3em);
+    
   }
-
-  main section.container-fluid {
-    height: 50%;
+  main section div.content-information{
+    margin-bottom:calc(20vh - 1em);
   }
 }
 

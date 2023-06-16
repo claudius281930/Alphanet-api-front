@@ -4,9 +4,9 @@
   <body>
     <%- include("./partials/header") %>
       <main class="container-fluid">
-        <section class="container-fluid">
+        <section class="container-fluid container-sm mt-5">
 
-          <p class="text-light text-center h1 mb-5">Criar uma nova Caixa</p>
+          <p class="text-light text-center h1 mb-5">Criar Caixa</p>
           <div class="content-form-create">
 
             <form action="/create/box" method="POST">
@@ -23,6 +23,7 @@
                 <label for="name" class="input-group-text inputGroup-sizing-default">Nome Descritivo:
                 </label>
                 <input id="name" name="nameDescription" value="crispin-fusão-adicionada" required autofocus
+                  placeholder=""
                   class="form-control form-control-sm p-2 text-primary-emphasis bg-dark-subtle border border-primary"
                   aria-label="Sizing text input" aria-describedby="inputGroup-sizing-sm">
               </div>
@@ -31,6 +32,7 @@
                 <label for="locale" class="input-group-text inputGroup-sizing-default">Localização:
                 </label>
                 <input type="text" id="locale" name="locale" value="Prox. praça da goiaba" required autofocus
+                  placeholder=""
                   class="form-control form-control-sm p-2 text-primary-emphasis bg-dark-subtle border border-primary"
                   aria-label="Sizing text input" aria-describedby="inputGroup-sizing-sm">
               </div>
@@ -46,13 +48,14 @@
               <div class="input-group input-group mb-3">
                 <label for="networkTechnology" class="input-group-text inputGroup-sizing-default">Tecnologia de Rede:
                 </label>
-                <input type="text" id="networkTechnology" name="networkTechnology" value="Epon" required autofocus
+                <input type="text" id="networkTechnology" name="networkTechnology" value="Epon" required autofocus 
+                placeholder=""
                   class="form-control form-control-sm p-2 text-primary-emphasis bg-dark-subtle border border-primary"
                   aria-label="Sizing text input" aria-describedby="inputGroup-sizing-sm">
               </div>
 
               <div class="input-group input-group">
-                <button type="submit" class="btn btn btn-outline-light">Criar</button>
+                <button type="submit" class="btn btn btn-outline-light w-25 text-uppercase">Criar</button>
               </div>
             </form>
 

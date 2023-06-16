@@ -1,48 +1,46 @@
-
 <!-- Metadados da pagina -->
-<%- include("./partials/head" )%> 
+<%- include("./partials/head" )%>
 
     <body>
         <%- include("./partials/header") %>
-        <div class="text-center">
-            <h1>AlphanetSLM</h1>
-            <blockquote class="blockquote">
-                <h3>Caixas</h3>
-            </blockquote>
-        </div>
-        <ul>
-            <% boxesAll.forEach(function(box) { %> <!-- boxesALL é uma const no controlador-->
 
-                <li>
-                    <span class="content-list">ID:</span>
-                    <%= box.id %>
-                </li>
-                <li>
-                    <span class="content-list">Data de Modificação:</span>
-                    <%= box.dateModify %>
-                </li>
-                <li>
-                    <span class="content-list">Nome Descritivo:</span>
-                    <%= box.nameDescription %>
-                </li>
-                <li>
-                    <span class="content-list">Localização:</span>
-                    <%= box.locale %>
-                </li>
-                <li>
-                    <span class="content-list">Active CTO:</span>
-                    <%= box.activeCto %>
-                </li>
-                <li>
-                    <span class="content-list">Tecnologia de Rede:</span>
-                    <%= box.networkTechnology %>
-                </li>
-                <% }); %>
 
-        </ul>
+            <p>Caixas</p>
 
-        <!-- Footer da pagina -->
-        <%- include("./partials/footer") %>
+
+            <ul>
+                <% boxesAll.forEach(function(box) { %> <!-- boxesALL é uma const no controlador-->
+
+                    <li>
+                        <span class="content-list">ID:</span>
+                        <%= box.id %>
+                    </li>
+                    <li>
+                        <span class="content-list">Data de Modificação:</span>
+                        <%= box.dateModify %>
+                    </li>
+                    <li>
+                        <span class="content-list">Nome Descritivo:</span>
+                        <%= box.nameDescription %>
+                    </li>
+                    <li>
+                        <span class="content-list">Localização:</span>
+                        <%= box.locale %>
+                    </li>
+                    <li>
+                        <span class="content-list">Active CTO:</span>
+                        <%= box.activeCto %>
+                    </li>
+                    <li>
+                        <span class="content-list">Tecnologia de Rede:</span>
+                        <%= box.networkTechnology %>
+                    </li>
+                    <% }); %>
+
+            </ul>
+
+            <!-- Footer da pagina -->
+            <%- include("./partials/footer") %>
     </body>
 
-</html>
+    </html>

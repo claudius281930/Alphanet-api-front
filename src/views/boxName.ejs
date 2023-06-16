@@ -3,54 +3,65 @@
 
     <body>
         <%- include("./partials/header") %>
-        
-        <div class="text-center">
-            <h1>AlphanetSLM</h1>
-            <blockquote class="blockquote">
-                <h3>Nome</h3>
-            </blockquote>
-        </div>
-        <h4>Nome da Caixa:<span class="content-name"> <%= nameBox.box.nameDescription %></span></h4>
-        <div>
-            <% if (nameBox) { %>
-                <ul>
 
-                    <li>
-                        <span class="content-list">ID:</span>
-                        <%= nameBox.box.id %>
-                    </li>
-                    <li>
-                        <span class="content-list">Data de Modificação:</span>
-                        <%= nameBox.box.dateModify %>
-                    </li>
-                    <li>
-                        <span class="content-list">Nome da Descrição:</span>
-                        <%= nameBox.box.nameDescription %>
-                    </li>
-                    <li>
-                        <span class="content-list">Localização:</span>
-                        <%= nameBox.box.locale %>
-                    </li>
-                    <li>
-                        <span class="content-list">Active CTO:</span>
-                        <%= nameBox.box.activeCto %>
-                    </li>
-                    <li>
-                        <span class="content-list">Tecnologia de Rede:</span>
-                        <%= nameBox.box.networkTechnology %>
-                    </li>
-                </ul>
-                <% } else { %>
-                    <p>Box não encontrada.</p>
-                    <% } %>
-        </div>
-        <form method="GET" action="/detail/name_description" id="detail">
-            <input type="hidden" name="name_description" value="<%= nameBox.box.nameDescription %>"><!-- captura o nome passado na pesquisa para incluir narota -->
-            <button name="detail" class="detalhe-button" class="alert alert-success" role="alert">Detalhe</button>
-        </form>
-        
-        <!-- Footer da pagina -->
-        <%- include("./partials/footer") %>
+            <main class="container-fluid">
+                <section class="container-fluid container-sm">
+
+                    <p class="text-light h1 text-center mb-5">Infomações da Caixa</p>
+
+                    <div class="content-caracteristic">
+                        <p class="text-light h1 text-center mb-5">
+                            
+                            <span class="content-name has-text-danger">
+                                <%= nameBox.box.nameDescription %>
+                            </span>
+                        </p>
+                        <div>
+                            <% if (nameBox) { %>
+                                <ul class="container-fluid fw-bold w-100">
+
+                                    <li class="has-text-danger">
+                                        <span class="content-list text-light">ID:</span>
+                                        <%= nameBox.box.id %>
+                                    </li>
+                                    <li class="has-text-danger">
+                                        <span class="content-list text-light">Data de Modificação:</span>
+                                        <%= nameBox.box.dateModify %>
+                                    </li>
+                                    <li class="has-text-danger">
+                                        <span class="content-list text-light">Nome da Descrição:</span>
+                                        <%= nameBox.box.nameDescription %>
+                                    </li>
+                                    <li class="has-text-danger">
+                                        <span class="content-list text-light">Localização:</span>
+                                        <%= nameBox.box.locale %>
+                                    </li>
+                                    <li class="has-text-danger">
+                                        <span class="content-list text-light">Active CTO:</span>
+                                        <%= nameBox.box.activeCto %>
+                                    </li>
+                                    <li class="has-text-danger">
+                                        <span class="content-list text-light">Tecnologia de Rede:</span>
+                                        <%= nameBox.box.networkTechnology %>
+                                    </li>
+                                </ul>
+                                <% } else { %>
+                                    <p>Box não encontrada.</p>
+                                    <% } %>
+                        </div>
+                        <form method="GET" action="/detail/name_description" id="detail">
+                            <div class="input-group mb-2">
+                                <input type="hidden" name="name_description"
+                                    value="<%= nameBox.box.nameDescription %>"><!-- captura o nome passado na pesquisa para incluir narota -->
+                                <button name="detail" class="btn btn btn-outline-light w-25 text-uppercase"
+                                    role="alert">Detalhe</button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+            </main>
+            <!-- Footer da pagina -->
+            <%- include("./partials/footer") %>
     </body>
 
-</html>
+    </html>
