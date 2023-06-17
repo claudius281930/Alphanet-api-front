@@ -4,41 +4,48 @@
     <body>
         <%- include("./partials/header") %>
 
-
-            <p>Caixas</p>
-
-
-            <ul>
-                <% boxesAll.forEach(function(box) { %> <!-- boxesALL é uma const no controlador-->
-
-                    <li>
-                        <span class="content-list">ID:</span>
-                        <%= box.id %>
-                    </li>
-                    <li>
-                        <span class="content-list">Data de Modificação:</span>
-                        <%= box.dateModify %>
-                    </li>
-                    <li>
-                        <span class="content-list">Nome Descritivo:</span>
-                        <%= box.nameDescription %>
-                    </li>
-                    <li>
-                        <span class="content-list">Localização:</span>
-                        <%= box.locale %>
-                    </li>
-                    <li>
-                        <span class="content-list">Active CTO:</span>
-                        <%= box.activeCto %>
-                    </li>
-                    <li>
-                        <span class="content-list">Tecnologia de Rede:</span>
-                        <%= box.networkTechnology %>
-                    </li>
-                    <% }); %>
-
-            </ul>
-
+            <main class="container-fluid container-boxes">
+                <section class="container-fluid content-boxesall mt-6">
+                    
+                    <p class="text-light h1 text-center">Caixas</p>
+                    
+                    <div class="content-boxes">
+                        <ul class="container-list boxes-list">
+                            
+                            <% boxesAll.forEach(function(box) { %> <!-- boxesALL é uma const no controlador-->
+                                <div class="container-fluid foreach boxes-foreach-item" id="container-boxes-item">
+                                    
+                                    <li class="has-text-danger list-item">
+                                        <span class="content-list text-light">ID:</span>
+                                        <%= box.id %>
+                                    </li>
+                                    <li class="has-text-danger list-item">
+                                        <span class="content-list text-light">Data de Modificação:</span>
+                                        <%= box.dateModify %>
+                                    </li>
+                                    <li class="has-text-danger list-item">
+                                        <span class="content-list text-light">Nome Descritivo:</span>
+                                        <%= box.nameDescription %>
+                                    </li>
+                                    <li class="has-text-danger list-item">
+                                        <span class="content-list text-light">Localização:</span>
+                                        <%= box.locale %>
+                                    </li>
+                                    <li class="has-text-danger list-item">
+                                        <span class="content-list text-light">Active CTO:</span>
+                                        <%= box.activeCto %>
+                                    </li>
+                                    <li class="has-text-danger list-item mb-2">
+                                        <span class="content-list text-light">Tecnologia de Rede:</span>
+                                        <%= box.networkTechnology %>
+                                    </li>
+                                </div>
+                                <% }); %>
+                                    <!-- mx-auto p-2 -->
+                        </ul>
+                    </div>
+                </section>
+            </main>
             <!-- Footer da pagina -->
             <%- include("./partials/footer") %>
     </body>

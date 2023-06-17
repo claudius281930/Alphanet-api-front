@@ -3,7 +3,7 @@ const router = express.Router();
 
 const mainController = require("../controllers/mainController");
 
-router.get("/home", mainController.pageHome);
+router.get("/search", mainController.pageSearch);
 
 /* ---- Action get a object for parameter ---- */
 router.get("/box", mainController.getBoxes);

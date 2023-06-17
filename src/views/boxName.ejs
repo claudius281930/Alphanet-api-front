@@ -5,58 +5,62 @@
         <%- include("./partials/header") %>
 
             <main class="container-fluid">
-                <section class="container-fluid container-sm">
+                <section class="container-fluid container-sm mt-6 container-information">
 
-                    <p class="text-light h1 text-center mb-5">Infomações da Caixa</p>
+                    <p class="text-light h1 text-center mb-5 information-text">Infomações da Caixa</p>
+                    
+                    <p class="text-light h4 text-center mb-5 information-name">
 
-                    <div class="content-caracteristic">
-                        <p class="text-light h1 text-center mb-5">
-                            
-                            <span class="content-name has-text-danger">
-                                <%= nameBox.box.nameDescription %>
-                            </span>
-                        </p>
-                        <div>
-                            <% if (nameBox) { %>
-                                <ul class="container-fluid fw-bold w-100">
+                        <span class="content-name has-text-danger">
+                            <%= nameBox.box.nameDescription %>
+                        </span>
+                    </p>
+                    <div class="container content-update information-content">
 
-                                    <li class="has-text-danger">
-                                        <span class="content-list text-light">ID:</span>
-                                        <%= nameBox.box.id %>
-                                    </li>
-                                    <li class="has-text-danger">
-                                        <span class="content-list text-light">Data de Modificação:</span>
-                                        <%= nameBox.box.dateModify %>
-                                    </li>
-                                    <li class="has-text-danger">
-                                        <span class="content-list text-light">Nome da Descrição:</span>
-                                        <%= nameBox.box.nameDescription %>
-                                    </li>
-                                    <li class="has-text-danger">
-                                        <span class="content-list text-light">Localização:</span>
-                                        <%= nameBox.box.locale %>
-                                    </li>
-                                    <li class="has-text-danger">
-                                        <span class="content-list text-light">Active CTO:</span>
-                                        <%= nameBox.box.activeCto %>
-                                    </li>
-                                    <li class="has-text-danger">
-                                        <span class="content-list text-light">Tecnologia de Rede:</span>
-                                        <%= nameBox.box.networkTechnology %>
-                                    </li>
-                                </ul>
-                                <% } else { %>
-                                    <p>Box não encontrada.</p>
-                                    <% } %>
-                        </div>
-                        <form method="GET" action="/detail/name_description" id="detail">
-                            <div class="input-group mb-2">
-                                <input type="hidden" name="name_description"
-                                    value="<%= nameBox.box.nameDescription %>"><!-- captura o nome passado na pesquisa para incluir narota -->
-                                <button name="detail" class="btn btn btn-outline-light w-25 text-uppercase"
-                                    role="alert">Detalhe</button>
-                            </div>
-                        </form>
+                        <% if (nameBox) { %>
+                            <ul class="container fw-bold w-100 container-information-list">
+
+                                <li class="has-text-danger">
+                                    <span class="content-list text-light">ID:</span>
+                                    <%= nameBox.box.id %>
+                                </li>
+                                <li class="has-text-danger">
+                                    <span class="content-list text-light">Data de Modificação:</span>
+                                    <%= nameBox.box.dateModify %>
+                                </li>
+                                <li class="has-text-danger">
+                                    <span class="content-list text-light">Nome da Descrição:</span>
+                                    <%= nameBox.box.nameDescription %>
+                                </li>
+                                <li class="has-text-danger">
+                                    <span class="content-list text-light">Localização:</span>
+                                    <%= nameBox.box.locale %>
+                                </li>
+                                <li class="has-text-danger">
+                                    <span class="content-list text-light">Active CTO:</span>
+                                    <%= nameBox.box.activeCto %>
+                                </li>
+                                <li class="has-text-danger">
+                                    <span class="content-list text-light">Tecnologia de Rede:</span>
+                                    <%= nameBox.box.networkTechnology %>
+                                </li>
+                            </ul>
+                            <% } else { %>
+                                <p>Box não encontrada.</p>
+                                <% } %>
+
+                                    <form method="GET" action="/detail/name_description" id="detail">
+                                        <div class="input-group mb-2">
+                                            <input type="hidden" name="name_description"
+                                                value="<%= nameBox.box.nameDescription %>"><!-- captura o nome passado na pesquisa para incluir narota -->
+                                            <div class="input-group input-group mb-3">
+                                                <button name="detail" class="btn btn-outline-light text-uppercase 
+                                                btn-boxname"
+                                                    role="alert">Detalhe</button>
+                                            </div>
+                                            <!--usar o button do BULMA para tentar resolver o problema da borda esquerda RETA -->
+                                        </div>
+                                    </form>
                     </div>
                 </section>
             </main>

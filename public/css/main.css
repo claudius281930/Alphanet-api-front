@@ -6,25 +6,67 @@ main.css * {
 
 body {
   min-height: 100vh;
-  position: relative;
+  /* position: relative; */
   background-color: #031633;
 }
 
+
+.list-item{
+  font-size: 1.4em;
+} 
+
 footer {
   width: 100vw;
-  height: calc(9vh - 1em) ;
-  position: absolute;
-  margin: 3.5em auto;
+  height: calc(6.2vh + 1em);
   display: flex;
   justify-content: center;
   align-items: center;
+  /* border:solid .2px rgb(0, 0, 0); */
+}
+
+section.container-information {
+  max-width: 50%;
+}
+
+/* footer .content-footer-text{
+  border:solid .2px black;
+} */
+/*Grandes telas: > 1000px*/
+@media screen and (min-width: 921px) and (max-width: 1020px) {
+  li.list-item{
+    font-size: calc(10px + 0.1rem);
+  }
 }
 
 /*Pequenas telas: celular 600px - 768px (>756px).*/
-/* @media screen and (min-width: 1200px) {} */
+@media screen and (min-width: 720px) and (max-width: 920px) {
+
+  /* Body*/
+  section#container-main {
+    max-width: 65%;
+    min-height: 100%;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .boxes-foreach-item {
+    /* width: 100%;
+    max-height: 37%; */
+  }
+
+  li.has-text-danger {
+    font-size: calc(10px + 0.1rem);
+  }
+
+  section.container-information {
+    max-width: 80%;
+  }
+}
 
 /*Pequenas telas: minino 600px (=>576px).*/
-@media screen and (min-width: 576px) {
+@media screen and (min-width: 520px) {
   nav ul div.row {
     display: flex;
     justify-content: flex-end;
@@ -39,9 +81,28 @@ footer {
     height: calc(100vh - 20em);
   }
 
-  section.container-fluid {
-    width: 80%;
+  section.container {
+    max-width: 100%;
+    height: calc(100% - 2em);
+  }
 
+  div.content-boxes {
+    max-width: 100%;
+    height: calc(100% - 3em);
+  }
+
+  main section div ul.container-list {
+    width: calc(100% - 2em);
+    max-height: calc(100% - 1em);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  #boxes-foreach {
+    width: 50%;
+    display: flex;
+    font-size: 1.6em;
   }
 }
 
@@ -76,15 +137,49 @@ footer {
   }
 
   /* Body */
-  main.container-fluid {
-    height: calc(100vh - 16em);
-    display: flex;
-    align-items: center;
-    margin-bottom: calc(2vh - 3em);
-    
+  .container-boxes {
+    max-height: 65%;
   }
-  main section div.content-information{
-    margin-bottom:calc(20vh - 1em);
+
+  main>.content-boxesall {
+    width: 100%;
+    /*display: flex;
+    justify-content: center;  */
+    /* font-size: smaller; */
+    /*  */
+  }
+
+  .container-list {
+    width: calc(100% - .1em);
+    display: flex;
+    flex-wrap: wrap;
+    font-size: .6em;
+  }
+
+  .foreach {
+    width: 50%;
+    min-height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    box-shadow: .1px .1px .7px #8b7e7b;
+  }
+
+  .container-information-list {
+    max-width: calc(100% - 2em);
+  }
+
+  .container-information {
+    width: 100%;
+  }
+
+  /* Button */
+  .container-btn {
+    max-width: 25%;
+  }
+
+  .btn-content {
+    width: max-content;
   }
 }
 

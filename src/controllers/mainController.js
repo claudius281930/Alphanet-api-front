@@ -2,8 +2,8 @@ const boxRequest = require("../requests/boxRequest");
 const fusionRequest = require("../requests/fusionRequest");
 
 const mainController = {
-  pageHome: async (req, res) => {
-    res.render("home");
+  pageSearch: async (req, res) => {
+    res.render("search");//search
   },
   getBoxByNameFromBody: async (req, res) => {
     const name = req.body.name_description;
@@ -89,8 +89,7 @@ const mainController = {
     }
   },
   getBoxes: (req, res) => {
-    boxRequest
-      .getBox()
+    boxRequest.getBox()
       .then((result) => {
         const apiBoxes = result.data;
         res.render("boxes", { boxesAll: apiBoxes });
