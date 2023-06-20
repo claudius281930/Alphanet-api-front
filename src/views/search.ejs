@@ -7,21 +7,21 @@
           </div> -->
         <%- include("./partials/header") %>
 
-            <main class="container-fluid">
+            <main class="container-fluid container-main">
                 <section class="container-fluid container-sm mt-6">
 
                     <p class="text-light h1 text-center mt-6 mb-5">Buscar</p>
-                    
+
                     <div class="content-form">
                         <form method="POST" action="box/name" id="name_description">
-                            
+
                             <div class="input-group mb-2">
 
                                 <label for="name-description" class="input-group-text inputGroup-sizing-default"
                                     autofocus>Pesquisar
                                 </label>
 
-                                <!-- Atributo no input (name="name-description") precisa ser igual a rota. 
+                                <!-- Atributo no input (name="name_description") precisa ser igual a rota. 
                                         Assim como o valor do pego no controlador e tbm na rquicição axios. -->
                                 <input type="text" name="name_description" id="name-description"
                                     class="form-control form-control-sm p-2 text-primary-emphasis bg-dark-subtle border border-primary"
@@ -58,10 +58,24 @@
                                 <button type="submit" class="btn btn-outline-light text-uppercase">Buscar</button>
                             </div>
                         </form>
-                        
-                    </div>
-                </section>
 
+                    </div>
+
+                    <nav class="container-navegation-search mt-6 fs-5">
+                        <ul class="fw-bold navegation-search-list">
+
+                            <div class="row g-0 content-navegation">
+                                <li class="col-6 text-center item-search">
+                                    <a class="text-uppercase" href="http://localhost:3001/register">Cadastre-se</a>
+                                </li>
+                                <li class="col-6 text-center item-search">
+                                    <a class="text-uppercase" href="http://localhost:3001/login">Login</a>
+                                </li>
+
+                            </div>
+                        </ul>
+                    </nav>
+                </section>
             </main>
 
             <!-- Footer da pagina -->

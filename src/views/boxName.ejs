@@ -8,7 +8,7 @@
                 <section class="container-fluid container-sm mt-6 container-information">
 
                     <p class="text-light h1 text-center mb-5 information-text">Infomações da Caixa</p>
-                    
+
                     <p class="text-light h4 text-center mb-5 information-name">
 
                         <span class="content-name has-text-danger">
@@ -50,16 +50,14 @@
                                 <% } %>
 
                                     <form method="GET" action="/detail/name_description" id="detail">
-                                        <div class="input-group mb-2">
-                                            <input type="hidden" name="name_description"
-                                                value="<%= nameBox.box.nameDescription %>"><!-- captura o nome passado na pesquisa para incluir narota -->
-                                            <div class="input-group input-group mb-3">
-                                                <button name="detail" class="btn btn-outline-light text-uppercase 
-                                                btn-boxname"
-                                                    role="alert">Detalhe</button>
-                                            </div>
-                                            <!--usar o button do BULMA para tentar resolver o problema da borda esquerda RETA -->
+
+                                        <input type="hidden" name="name_description"
+                                            value="<%= nameBox.box.nameDescription %>"><!-- captura o nome passado na pesquisa para incluir narota -->
+                                        <div class="input-group input-group mt-3 container-btn">
+                                            <button name="detail" class="btn btn-outline-light text-uppercase 
+                                                btn-boxname btn-content" role="alert">Detalhe</button>
                                         </div>
+                                        <!--usar o button do BULMA para tentar resolver o problema da borda esquerda RETA -->
                                     </form>
                     </div>
                 </section>
