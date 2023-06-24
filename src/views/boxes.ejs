@@ -6,15 +6,15 @@
 
             <main class="container-fluid container-boxes">
                 <section class="container-fluid content-boxesall mt-6">
-                    
+
                     <p class="text-light h1 text-center">Caixas</p>
-                    
+
                     <div class="content-boxes">
                         <ul class="container-list boxes-list">
-                            
+
                             <% boxesAll.forEach(function(box) { %> <!-- boxesALL é uma const no controlador-->
                                 <div class="container-fluid foreach boxes-foreach-item" id="container-boxes-item">
-                                    
+
                                     <li class="has-text-danger list-item">
                                         <span class="content-list text-light">ID:</span>
                                         <%= box.id %>
@@ -41,7 +41,20 @@
                                     </li>
                                 </div>
                                 <% }); %>
-                                    
+                                    <!-- Pagination Bulma -->
+                                    <nav class="pagination is-right is-small" role="navigation" aria-label="pagination">
+                                        <a class="pagination-previous">Previous</a>
+                                        <a class="pagination-next">Next page</a>
+                                        <!-- <ul class="pagination-list">
+                                      <li><a class="pagination-link" aria-label="Goto page 1">1</a></li>
+                                      <li><span class="pagination-ellipsis">&hellip;</span></li>
+                                      <li><a class="pagination-link" aria-label="Goto page 45">45</a></li>
+                                      <li><a class="pagination-link is-current" aria-label="Page 46" aria-current="page">46</a></li>
+                                      <li><a class="pagination-link" aria-label="Goto page 47">47</a></li>
+                                      <li><span class="pagination-ellipsis">&hellip;</span></li>
+                                      <li><a class="pagination-link" aria-label="Goto page 86">86</a></li>
+                                    </ul> -->
+                                    </nav>
                         </ul>
                     </div>
                 </section>

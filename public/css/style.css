@@ -1,0 +1,211 @@
+main.css * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    min-height: 100vh;
+    /* position: relative; */
+    background-color: #031633;
+  }
+  
+  
+  .list-item {
+    font-size: 1.4em;
+  }
+  
+  footer {
+    width: 100vw;
+    height: calc(6.2vh + 1em);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border:solid .2px rgb(0, 0, 0); */
+  }
+  
+  section.container-information {
+    max-width: 50%;
+  }
+  
+  /* footer .content-footer-text{
+    border:solid .2px black;
+  } */
+  /*Grandes telas: > 1000px*/
+  @media screen and (min-width: 921px) and (max-width: 1020px) {
+    li.list-item {
+      font-size: calc(10px + 0.1rem);
+    }
+  }
+  
+  /*Pequenas telas: celular 600px - 768px (>756px).*/
+  @media screen and (min-width: 720px)
+  
+  /*and (max-width: 920px)*/
+    {
+  
+    /* Body*/
+    section#container-main {
+      max-width: 65%;
+      min-height: 100%;
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  
+    .boxes-foreach-item {
+      /* width: 100%;
+      max-height: 37%; */
+    }
+  
+    li.has-text-danger {
+      font-size: calc(10px + 0.4rem);
+    }
+  
+    section.container-information {
+      max-width: 80%;
+    }
+  }
+  
+  /*Pequenas telas: minino 600px (=>576px).*/
+  @media screen and (min-width: 520px) {
+    nav ul div.row {
+      display: flex;
+      justify-content: flex-end;
+    }
+  
+    header nav.navbar-content {
+      letter-spacing: .1em;
+    }
+  
+    /* Body*/
+    main.container-fluid {
+      height: calc(100vh - 20em);
+    }
+  
+    section.container {
+      max-width: 100%;
+      height: calc(100% - 2em);
+    }
+  
+    div.content-boxes {
+      max-width: 100%;
+      height: calc(100% - 3em);
+    }
+  
+    main section div ul.container-list {
+      width: calc(100% - 2em);
+      max-height: calc(100% - 1em);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+  
+    #boxes-foreach {
+      width: 50%;
+      display: flex;
+      font-size: 1.6em;
+    }
+  }
+  
+  /*Pequenas telas: mximo 600px (=< 575px)*/
+  @media screen and (min-width: 320px),
+  (orientation: landscape) {
+  
+    /* Header */
+    header.navbar-light {
+      width: 100vw;
+      max-height: 100vh;
+    }
+  
+    div>#img-alphanet {
+      width: max-content;
+    }
+  
+    header>nav.navbar {
+      width: 100%;
+    }
+  
+    a.nav-link {
+      padding-left: .5em;
+      font-size: .6rem;
+      box-shadow: 1px 2px 5px #031633;
+    }
+  
+    a.nav-link:hover {
+      color: #031633;
+      background-color: #f8f9fa;
+      text-shadow: 1px 1px 5px #8b7e7b;
+    }
+  
+    /* Body */
+    .container-boxes {
+      max-height: 65%;
+    }
+  
+    main>.content-boxesall {
+      width: 100%;
+    }
+  
+    .container-list {
+      width: calc(100% - .1em);
+      display: flex;
+      flex-wrap: wrap;
+      font-size: .6em;
+    }
+  
+    .foreach {
+      width: 50%;
+      min-height: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      box-shadow: .1px .1px .7px #8b7e7b;
+    }
+  
+    .container-information-list {
+      max-width: calc(100% - 2em);
+    }
+  
+    .container-information {
+      min-width: 100%;
+    }
+  
+    /* Button */
+    .container-btn {
+      max-width: 25%;
+    }
+  
+    .btn-content {
+      width: max-content;
+    }
+  
+    li.item-search>.text-uppercase {
+      color: #8b7e7b;
+    }
+  
+    li.item-search>.text-uppercase:hover {
+      color: #ffffff;
+      text-shadow: 1px 2.3px 1px #8b7e7b;
+    }
+  }
+  
+  /* Mobile First 
+  TYPICAL DEVICE BREAKPOINTS.
+  ---------------------------
+  
+  Pequenas telas: até 600px
+  Celular: de 600px até 768px
+  desktop:992px até 1200px
+  Grande telas: acima de 1200px
+  
+  BOOTSTRAP:
+  SM ≥576px,
+  MD ≥768px,
+  LG ≥768px,
+  XL ≥1200px,
+  XXL ≥1400px.
+  
+  conversão de px para 'em': 16px = 1em
+  */
