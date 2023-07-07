@@ -7,12 +7,11 @@ router.get("/search", mainController.pageSearch);
 
 /* ---- Action get a object for parameter ---- */
 router.get("/box", mainController.getBoxes);
-router.get("/fusion", mainController.getFusions);
 router.get("/box/:id", mainController.getBoxById);
-router.get("/fusion/:id", mainController.getFusionById);
 router.get("/detail/:name_description", mainController.getDetailBox);
-/*router.get("/box/locale/detail/:name_description", mainController.findDetailLocale);// "/locale/:locale";*/
-
+/* ---- Action get a object for pagination ---- */
+// router.get("/box?page=2", mainController.getBoxes);
+// router.get("/box?page=3", mainController.getBoxes);
 /* ---- Action that will take the route of a specific object ---- */
 router.get("/create", mainController.pageFormCreateBox);
 router.get("/update", mainController.pageFormUpdateBox);

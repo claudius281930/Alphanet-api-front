@@ -2,10 +2,10 @@
 
 const mainUserController = {
   pageResister: async (req, res) => {
-    res.render("register");
+    res.render("user/register");
   },
   pageLogin: async (req, res) => {
-    res.render("login");
+    res.render("user/login");
   },
   registerUser: async (req, res) => {
     //  let user = {

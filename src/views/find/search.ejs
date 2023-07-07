@@ -1,11 +1,11 @@
 <!-- Metadados da página -->
-<%- include("./partials/head") %>
+<%- include("../partials/head") %>
 
     <body>
         <!-- <div class="p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
             Example element with utilities
           </div> -->
-        <%- include("./partials/header") %>
+        <%- include("../partials/header") %>
 
             <main class="container-fluid container-main">
                 <section class="container-fluid container-sm mt-6">
@@ -64,16 +64,18 @@
 
                     </div>
 
-                    <nav class="container-navegation-search mt-6 fs-5">
+                    <nav class="container container-navegation-search mt-6 fs-5">
                         <ul class="fw-bold navegation-search-list">
 
-                            <div class="row g-0 content-navegation">
+                            <div class="container row g-0 content-navegation">
                                 <li class="col-6 text-center item-search">
-                                    <a class="text-uppercase link-offset-2 link-underline link-underline-opacity-0"
+                                    <a class="text-uppercase link-offset-2 link-underline 
+                                    link-underline-opacity-0 border-bottom border-info"
                                     href="http://localhost:3001/login">Login</a>
                                 </li>
                                 <li class="col-6 text-center item-search">
-                                    <a class="text-uppercase link-offset-2 link-underline link-underline-opacity-0" 
+                                    <a class="text-uppercase link-offset-2 link-underline 
+                                    link-underline-opacity-0 border-bottom border-info" 
                                     href="http://localhost:3001/register">Cadastre-se</a>
                                 </li>
 
@@ -84,7 +86,7 @@
             </main>
 
             <!-- Footer da pagina -->
-            <%- include("./partials/footer") %>
+            <%- include("../partials/footer") %>
     </body>
 
     </html>
