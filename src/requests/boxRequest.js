@@ -8,8 +8,6 @@ const urllocale = "/locale";
 const urldetail = "detail";
 const urlFull = urlbox + urlname;
 
-//const paginationUrl = `/box?page=${page}&limit=${limit}`;
-
 const boxRequest = {
   getBox: (offset,limit) => {
     return axios({

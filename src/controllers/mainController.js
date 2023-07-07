@@ -21,12 +21,18 @@ const mainController = {
     }
   },
   getDetailBox: async (req, res) => {
-    const nameForDetail = req.query.name_description; // captura o valor passado no input e adiciona a rota url
+    // captura o valor passado no input e adiciona a rota url utilizando o query;
+    const nameForDetail = req.query.name_description;
     try {
+      //Faz a consulta;
       const response = await boxRequest.detailBox(nameForDetail);
-      let box = response.data.box; // Obtenha a propriedade "box" do objeto de resposta
+       // Obtenha a propriedade "box" do objeto de resposta;
+      let box = response.data.box;
+      //console.log(box[0]);
+      //Verifica se os dados do detalhe existem;
       if (box) {
-        res.render("/detail/detail", { detailBox: box });
+        //Renderiza a pagina de detalhes jutamento com os dados desde detalhe;
+        res.render("detail/detail", { detailBox: box });
       } else {
         return res.send("Detalhes do objeto não encontrado ou não existe");
       }
@@ -51,12 +57,13 @@ const mainController = {
       console.error(error, "Algo deu errado!");
     }
   },
+  //Função que pegará o valor digitado pelo usuário;
   pageFormCreateBox: (req, res) => {
     const currentDate = new Date().toISOString().split("T")[0];
     res.render("create/create_box_form", { currentDate });
   },
+  //Função que tratará de executar a ação na base;
   createBox: async (req, res) => {
-    const msgSucesso = "Caixa criada com sucesso!";
     //const formattedData = moment(req.body.dateModify, 'DD/MM/YYYY').format('YYYY-MM-DD');
     let body = {
       dateModify: req.body.dateModify,
@@ -70,7 +77,8 @@ const mainController = {
     try {
       await boxRequest.createBox(box);
       if (box != undefined) {
-        res.redirect(201, "find/search"); //precisa inverter a ordem dos argumentos do redirect
+        //Redirecionado para a rota absoluta (/);
+        res.redirect("/search");
       }
     } catch (error) {
       if (error.response) {
@@ -152,7 +160,7 @@ const mainController = {
       res.render("error", { nameBox: [] });
     }
   },
-  // getFusions: (req, res) => {
+  /* // getFusions: (req, res) => {
   //   fusionRequest
   //     .getFusion()
   //     .then((result) => {
@@ -203,11 +211,14 @@ const mainController = {
   //     res.render("error", { nameBox: [] });
   //   }
   // },
+  */
+  //Função que pegará o valor digitado pelo usuário;
   pageFormUpdateBox: async (req, res) => {
     const currentDate = new Date().toISOString().split("T")[0];
     const id = req.body.id;
     res.render("update/updateBox", { currentDate, id: id });
   },
+  //Função que tratará de executar a ação na base;
   updateBox: async (req, res) => {
     // Obtém o ID do objeto a ser atualizar
     let id = req.body.id;
@@ -218,7 +229,6 @@ const mainController = {
       } else {
         console.log("Objeto não encontrado");
       }
-      //console.log(id);
       //Pegar os valores passados via body
       let body = {
         dateModify: req.body.dateModify,
@@ -231,23 +241,27 @@ const mainController = {
       let box = body;
       // Chama a função de requisição de atualização
       await boxRequest.updateBox(box, id);
-      res.redirect(200, "find/search"); //.json({ msg: "Objeto atualizado!" });
+      //Redirecionado para a rota absoluta (/);
+      res.redirect("/search");
     } catch (error) {
       // Houve um erro na requisição de atualização
       console.log("Erro:", error.message);
       res.status(500).json({ message: "Erro interno do servidor." });
     }
   },
+  //Função que pegará o valor digitado pelo usuário;
   pageFormDeleteBox: (req, res) => {
     const id = req.body.id;
     res.render("delete/deleteBox", { id: id });
   },
+  //Função que tratará de executar a ação na base;
   deleteBox: async (req, res) => {
     // Obtém o ID do objeto a ser deletado
     const id = req.body.id;
     try {
-      await boxRequest.deleteBox(id); //Mesmo parametro da requisisão esperado pelo AXIOS
-      res.redirect(200, "find/search");
+      await boxRequest.deleteBox(id);
+      //Redirecionado para a rota absoluta (/);
+      res.redirect("/search");
     } catch (error) {
       // Houve um erro na requisição de deleção
       console.error("Erro:", error);
