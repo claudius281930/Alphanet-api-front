@@ -7,9 +7,10 @@
             <main class="container-fluid">
                 <section class="container-fluid container-sm mt-6">
 
-                    <p class="text-light h1 text-center mb-5">Detalhes da Caixa</p>
+                    <p class="text-light h1 text-center mb-4">Detalhes da Caixa</p>
 
-                    <!-- <h4>Detalhes do objeto:<span class="content-name"><%= detailBox.nameDescription %></span></h4> -->
+                    <p class="text-light h6 text-center mb-5">Objeto do detalhe:
+                        <span class="has-text-danger h5"><%= msg %></span></p>
 
                     <% if (detailBox) { %>
                         <% const object=detailBox[0]; %>
@@ -43,9 +44,7 @@
                                                     <% } %>
                                                         <% } %>
                             </ul>
-                            <% } else { %>
-                                <p>Box não encontrada.</p>
-                                <% } %>
+                            <% } %>
                 </section>
             </main>
             <!-- Footer da pagina -->

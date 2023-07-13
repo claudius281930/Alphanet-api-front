@@ -17,7 +17,18 @@ const mainController = {
         return res.send("Objeto não encontrado ou não existe");
       }
     } catch (error) {
-      console.error(error, "Algo deu errado!");
+      if (error.response) {
+        // Erro de resposta da API
+        console.log(error.response.status);
+        console.log(error.response.data);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        // Erro de requisição (sem resposta)
+        console.log(error.request);
+      } else {
+        // Outro tipo de erro
+        console.log("Erro", error.message);
+      }
     }
   },
   getDetailBox: async (req, res) => {
@@ -26,18 +37,30 @@ const mainController = {
     try {
       //Faz a consulta;
       const response = await boxRequest.detailBox(nameForDetail);
-       // Obtenha a propriedade "box" do objeto de resposta;
+      // Obtenha a propriedade "box" do objeto de resposta;
       let box = response.data.box;
-      //console.log(box[0]);
+      let boxName = response.data.msg;
       //Verifica se os dados do detalhe existem;
       if (box) {
         //Renderiza a pagina de detalhes jutamento com os dados desde detalhe;
-        res.render("detail/detail", { detailBox: box });
+        res.render("detail/detail", { detailBox: box, msg: boxName });
+        //console.log(nameForDetail)
       } else {
         return res.send("Detalhes do objeto não encontrado ou não existe");
       }
     } catch (error) {
-      console.error(error);
+      if (error.response) {
+        // Erro de resposta da API
+        console.log(error.response.status);
+        console.log(error.response.data);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        // Erro de requisição (sem resposta)
+        console.log(error.request);
+      } else {
+        // Outro tipo de erro
+        console.log("Erro", error.message);
+      }
     }
   },
   getBoxByLocaleFromBody: async (req, res) => {
@@ -54,7 +77,18 @@ const mainController = {
         return res.send("Objeto não encontrado ou não existe");
       }
     } catch (error) {
-      console.error(error, "Algo deu errado!");
+      if (error.response) {
+        // Erro de resposta da API
+        console.log(error.response.status);
+        console.log(error.response.data);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        // Erro de requisição (sem resposta)
+        console.log(error.request);
+      } else {
+        // Outro tipo de erro
+        console.log("Erro", error.message);
+      }
     }
   },
   //Função que pegará o valor digitado pelo usuário;
@@ -73,7 +107,7 @@ const mainController = {
       networkTechnology: req.body.networkTechnology,
     };
     let box = body;
-    console.log(box);
+    //console.log(box);
     try {
       await boxRequest.createBox(box);
       if (box != undefined) {
@@ -245,7 +279,18 @@ const mainController = {
       res.redirect("/search");
     } catch (error) {
       // Houve um erro na requisição de atualização
-      console.log("Erro:", error.message);
+      if (error.response) {
+        // Erro de resposta da API
+        console.log(error.response.status);
+        console.log(error.response.data);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        // Erro de requisição (sem resposta)
+        console.log(error.request);
+      } else {
+        // Outro tipo de erro
+        console.log("Erro", error.message);
+      }
       res.status(500).json({ message: "Erro interno do servidor." });
     }
   },
@@ -263,11 +308,22 @@ const mainController = {
       //Redirecionado para a rota absoluta (/);
       res.redirect("/search");
     } catch (error) {
-      // Houve um erro na requisição de deleção
-      console.error("Erro:", error);
+      // Houve um erro na requisição de atualização
+      if (error.response) {
+        // Erro de resposta da API
+        console.log(error.response.status);
+        console.log(error.response.data);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        // Erro de requisição (sem resposta)
+        console.log(error.request);
+      } else {
+        // Outro tipo de erro
+        console.log("Erro", error.message);
+      }
       res.status(500).json({ message: "Erro interno do servidor." });
     }
-  },
+  }
 };
 
 module.exports = mainController;

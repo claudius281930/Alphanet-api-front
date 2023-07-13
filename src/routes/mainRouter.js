@@ -9,24 +9,22 @@ router.get("/search", mainController.pageSearch);
 router.get("/box", mainController.getBoxes);
 router.get("/box/:id", mainController.getBoxById);
 router.get("/detail/:name_description", mainController.getDetailBox);
-/* ---- Action get a object for pagination ---- */
-// router.get("/box?page=2", mainController.getBoxes);
-// router.get("/box?page=3", mainController.getBoxes);
-/* ---- Action that will take the route of a specific object ---- */
+/* ---- Registered users only ---- */
 router.get("/create", mainController.pageFormCreateBox);
 router.get("/update", mainController.pageFormUpdateBox);
 router.get("/delete", mainController.pageFormDeleteBox);
-
-/* ---- Action for create or FIND a object body page---- */
+/* ---- Registered users only ---- */
 router.post("/create/box", mainController.createBox);
+/* ---- Registered users onlyt ---- */
+router.put("/:id", mainController.updateBox);
+/* ---- Registered users only ---- */
+router.delete("/box/:id", mainController.deleteBox);
+
+//Desabilitadas temporariamente -----------------------------;
 router.post("/box/name", mainController.getBoxByNameFromBody);
 router.post("/box/id", mainController.getBoxById);
 router.post("/locale", mainController.getBoxByLocaleFromBody);
+//-----------------------------------------------------------;
 
-/* ---- Action for update a object ---- */
-router.put("/:id", mainController.updateBox);
-
-/* ---- Action for delete a object ---- */
-router.delete("/box/:id", mainController.deleteBox);
 
 module.exports = router;

@@ -2,12 +2,11 @@ const express = require("express");
 const app = express();
 const methodOverride = require("method-override");
 const path = require("path");
-//const bodyParser = require("body-parser");
 
-const mainRouter = require("../src/routes/mainRouter");
-const mainUserRouter = require("../src/routes/mainUserRouter");
+const mainRouter = require(path.join(__dirname,"./routes/mainRouter"));
+const userRouter = require(path.join(__dirname,"./routes/userRouter"));
 
-app.use(express.static(path.join(__dirname, "../public"))); // precisa definir o caminho certinho para funcionar ../
+app.use(express.static(path.join(__dirname, "../public")));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(methodOverride("_method"));
@@ -15,9 +14,9 @@ app.use(methodOverride("_method"));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/views"));
 
-// rotas da API
+// rotas da API e Middlewares de aplicação(global);
 app.use("/", mainRouter);
-app.use("/", mainUserRouter);
+app.use("/register", userRouter);
 
 // error handler
 app.use(function (err, req, res, next) {
