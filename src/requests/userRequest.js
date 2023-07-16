@@ -1,7 +1,8 @@
 const axios = require("axios");
 const defaults = require("./defaults");
 
-const userCreate = "register/create";
+const userCreate = "register/create";//antes estava /register/create
+const urlGetUser = "user";
 
 const userRequest = {
   createUser: (user) => {
@@ -12,6 +13,16 @@ const userRequest = {
         ...user,
       },
       url: `${userCreate}`,
+    });
+  },
+  loginUser: (user) => {
+    return axios({
+      ...defaults,
+      method: "post",
+      data: {
+        ...user,
+      },
+      url: `${urlGetUser}`,
     });
   },
 };

@@ -1,22 +1,36 @@
 const express = require("express");
-const app = express();
 const methodOverride = require("method-override");
+const session = require("express-session");
+const cookieParser = require("cookie-parser");
 const path = require("path");
 
 const mainRouter = require(path.join(__dirname,"./routes/mainRouter"));
+const registerRouter = require(path.join(__dirname,"./routes/registerRouter"));
 const userRouter = require(path.join(__dirname,"./routes/userRouter"));
+const cookieMiddleware = require("./middlewares/cookieLogin");
+
+const app = express();
+
+//View engine setup;
+app.set("views", path.join(__dirname, "/views"));
+app.set("view engine", "ejs");
 
 app.use(express.static(path.join(__dirname, "../public")));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(methodOverride("_method"));
-
-app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "/views"));
+//app.use(cookieParser);
+//app.use(cookieMiddleware);
+app.use(session({
+  secret:"Minhacri@cao, API de Consulta!",
+  resave:true,
+  saveUninitialized:true,
+}));
 
 // rotas da API e Middlewares de aplicação(global);
 app.use("/", mainRouter);
-app.use("/register", userRouter);
+app.use("/", registerRouter);
+app.use("/", userRouter);
 
 // error handler
 app.use(function (err, req, res, next) {

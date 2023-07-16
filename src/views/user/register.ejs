@@ -4,6 +4,8 @@
         <%- include("../partials/header") %>
 
             <main class="container-fluid">
+                <%- include("../partials/videoRegister") %>
+                
                 <section class="container-fluid container-sm mt-6">
 
                     <p class="text-light text-center h1 mb-5">Cadastrar</p>
@@ -28,7 +30,7 @@
 
                                 <label for="name" class="input-group-text inputGroup-sizing-default" autofocus>
                                     Nome:</label>
-                                <input type="text" id="name" name="name" value="<%#= currentDate %>" autofocus
+                                <input type="text" id="name" name="name" value="<%#= currentDate %>" required autofocus
                                     class="form-control form-control-sm p-2 text-primary-emphasis bg-dark-subtle border border-primary
                                     opacity-75" aria-label="Sizing text input" aria-describedby="inputGroup-sizing-sm">
                             </div>
@@ -44,7 +46,7 @@
                                             autofocus>
                                             Senha</label>
                                         <input type="password" id="password" name="password" value="<%#= currentDate %>"
-                                            autofocus class="form-control form-control-sm p-2 text-primary-emphasis bg-dark-subtle border border-primary
+                                        required autofocus class="form-control form-control-sm p-2 text-primary-emphasis bg-dark-subtle border border-primary
                                     opacity-75" aria-label="Sizing text input" aria-describedby="inputGroup-sizing-sm">
                                     </div>
 
@@ -56,7 +58,7 @@
 
                         </form>
                     </div>
-                    <p><a href="http://localhost:3001/register/login">Login</a></p>
+                    <p class="text-uppercase"><a href="http://localhost:3001/login">Login</a></p>
                 </section>
 
             </main>

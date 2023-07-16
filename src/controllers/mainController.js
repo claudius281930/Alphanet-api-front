@@ -96,7 +96,6 @@ const mainController = {
     const currentDate = new Date().toISOString().split("T")[0];
     res.render("create/create_box_form", { currentDate });
   },
-  //Função que tratará de executar a ação na base;
   createBox: async (req, res) => {
     //const formattedData = moment(req.body.dateModify, 'DD/MM/YYYY').format('YYYY-MM-DD');
     let body = {
@@ -158,6 +157,7 @@ const mainController = {
         currentPage: page,
         //Total de itens;
         total: total,
+        //user:req.session.user,
       });
     } catch (error) {
       //Exibi o erro no terminal
