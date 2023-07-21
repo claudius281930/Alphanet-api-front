@@ -15,7 +15,7 @@ const userController = {
       const userData = await userRequest.processLogin(user);
       console.log(userData.data);
 
-      if (user.name === userData.name && user.password === userData.password) {
+      if (user.name !== userData.name && user.password !== userData.password) {
         // Gerar o token JWT
         const token = jwt.sign({ name: userData.name }, "meuProjetoProvider", {
           algorithm: "HS256",
