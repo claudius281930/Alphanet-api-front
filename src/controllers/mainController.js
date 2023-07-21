@@ -1,4 +1,5 @@
 const boxRequest = require("../requests/boxRequest");
+
 // const fusionRequest = require("../requests/fusionRequest");
 
 const mainController = {
@@ -157,7 +158,8 @@ const mainController = {
         currentPage: page,
         //Total de itens;
         total: total,
-        //user:req.session.user,
+        //Exibir na view o nome do usuario que esta logado;
+        //userLogged:req.session.userLogged,
       });
     } catch (error) {
       //Exibi o erro no terminal

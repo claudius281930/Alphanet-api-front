@@ -1,9 +1,37 @@
-function auth(req,res,next){
-    if(typeof(req.session.user) != "undefined"){
-        return next();
-    }else{
-        return res.send("O usuário não tem privilegios para acessar está página!");
+const jwt = require("jsonwebtoken");
+const { promisify } = require("util");
+const secretKey = "meuProjetoProvider";
+
+module.exports = {
+  eAdmin: async (req, res, next) => {
+    const authHeader = req.headers.authorization;
+    console.log(authHeader);
+    if (!authHeader) {
+      return res.status(400).json({
+        erro: true,
+        msg: "Erro: login necessário!",
+      });
     }
+    const [, token] = authHeader.split(" ");
+    console.log("token: " + token);
+    if (!token) {
+      return res.status(400).json({
+        erro: true,
+        msg: "Erro: necessário Token",
+      });
+    }
+    try {
+      const decode = await promisify(jwt.verify)(token, secretKey);
+      // Armazene o ID do usuário no objeto de requisição para uso posterior, se necessário;
+      req.userId = decode.id;
+      return next();
+    } catch (error) {
+      console.error(error);
+      return res.status(400).json({
+        erro: true,
+        msg: "Erro: login necessário para acessar esta página.",
+      });
+    }
+  },
 };
 
-module.exports = auth;

@@ -1,25 +1,26 @@
 const express = require("express");
 const router = express.Router();
+const session = require("express-session");
 
-const auth = require("../middlewares/auth");
+//const { eAdmin } = require("../middlewares/auth");
 const mainController = require("../controllers/mainController");
 
 router.get("/search", mainController.pageSearch);
 
 /* ---- Action get a object for parameter ---- */
-router.get("/box", /*auth,*/ mainController.getBoxes);
+router.get("/box", /*eAdmin,*/ mainController.getBoxes);
 router.get("/box/:id", mainController.getBoxById);
 router.get("/detail/:name_description", mainController.getDetailBox);
 /* ---- Registered users only ---- */
-router.get("/create", auth, mainController.pageFormCreateBox);
-router.get("/update", auth, mainController.pageFormUpdateBox);
-router.get("/delete", auth, mainController.pageFormDeleteBox);
+router.get("/create", /*eAdmin,*/ mainController.pageFormCreateBox);
+router.get("/update", mainController.pageFormUpdateBox);
+router.get("/delete", mainController.pageFormDeleteBox);
 /* ---- Registered users only ---- */
-router.post("/create/box", auth, mainController.createBox);
+router.post("/create/box", mainController.createBox);
 /* ---- Registered users onlyt ---- */
-router.put("/:id", auth, mainController.updateBox);
+router.put("/:id", mainController.updateBox);
 /* ---- Registered users only ---- */
-router.delete("/box/:id", auth, mainController.deleteBox);
+router.delete("/box/:id", mainController.deleteBox);
 
 //Desabilitadas temporariamente -----------------------------;
 router.post("/box/name", mainController.getBoxByNameFromBody);

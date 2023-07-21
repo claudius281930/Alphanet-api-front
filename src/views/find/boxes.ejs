@@ -8,7 +8,7 @@
                 <section class="container-fluid content-boxesall mt-6">
 
                     <p class="text-light h1 text-center">Caixas</p>
-                    <!-- <h5> Olá <%#= user.name %></h5> -->
+                    
                     <div class="content-boxes">
                         <ul class="container-list boxes-list">
                             <!-- boxesAll variável passada do controlador -->
@@ -39,6 +39,9 @@
                                         <span class="content-list text-light">Tecnologia de Rede:</span>
                                         <%= box.networkTechnology %>
                                     </li>
+                                    <div><span class="content-list text-light">
+                                        <a href="#">Detalhe</a>
+                                    </span></div>
                                 </div>
                                 <% }); %>
                         </ul>
