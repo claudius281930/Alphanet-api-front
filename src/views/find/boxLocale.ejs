@@ -1,0 +1,57 @@
+<!-- Metadados da pagina -->
+<%- include("../partials/head" )%>
+
+    <body>
+        <%- include("../partials/header") %>
+
+            <main class="container-fluid container-boxes">
+                <section class="container-fluid content-boxesall mt-6">
+
+                    <p class="text-light h1 text-center">Localização</p>
+
+                    <div class="content-boxes">
+                        <ul class="container-list boxes-list">
+                            <!-- localeBox variável passada do controlador -->
+                            <% localeBox.box.forEach(function(box) { %>
+                                <div class="container-fluid foreach boxes-foreach-item" id="container-boxes-item">
+
+                                    <li class="has-text-danger list-item">
+                                        <span class="content-list text-light">ID:</span>
+                                        <%= box.id %>
+                                    </li>
+                                    <li class="has-text-danger list-item">
+                                        <span class="content-list text-light">Data de Modificação:</span>
+                                        <%= box.dateModify %>
+                                    </li>
+                                    <li class="has-text-danger list-item">
+                                        <span class="content-list text-light">Nome Descritivo:</span>
+                                        <%= box.nameDescription %>
+                                    </li>
+                                    <li class="has-text-danger list-item">
+                                        <span class="content-list text-light">Localização:</span>
+                                        <span class="content-list text-warning">
+                                            <%= box.locale %>
+                                        </span>
+                                    </li>
+                                    <li class="has-text-danger list-item">
+                                        <span class="content-list text-light">Active CTO:</span>
+                                        <%= box.activeCto %>
+                                    </li>
+                                    <li class="has-text-danger list-item mb-2">
+                                        <span class="content-list text-light">Tecnologia de Rede:</span>
+                                        <%= box.networkTechnology %>
+                                    </li>
+                                    <div><span class="content-list text-light">
+                                            <a href="#">Detalhe</a>
+                                        </span></div>
+                                </div>
+                                <% }); %>
+                        </ul>
+                    </div>
+                </section>
+            </main>
+            <!-- Footer da pagina -->
+            <%- include("../partials/footer") %>
+    </body>
+
+    </html>

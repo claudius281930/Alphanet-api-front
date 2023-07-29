@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router();
 const multer = require("multer");
+const path = require("path");
+const { eUser } = require(path.join(__dirname,"../middlewares/logMiddleware"));
 
-//const check = require("../middlewares/checkMiddleware");
-const { eAdmin } = require("../middlewares/auth");
 const userController = require("../controllers/userController");
 
 //Exibe a pagina de Perfil;
-router.get("/profile", eAdmin, userController.pageProfile);
+router.get("/profile", eUser, userController.pageProfile);
 //Exibe a tela de login. Somente no front-end;
 router.get("/login", userController.pageLogin);
 //Processa os dados para efetuar o login;

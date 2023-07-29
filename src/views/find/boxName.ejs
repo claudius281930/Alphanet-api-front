@@ -30,7 +30,9 @@
                                 </li>
                                 <li class="has-text-danger">
                                     <span class="content-list text-light">Nome da Descrição:</span>
-                                    <%= nameBox.box.nameDescription %>
+                                    <span class="content-list text-warning">
+                                        <%= nameBox.box.nameDescription %>
+                                    </span>
                                 </li>
                                 <li class="has-text-danger">
                                     <span class="content-list text-light">Localização:</span>
@@ -49,10 +51,11 @@
                                 <p>Box não encontrada.</p>
                                 <% } %>
 
-                                    <form method="GET" action="/detail/name_description" id="detail">
+                                    <form method="GET" action="/box/detail/:name_description" id="detail">
 
                                         <input type="hidden" name="name_description"
-                                            value="<%= nameBox.box.nameDescription %>"><!-- captura o nome passado na pesquisa para incluir narota -->
+                                            value="<%= nameBox.box.nameDescription %>">
+                                        <!-- IMPORTANTISSíMO: O VALUE captura o nome passado na pesquisa para incluir na rota dinamica-->
                                         <div class="input-group input-group mt-3 container-btn">
                                             <button name="detail" class="btn btn-outline-light text-uppercase 
                                                 btn-boxname btn-content" role="alert">Detalhe</button>

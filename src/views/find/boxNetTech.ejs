@@ -1,0 +1,58 @@
+<!-- Metadados da pagina -->
+<%- include("../partials/head" )%>
+
+    <body>
+        <%- include("../partials/header") %>
+
+            <main class="container-fluid container-boxes">
+                <section class="container-fluid content-boxesall mt-6">
+
+                    <p class="text-light h1 text-center">Tecnologia de Rede</p>
+
+                    <div class="content-boxes">
+                        <ul class="container-list boxes-list">
+                            <!-- networkTechnology variável passada do controlador -->
+                            <% networkTechnology.box.forEach(function(box) { %>
+                                <div class="container-fluid foreach boxes-foreach-item" id="container-boxes-item">
+
+                                    <li class="has-text-danger list-item">
+                                        <span class="content-list text-light">ID:</span>
+                                        <%= box.id %>
+                                    </li>
+                                    <li class="has-text-danger list-item">
+                                        <span class="content-list text-light">Data de Modificação:</span>
+                                        <%= box.dateModify %>
+                                    </li>
+                                    <li class="has-text-danger list-item">
+                                        <span class="content-list text-light">Nome Descritivo:</span>
+                                        <%= box.nameDescription %>
+                                    </li>
+                                    <li class="has-text-danger list-item">
+                                        <span class="content-list text-light">Localização:</span>
+                                        <%= box.locale %>
+
+                                    </li>
+                                    <li class="has-text-danger list-item">
+                                        <span class="content-list text-light">Active CTO:</span>
+                                        <%= box.activeCto %>
+                                    </li>
+                                    <li class="has-text-danger list-item mb-2">
+                                        <span class="content-list text-light">Tecnologia de Rede:</span>
+                                        <span class="content-list text-warning">
+                                            <%= box.networkTechnology %>
+                                        </span>
+                                    </li>
+                                    <div><span class="content-list text-light">
+                                            <a href="#">Detalhe</a>
+                                        </span></div>
+                                </div>
+                                <% }); %>
+                        </ul>
+                    </div>
+                </section>
+            </main>
+            <!-- Footer da pagina -->
+            <%- include("../partials/footer") %>
+    </body>
+
+    </html>

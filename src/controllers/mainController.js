@@ -6,16 +6,31 @@ const mainController = {
   pageSearch: async (req, res) => {
     res.render("find/search"); // A partir do diretorio VIEWS;
   },
-  getBoxByNameFromBody: async (req, res) => {
-    const name = req.body.name_description;
+  pageFormCreateBox: (req, res) => {
+    const currentDate = new Date().toISOString().split("T")[0];
+    res.render("create/createBox", { currentDate });
+  },
+  pageFormUpdateBox: async (req, res) => {
+    const currentDate = new Date().toISOString().split("T")[0];
+    const id = req.body.id;
+    res.render("update/updateBox", { currentDate, id: id });
+  },
+  pageFormDeleteBox: (req, res) => {
+    const id = req.body.id;
+    res.render("delete/deleteBox", { id: id });
+  },
+  // ********************
+  getBoxByNameBody: async (req, res) => {
+    const name = req.query.name_description;
+    console.log([name]);
     try {
       const response = await boxRequest.getBoxName(name);
       let box = response.data;
 
-      if (box) {
-        return res.render("find/boxName", { nameBox: box }); // A Key(nameBox) pode ser qualquer nome
-      } else {
+      if (!box) {
         return res.send("Objeto não encontrado ou não existe");
+      } else {
+        return res.render("find/boxName", { nameBox: box });
       }
     } catch (error) {
       if (error.response) {
@@ -34,10 +49,11 @@ const mainController = {
   },
   getDetailBox: async (req, res) => {
     // captura o valor passado no input e adiciona a rota url utilizando o query;
-    const nameForDetail = req.query.name_description;
+    const boxDetail = req.query.name_description;
+    console.log([boxDetail]);
     try {
       //Faz a consulta;
-      const response = await boxRequest.detailBox(nameForDetail);
+      const response = await boxRequest.detailBox(boxDetail);
       // Obtenha a propriedade "box" do objeto de resposta;
       let box = response.data.box;
       let boxName = response.data.msg;
@@ -64,16 +80,16 @@ const mainController = {
       }
     }
   },
-  getBoxByLocaleFromBody: async (req, res) => {
-    const locale = req.body.locale;
-    console.log(locale);
+  getBoxByLocaleBody: async (req, res) => {
+    const locale = req.query.locale;
+    //console.log([locale]);
     try {
       const response = await boxRequest.getBoxLocale(locale);
+      //console.log(response)
       let box = response.data;
-      console.log(box);
-
+      
       if (box) {
-        return res.render("/find/boxName", { nameBox: box }); // A Key(nameBox) pode ser qualquer nome
+        return res.render("find/boxLocale", { localeBox: box });
       } else {
         return res.send("Objeto não encontrado ou não existe");
       }
@@ -92,27 +108,20 @@ const mainController = {
       }
     }
   },
-  //Função que pegará o valor digitado pelo usuário;
-  pageFormCreateBox: (req, res) => {
-    const currentDate = new Date().toISOString().split("T")[0];
-    res.render("create/create_box_form", { currentDate });
-  },
-  createBox: async (req, res) => {
-    //const formattedData = moment(req.body.dateModify, 'DD/MM/YYYY').format('YYYY-MM-DD');
-    let body = {
-      dateModify: req.body.dateModify,
-      nameDescription: req.body.nameDescription,
-      locale: req.body.locale,
-      activeCto: req.body.activeCto,
-      networkTechnology: req.body.networkTechnology,
-    };
-    let box = body;
-    //console.log(box);
+  getBoxByNetworkTechnologyBody: async (req,res) => {
+    // const {query} = req.query;
+    // const [locale, networkTechnology] = query.split(' ');
+    const networkTechnology = req.query.networkTechnology;
+    console.log(networkTechnology);
     try {
-      await boxRequest.createBox(box);
-      if (box != undefined) {
-        //Redirecionado para a rota absoluta (/);
-        res.redirect("/search");
+      const response = await boxRequest.getBoxNetworkTechnology(networkTechnology);
+      console.log(response)
+      let box = response.data;
+      
+      if (box) {
+        return res.render("find/boxNetTech", { networkTechnology: box });
+      } else {
+        return res.send("Objeto não encontrado ou não existe");
       }
     } catch (error) {
       if (error.response) {
@@ -196,6 +205,104 @@ const mainController = {
       res.render("error", { nameBox: [] });
     }
   },
+  // **********************
+  createBox: async (req, res) => {
+    //const formattedData = moment(req.body.dateModify, 'DD/MM/YYYY').format('YYYY-MM-DD');
+    let body = {
+      dateModify: req.body.dateModify,
+      nameDescription: req.body.nameDescription,
+      locale: req.body.locale,
+      activeCto: req.body.activeCto,
+      networkTechnology: req.body.networkTechnology,
+    };
+    let box = body;
+    //console.log(box);
+    try {
+      await boxRequest.createBox(box);
+      if (box != undefined) {
+        //Redirecionado para a rota absoluta (/);
+        res.redirect("/search");
+      }
+    } catch (error) {
+      if (error.response) {
+        // Erro de resposta da API
+        console.log(error.response.status);
+        console.log(error.response.data);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        // Erro de requisição (sem resposta)
+        console.log(error.request);
+      } else {
+        // Outro tipo de erro
+        console.log("Erro", error.message);
+      }
+    }
+  },
+  updateBox: async (req, res) => {
+    // Obtém o ID do objeto a ser atualizar
+    let id = req.body.id;
+    try {
+      //verificando se o objeto existe na base;
+      if (boxRequest.getBoxId(id)) {
+        console.log("Objeto encontrado");
+      } else {
+        console.log("Objeto não encontrado");
+      }
+      //Pegar os valores passados via body
+      let body = {
+        dateModify: req.body.dateModify,
+        nameDescription: req.body.nameDescription,
+        locale: req.body.locale,
+        activeCto: req.body.activeCto,
+        networkTechnology: req.body.networkTechnology,
+      };
+      //Armazenar
+      let box = body;
+      // Chama a função de requisição de atualização
+      await boxRequest.updateBox(box, id);
+      //Redirecionado para a rota absoluta (/);
+      res.redirect("/search");
+    } catch (error) {
+      // Houve um erro na requisição de atualização
+      if (error.response) {
+        // Erro de resposta da API
+        console.log(error.response.status);
+        console.log(error.response.data);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        // Erro de requisição (sem resposta)
+        console.log(error.request);
+      } else {
+        // Outro tipo de erro
+        console.log("Erro", error.message);
+      }
+      res.status(500).json({ message: "Erro interno do servidor." });
+    }
+  },
+  deleteBox: async (req, res) => {
+    // Obtém o ID do objeto a ser deletado
+    const id = req.body.id;
+    try {
+      await boxRequest.deleteBox(id);
+      //Redirecionado para a rota absoluta (/);
+      res.redirect("/search");
+    } catch (error) {
+      // Houve um erro na requisição de atualização
+      if (error.response) {
+        // Erro de resposta da API
+        console.log(error.response.status);
+        console.log(error.response.data);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        // Erro de requisição (sem resposta)
+        console.log(error.request);
+      } else {
+        // Outro tipo de erro
+        console.log("Erro", error.message);
+      }
+      res.status(500).json({ message: "Erro interno do servidor." });
+    }
+  },
   /* // getFusions: (req, res) => {
   //   fusionRequest
   //     .getFusion()
@@ -248,84 +355,6 @@ const mainController = {
   //   }
   // },
   */
-  //Função que pegará o valor digitado pelo usuário;
-  pageFormUpdateBox: async (req, res) => {
-    const currentDate = new Date().toISOString().split("T")[0];
-    const id = req.body.id;
-    res.render("update/updateBox", { currentDate, id: id });
-  },
-  //Função que tratará de executar a ação na base;
-  updateBox: async (req, res) => {
-    // Obtém o ID do objeto a ser atualizar
-    let id = req.body.id;
-    try {
-      //verificando se o objeto existe na base;
-      if (boxRequest.getBoxId(id)) {
-        console.log("Objeto encontrado");
-      } else {
-        console.log("Objeto não encontrado");
-      }
-      //Pegar os valores passados via body
-      let body = {
-        dateModify: req.body.dateModify,
-        nameDescription: req.body.nameDescription,
-        locale: req.body.locale,
-        activeCto: req.body.activeCto,
-        networkTechnology: req.body.networkTechnology,
-      };
-      //Armazenar
-      let box = body;
-      // Chama a função de requisição de atualização
-      await boxRequest.updateBox(box, id);
-      //Redirecionado para a rota absoluta (/);
-      res.redirect("/search");
-    } catch (error) {
-      // Houve um erro na requisição de atualização
-      if (error.response) {
-        // Erro de resposta da API
-        console.log(error.response.status);
-        console.log(error.response.data);
-        console.log(error.response.headers);
-      } else if (error.request) {
-        // Erro de requisição (sem resposta)
-        console.log(error.request);
-      } else {
-        // Outro tipo de erro
-        console.log("Erro", error.message);
-      }
-      res.status(500).json({ message: "Erro interno do servidor." });
-    }
-  },
-  //Função que pegará o valor digitado pelo usuário;
-  pageFormDeleteBox: (req, res) => {
-    const id = req.body.id;
-    res.render("delete/deleteBox", { id: id });
-  },
-  //Função que tratará de executar a ação na base;
-  deleteBox: async (req, res) => {
-    // Obtém o ID do objeto a ser deletado
-    const id = req.body.id;
-    try {
-      await boxRequest.deleteBox(id);
-      //Redirecionado para a rota absoluta (/);
-      res.redirect("/search");
-    } catch (error) {
-      // Houve um erro na requisição de atualização
-      if (error.response) {
-        // Erro de resposta da API
-        console.log(error.response.status);
-        console.log(error.response.data);
-        console.log(error.response.headers);
-      } else if (error.request) {
-        // Erro de requisição (sem resposta)
-        console.log(error.request);
-      } else {
-        // Outro tipo de erro
-        console.log("Erro", error.message);
-      }
-      res.status(500).json({ message: "Erro interno do servidor." });
-    }
-  }
 };
 
 module.exports = mainController;

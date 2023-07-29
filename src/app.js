@@ -12,8 +12,8 @@ const cookieMiddleware = require("./middlewares/cookieLogin");
 const app = express();
 
 //View engine setup;
-app.set("views", path.join(__dirname, "/views"));
 app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "/views"));
 
 /*app.use(cookieParser("meuProjeto"));*/
 /*app.use(session({

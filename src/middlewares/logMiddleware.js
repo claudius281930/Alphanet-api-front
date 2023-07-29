@@ -3,7 +3,7 @@ const { promisify } = require("util");
 const secretKey = "meuProjetoProvider";
 
 module.exports = {
-  eAdmin: async (req, res, next) => {
+  eUser: async (req, res, next) => {
     const authHeader = req.headers.authorization;
     console.log(authHeader);
     if (!authHeader) {
@@ -34,4 +34,3 @@ module.exports = {
     }
   },
 };
-

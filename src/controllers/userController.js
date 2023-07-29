@@ -1,5 +1,6 @@
-const jwt = require("jsonwebtoken");
 const userRequest = require("../requests/userRequest");
+const jwt = require("jsonwebtoken");
+const secretKey = "meuProjetoProvider";
 
 const userController = {
   pageLogin: async (req, res) => {
@@ -13,18 +14,21 @@ const userController = {
     };
     try {
       const userData = await userRequest.processLogin(user);
-      console.log(userData.data);
+      console.log(userData.name);
 
       if (user.name !== userData.name && user.password !== userData.password) {
-        // Gerar o token JWT
-        const token = jwt.sign({ name: userData.name }, "meuProjetoProvider", {
+        // Gerar o token JWT; 
+        const token = jwt.sign({ name: userData.name }, secretKey, {
           algorithm: "HS256",
+          //admin: userData.isAdmin,
           //Token expira em 1 hora;
-          expiresIn: "1h",
+          expiresIn: 30000//30seg,
         });
         const userLoggedComplete = {
           id: userData.id,
           name: userData.name,
+          admin: userData.admin,
+          //Endoded;
           token,
         };
         // Autenticação bem-sucedida;
