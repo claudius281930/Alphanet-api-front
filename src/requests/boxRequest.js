@@ -1,18 +1,22 @@
 const axios = require("axios");
 const defaults = require("./defaults");
 
-const urlcreate = "create";
 const urlBox = "box";
+const urlCreate = "create";
+const urlUpdate = "/update";
+const urlDelete = "/delete";
 const urlName = "/name";
 const urlLocale = "/locale";
 const urlNetworkTechnology = "/net";
 const urlDetail = "/detail";
 
-// ******************
-const urlFullName = urlBox + urlName; // /box/name/:name_description;
+// ***************************************
+const urlFullName = urlBox + urlName;
 const urlFullLocale = urlBox + urlLocale;
 const urlDetailFull = urlBox + urlDetail;
 const urlNetworkTechnologyFull = urlBox + urlNetworkTechnology;
+const urlUpdateFull = urlBox + urlUpdate;
+const urlDeleteFull = urlBox + urlDelete;
 
 const boxRequest = {
   getBox: (offset, limit) => {
@@ -64,7 +68,7 @@ const boxRequest = {
       data: {
         ...box,
       },
-      url: `${urlcreate}/${urlBox}`,
+      url: `${urlBox}/${urlCreate}`,// /box/create
     });
   },
   updateBox: (box, id) => {
@@ -74,14 +78,14 @@ const boxRequest = {
       data: {
         ...box,
       },
-      url: `${urlBox}/${id}`,
+      url: `${urlUpdateFull}/${id}`,// /box/update/:id
     });
   },
   deleteBox: (id) => {
     return axios({
       ...defaults,
       method: "delete",
-      url: `${urlBox}/${id}`,
+      url: `${urlDeleteFull}/${id}`,// /box/delete/:id
     });
   },
 };
