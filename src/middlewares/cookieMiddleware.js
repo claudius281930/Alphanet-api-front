@@ -1,6 +1,7 @@
 const userRequest = require("../requests/userRequest");
 
 const cookieLogin = (req, res, next) => {
+  console.log(req.cookies);
   if (req.cookies.logged != undefined && req.session.userLogged == null) {
     let { name } = req.cookies.logged;
 
