@@ -2,86 +2,71 @@
 <%- include("../partials/head") %>
 
     <body>
-        <%- include("../partials/header") %>
+        <%- include("../partials/headerLogo") %>
 
-            <main class="container-fluid container-main">
-                <%- include("../partials/videoHome") %>
+            <%- include("../partials/header") %>
 
-                    <section class="container-fluid container-sm mt-6">
+                <main class="container-fluid container-main">
+                    <%#- include("../partials/videoHome") %>
 
-                        <p class="text-light h1 text-center mt-6 mb-5">Buscar</p>
+                        <section class="container-fluid container-sm mt-6">
 
-                        <div class="content-form">
-                            <form method="GET" action="/box/name/:name_description" id="name-description">
+                            <p class="text-light h1 text-center mt-6 mb-5">Buscar</p>
 
-                                <div class="input-group mb-2 placeholder-wave">
+                            <div class="content-form">
+                                <form method="GET" action="/box/name/:name_description" id="name-description">
 
-                                    <label for="name-description" class="input-group-text inputGroup-sizing-default"
-                                        autofocus>Pesquisar
-                                    </label>
+                                    <div class="input-group mb-2 placeholder-wave">
 
-                                    <!-- Atributo no input (name="name_description") precisa ser igual a rota. 
+                                        <label for="name-description" class="input-group-text inputGroup-sizing-default"
+                                            autofocus>Pesquisar
+                                        </label>
+
+                                        <!-- Atributo no input (name="name_description") precisa ser igual a rota. 
                                         Assim como o valor pego no controlador e tbm na rquicição axios. -->
-                                    <input type="text" name="name_description" id="name-description" class="form-control form-control-sm p-2 text-primary-emphasis bg-dark-subtle border border-primary
+                                        <input type="text" name="name_description" id="name-description" class="form-control form-control-sm p-2 text-primary-emphasis bg-dark-subtle border border-primary
                                     opacity-75" placeholder="Nome" aria-label="Sizing text input"
-                                        aria-describedby="inputGroup-sizing-sm">
-                                    <button type="submit" class="btn btn-outline-light text-uppercase">Buscar</button>
-                                </div>
-                            </form>
+                                            aria-describedby="inputGroup-sizing-sm">
+                                        <button type="submit"
+                                            class="btn btn-outline-light text-uppercase">Buscar</button>
+                                    </div>
+                                </form>
 
-                            <form method="GET" action="/box/net/:networkTechnology" id="networkTechnology">
-                            <div class="input-group mb-2 placeholder-wave">
-                                <!-- Atributo no input (name="name-description") precisa ser igual a rota. 
+                                <form method="GET" action="/box/net/:networkTechnology" id="networkTechnology">
+                                    <div class="input-group mb-2 placeholder-wave">
+                                        <!-- Atributo no input (name="name-description") precisa ser igual a rota. 
                                 Assim como o valor do pego no controlador e tbm na rquicição axios. -->
-                                <label for="networkTechnology" class="input-group-text inputGroup-sizing-default"
-                                    autofocus>Pesquisar</label>
-                                <input type="text" name="networkTechnology" id="networkTechnology"
-                                    class="form-control form-control-sm p-2 text-primary-emphasis bg-dark-subtle border border-primary
-                                    opacity-75"
-                                    placeholder="Tipo de Rede" aria-label="Sizing number input"
-                                    aria-describedby="inputGroup-sizing-sm">
-                                <button type="submit" class="btn btn-outline-light text-uppercase">Buscar</button>
-                            </div>
-                        </form>
+                                        <label for="networkTechnology"
+                                            class="input-group-text inputGroup-sizing-default"
+                                            autofocus>Pesquisar</label>
+                                        <input type="text" name="networkTechnology" id="networkTechnology" class="form-control form-control-sm p-2 text-primary-emphasis bg-dark-subtle border border-primary
+                                    opacity-75" placeholder="Tipo de Rede" aria-label="Sizing number input"
+                                            aria-describedby="inputGroup-sizing-sm">
+                                        <button type="submit"
+                                            class="btn btn-outline-light text-uppercase">Buscar</button>
+                                    </div>
+                                </form>
 
-                            <form method="GET" action="/box/locale/:locale" id="locale">
-                                <div class="input-group mb-2 placeholder-wave">
+                                <form method="GET" action="/box/locale/:locale" id="locale">
+                                    <div class="input-group mb-2 placeholder-wave">
 
-                                    <label for="locale" class="input-group-text inputGroup-sizing-default"
-                                        autofocus>Pesquisar</label>
-                                    <input type="text" name="locale" 
-                                    id="locale" class="form-control form-control-sm p-2 text-primary-emphasis bg-dark-subtle border border-primary
+                                        <label for="locale" class="input-group-text inputGroup-sizing-default"
+                                            autofocus>Pesquisar</label>
+                                        <input type="text" name="locale" id="locale" class="form-control form-control-sm p-2 text-primary-emphasis bg-dark-subtle border border-primary
                                     opacity-75" placeholder="Local" aria-label="Sizing example input"
-                                        aria-describedby="inputGroup-sizing-sm">
-                                    <button type="submit" class="btn btn-outline-light text-uppercase">Buscar</button>
-                                </div>
-                            </form>
+                                            aria-describedby="inputGroup-sizing-sm">
+                                        <button type="submit"
+                                            class="btn btn-outline-light text-uppercase">Buscar</button>
+                                    </div>
+                                </form>
 
-                        </div>
+                            </div>
 
-                        <nav class="container container-navegation-search mt-6 fs-5">
-                            <ul class="fw-bold navegation-search-list">
 
-                                <div class="container row g-0 content-navegation">
-                                    <li class="col-6 text-center item-search">
-                                        <a class="text-uppercase link-offset-2 link-underline 
-                                    link-underline-opacity-0 border-bottom border-info"
-                                            href="http://localhost:3001/login">Login</a>
-                                    </li>
-                                    <li class="col-6 text-center item-search">
-                                        <a class="text-uppercase link-offset-2 link-underline 
-                                    link-underline-opacity-0 border-bottom border-info"
-                                            href="http://localhost:3001/register">Cadastre-se</a>
-                                    </li>
+                </main>
 
-                                </div>
-                            </ul>
-                        </nav>
-                    </section>
-            </main>
-
-            <!-- Footer da pagina -->
-            <%- include("../partials/footer") %>
+                <!-- Footer da pagina -->
+                <%- include("../partials/footer") %>
     </body>
 
     </html>

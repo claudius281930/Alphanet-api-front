@@ -1,0 +1,44 @@
+<!-- Metadados da página -->
+<%- include("../partials/head") %>
+
+    <body>
+
+        <%- include("../partials/headerLogo") %>
+
+            <main class="container-fluid container-main home" id="homePage">
+                <%- include("../partials/videoHome") %>
+
+                    <section class="container-fluid container-sm mt-6 secHome">
+
+                        <nav class="container container-navegation-search mt-6 fs-5 navHome">
+                            <ul class="fw-bold navegation-search-list ulHome">
+
+                                <div class="container row g-0 content-navegation divHome">
+                                    <li class="col-6 text-center item-search">
+                                        <a class="text-uppercase link-offset-2 link-underline 
+                                            link-underline-opacity-0 border-danger 
+                                            border-bottom border-info"
+                                            href="http://localhost:3001/login">
+                                            <p class="text-light text-center mt-6 mb-1">Login</p>
+                                        </a>
+                                    </li>
+                                    <li class="col-6 text-center item-search">
+                                        <a class="text-uppercase link-offset-2 link-underline 
+                                            link-underline-opacity-0 border-danger
+                                            border-bottom border-info"
+                                            href="http://localhost:3001/register">
+                                            <p class="text-light text-center mt-6 mb-1">Cadastre-se</p>
+                                        </a>
+                                    </li>
+
+                                </div>
+                            </ul>
+                        </nav>
+                    </section>
+            </main>
+
+            <!-- Footer da pagina -->
+            <%- include("../partials/footer") %>
+    </body>
+
+    </html>

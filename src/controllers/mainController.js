@@ -3,6 +3,9 @@ const boxRequest = require("../requests/boxRequest");
 // const fusionRequest = require("../requests/fusionRequest");
 
 const mainController = {
+  home: async (req, res) => {
+    res.render("home/home"); // A partir do diretorio VIEWS;
+  },
   pageSearch: async (req, res) => {
     res.render("find/search"); // A partir do diretorio VIEWS;
   },

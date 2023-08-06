@@ -11,26 +11,49 @@ const userController = {
     const { name, password } = req.body;
     //console.log(req.body);
     const user = await userRequest.processLogin({ name, password });
-    // Extrai os dados do usuario que veio do back_end;
+    // Extrai os dados do usuario que veio do servidor;
     const userData = user;
-    console.log(userData);
+    // Extrai apenas o NOME;
+    let nameUser = userData.data.user.name;
     //Verifica se os valores das credenciais(name e password) correspondem;
     if (userData.status === 200) {
-      return res.render("user/profile");
+      return res.render("user/profile", { user: nameUser });
     } else {
       return res.send("Dados não são compativéis!");
     }
   },
   // Renderize a página de perfil se login bem-sucedido
   profile: async (req, res) => {
-    console.log(req.body);
-    const { name } = req.body;
-    const userNameProfile = await userRequest.profile({ name });
-
-    const userFindName = userNameProfile;
-    if (userFindName.name === name) {
-      return res.redirect("/profile");
-    }
+    /*try {
+      const { name } = req.body;
+      // Validação do NOME do usuário;
+      if (!name || typeof name !== "string") {
+        return res.status(400).json({ mgs: "Nome de usuário inválido." });
+      }
+      // Pesquisar usuário;
+      const userNameProfile = await User.findOne({
+        where: {
+          name: { [db.Sequelize.Op.like]: `%${name}%` },
+        },
+        order: [["name", "desc"]],
+      });
+      // Verificar se o usuário foi encontrado;
+      const userFindName = userNameProfile;
+      if (userFindName) {
+        return res.status(200).json({
+          msg: "Usuario encontrado!",
+          page: "'Profile'",
+          userFindName,
+        });
+      } else {
+        return res
+          .status(404)
+          .json({ mgs: "Usuario inválido ou não encontrado!" });
+      }
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({ mgs: "erro no servidor" });
+    }*/
   },
 };
 

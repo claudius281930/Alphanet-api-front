@@ -2,51 +2,53 @@
 <%- include("../partials/head") %>
 
     <body>
-        <%- include("../partials/header") %>
-        
-            <main class="container-fluid">
-                <section class="container-fluid">
+        <%- include("../partials/headerLogo") %>
+            <%- include("../partials/header") %>
 
-                    <div class="content-information">
+                <main class="container-fluid">
+                    <section class="container-fluid">
 
-                        <p class="text-light h1 text-center">Infomações da Caixa</p>
+                        <div class="content-information">
+
+                            <p class="text-light h1 text-center">Infomações da Caixa</p>
 
 
-                        <% if (idBox) { %>
-                            <ul class="">
-                                <li class="has-text-danger">
-                                    <span class="content-list text-light">ID:</span>
-                                    <%= idBox.id %>
-                                </li>
-                                <li class="has-text-danger">
-                                    <span class="content-list text-light">Data de Modificação:</span>
-                                    <%= idBox.dateModify %>
-                                </li>
-                                <li class="has-text-danger">
-                                    <span class="content-list text-light">Nome da Descrição:</span>
-                                    <%= idBox.nameDescription %>
-                                </li>
-                                <li class="has-text-danger">
-                                    <span class="content-list text-light">Localização:</span>
-                                    <%= idBox.locale %>
-                                </li>
-                                <li class="has-text-danger">
-                                    <span class="content-list text-light">Active CTO:</span>
-                                    <%= idBox.activeCto %>
-                                </li>
-                                <li class="has-text-danger">
-                                    <span class="content-list text-light">Tecnologia de Rede:</span>
-                                    <%= idBox.networkTechnology %>
-                                </li>
-                            </ul>
-                            <% } else { %>
-                                <p>Box não encontrada.</p>
-                                <% } %>
-                    </div>
-                </section>
-            </main>
-            <!-- Footer da pagina -->
-            <%- include("../partials/footer") %>
+                            <% if (idBox) { %>
+                                <ul class="">
+                                    <li class="has-text-danger">
+                                        <span class="content-list text-light">ID:</span>
+                                        <%= idBox.id %>
+                                    </li>
+                                    <li class="has-text-danger">
+                                        <span class="content-list text-light">Data de Modificação:</span>
+                                        <%= idBox.dateModify %>
+                                    </li>
+                                    <li class="has-text-danger">
+                                        <span class="content-list text-light">Nome da Descrição:</span>
+                                        <%= idBox.nameDescription %>
+                                    </li>
+                                    <li class="has-text-danger">
+                                        <span class="content-list text-light">Localização:</span>
+                                        <%= idBox.locale %>
+                                    </li>
+                                    <li class="has-text-danger">
+                                        <span class="content-list text-light">Active CTO:</span>
+                                        <%= idBox.activeCto %>
+                                    </li>
+                                    <li class="has-text-danger">
+                                        <span class="content-list text-light">Tecnologia de Rede:</span>
+                                        <%= idBox.networkTechnology %>
+                                    </li>
+                                </ul>
+                                <% } else { %>
+                                    <p>Box não encontrada.</p>
+                                    <% } %>
+                        </div>
+                        <p class="text-uppercase"><a href="http://localhost:3001/search">Home</a></p>
+                    </section>
+                </main>
+                <!-- Footer da pagina -->
+                <%- include("../partials/footer") %>
     </body>
 
     </html>

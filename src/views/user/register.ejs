@@ -1,65 +1,89 @@
 <%- include("../partials/head" )%>
 
     <body>
-        <%- include("../partials/header") %>
+        <%- include("../partials/headerLogo") %>
 
             <main class="container-fluid">
                 <%- include("../partials/videoRegister") %>
-                
-                <section class="container-fluid container-sm mt-6">
 
-                    <p class="text-light text-center h1 mb-5">Cadastrar</p>
+                    <section class="container-fluid container-sm mt-6">
 
-                    <% if (typeof errors !=="undefined" ) {%>
-                        <div class="has-text-danger list-item">
-                            <ul>
-                                <% for(let error in errors ) { %>
-                                    <li>
-                                        <small class="content-list text-light"><%= error %></small>:
-                                        <%= errors[error].msg %>
-                                    </li>
-                                    <% } %>
-                            </ul>
-                        </div>
-                        <% } %>
+                        <p class="text-light text-center h1 mb-5">Cadastrar</p>
 
-                    <div class="content-register">
-
-                        <form action="register/create" method="POST" class="placeholder-wave">
-                            <div class="input-group input-group mb-3">
-
-                                <label for="name" class="input-group-text inputGroup-sizing-default" autofocus>
-                                    Nome:</label>
-                                <input type="text" id="name" name="name" value="<%#= currentDate %>" required autofocus
-                                    class="form-control form-control-sm p-2 text-primary-emphasis bg-dark-subtle border border-primary
-                                    opacity-75" aria-label="Sizing text input" aria-describedby="inputGroup-sizing-sm">
+                        <% if (typeof errors !=="undefined" ) {%>
+                            <div class="has-text-danger list-item">
+                                <ul>
+                                    <% for(let error in errors ) { %>
+                                        <li>
+                                            <small class="content-list text-light">
+                                                <%= error %>
+                                            </small>:
+                                            <%= errors[error].msg %>
+                                        </li>
+                                        <% } %>
+                                </ul>
                             </div>
-                                    <!-- <div class="input-group input-group mb-3">
+                            <% } %>
+
+                                <div class="content-register">
+
+                                    <form action="register/create" method="POST" class="placeholder-wave">
+                                        <div class="input-group input-group mb-3">
+
+                                            <label for="name" class="input-group-text inputGroup-sizing-default"
+                                                autofocus>
+                                                Nome:</label>
+                                            <input type="text" id="name" name="name" value="<%#= currentDate %>"
+                                                required autofocus class="form-control form-control-sm p-2 text-primary-emphasis bg-dark-subtle border border-primary
+                                    opacity-75" aria-label="Sizing text input" aria-describedby="inputGroup-sizing-sm">
+                                        </div>
+                                        <!-- <div class="input-group input-group mb-3">
                                     <label for="Email" class="input-group-text inputGroup-sizing-default" autofocus>
                                         ID da empresa:</label>
                                     <input type="number" id="empresa" name="idEmpresa" value="<%#= currentDate %>" required
                                         autofocus class="form-control form-control-sm p-2 text-primary-emphasis bg-dark-subtle border border-primary
                                     opacity-75" aria-label="Sizing text input" aria-describedby="inputGroup-sizing-sm">
                                 </div> -->
-                                    <div class="input-group input-group mb-3">
-                                        <label for="password" class="input-group-text inputGroup-sizing-default"
-                                            autofocus>
-                                            Senha</label>
-                                        <input type="password" id="password" name="password" value="<%#= currentDate %>"
-                                        required autofocus class="form-control form-control-sm p-2 text-primary-emphasis bg-dark-subtle border border-primary
+                                        <div class="input-group input-group mb-3">
+                                            <label for="password" class="input-group-text inputGroup-sizing-default"
+                                                autofocus>
+                                                Senha</label>
+                                            <input type="password" id="password" name="password"
+                                                value="<%#= currentDate %>" required autofocus class="form-control form-control-sm p-2 text-primary-emphasis bg-dark-subtle border border-primary
                                     opacity-75" aria-label="Sizing text input" aria-describedby="inputGroup-sizing-sm">
-                                    </div>
+                                        </div>
 
-                                    <div class="input-group input-group mb-3 container-btn">
-                                        <button type="submit" class="btn btn btn-outline-light text-uppercase
+                                        <div class="input-group input-group mb-3 container-btn">
+                                            <button type="submit" class="btn btn btn-outline-light text-uppercase
                                     btn-content">Enviar
-                                        </button>
-                                    </div>
+                                            </button>
+                                        </div>
 
-                        </form>
-                    </div>
-                    <p class="text-uppercase"><a href="http://localhost:3001/login">Login</a></p>
-                </section>
+                                    </form>
+                                </div>
+                                <nav class="navbar-bg-transparent navRegister">
+                                    <ul class="container-fluid fw-bold w-100">
+                                        <div class="row nav h-100 w-100 gx-1 gy-1 text-xl-end text-xxl-end mx-lg-2 mx-xl-2 mx-xxl-2">
+                                            
+                                            <li class="nav-item col-6 col-sm-3 col-md-3 col-lg-1 col-xl-1 col-xxl-1">
+                                                <p class="text-uppercase">
+                                                    <a href="http://localhost:3001/login"
+                                                        class="nav-link text-center fs-6 text-light bg-transparent">
+                                                        <span class="liNavUser">Login</span>
+                                                    </a>
+                                                </p>
+                                            </li>
+                                            <li class="nav-item col-6 col-sm-3 col-md-2 col-lg-1 col-xl-1 col-xxl-1">
+                                                <p class="text-uppercase"><a href="http://localhost:3001/"
+                                                        class="nav-link text-center fs-6 text-light bg-transparent">
+                                                        <span class="liNavUser">Home</span>
+                                                    </a>
+                                                </p>
+                                            </li>
+                                        </div>
+                                    </ul>
+                                </nav>
+                    </section>
 
             </main>
             <!-- Footer da pagina -->

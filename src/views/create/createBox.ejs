@@ -2,78 +2,72 @@
 <%- include("../partials/head" )%>
 
   <body>
-    <%- include("../partials/header") %>
+    <%- include("../partials/headerLogo") %>
 
-      <main class="container-fluid">
-        <%- include("../partials/videoHome") %>
-        
-        <section class="container-fluid container-sm mt-6">
+      <%- include("../partials/header") %>
 
-          <p class="text-light text-center h1 mb-5">Criar Caixa</p>
-          <div class="content-form-create">
+        <main class="container-fluid">
+          <%- include("../partials/videoHome") %>
 
-            <form action="/box/create" method="POST">
-              <div class="input-group input-group mb-3 placeholder-wave">
+            <section class="container-fluid container-sm mt-6">
 
-                <label for="date" class="input-group-text inputGroup-sizing-default" autofocus>
-                  Data de Modificação:</label>
-                <input type="date" id="data" name="dateModify" value="<%= currentDate %>" required autofocus
-                  class="form-control form-control-sm p-2 text-primary-emphasis bg-dark-subtle border border-primary
-                  opacity-75"
-                  aria-label="Sizing text input" aria-describedby="inputGroup-sizing-sm">
-              </div>
+              <p class="text-light text-center h1 mb-5">Criar Caixa</p>
+              <div class="content-form-create">
 
-              <div class="input-group input-group mb-3 placeholder-wave">
-                <label for="name" class="input-group-text inputGroup-sizing-default">Nome Descritivo:
-                </label>
-                <input id="name" name="nameDescription" value="crispin-fusão-adicionada" required autofocus
-                  placeholder=""
-                  class="form-control form-control-sm p-2 text-primary-emphasis bg-dark-subtle border border-primary
-                  opacity-75"
-                  aria-label="Sizing text input" aria-describedby="inputGroup-sizing-sm">
-              </div>
+                <form action="/box/create" method="POST">
+                  <div class="input-group input-group mb-3 placeholder-wave">
 
-              <div class="input-group input-group mb-3 placeholder-wave">
-                <label for="locale" class="input-group-text inputGroup-sizing-default">Localização:
-                </label>
-                <input type="text" id="locale" name="locale" value="Prox. praça da goiaba" required autofocus
-                  placeholder=""
-                  class="form-control form-control-sm p-2 text-primary-emphasis bg-dark-subtle border border-primary
-                  opacity-75"
-                  aria-label="Sizing text input" aria-describedby="inputGroup-sizing-sm">
-              </div>
+                    <label for="date" class="input-group-text inputGroup-sizing-default" autofocus>
+                      Data de Modificação:</label>
+                    <input type="date" id="data" name="dateModify" value="<%= currentDate %>" required autofocus class="form-control form-control-sm p-2 text-primary-emphasis bg-dark-subtle border border-primary
+                  opacity-75" aria-label="Sizing text input" aria-describedby="inputGroup-sizing-sm">
+                  </div>
 
-              <div class="input-group input-group mb-3 placeholder-wave">
-                <label for="descricao" class="input-group-text inputGroup-sizing-default">Active CTO:
-                </label>
-                <input type="number" id="descricao" name="activeCto" required autofocus
-                  class="form-control form-control-sm p-2 text-primary-emphasis bg-dark-subtle border border-primary
-                  opacity-75"
-                  aria-label="Sizing text input" aria-describedby="inputGroup-sizing-sm">
-              </div>
+                  <div class="input-group input-group mb-3 placeholder-wave">
+                    <label for="name" class="input-group-text inputGroup-sizing-default">Nome Descritivo:
+                    </label>
+                    <input id="name" name="nameDescription" value="crispin-fusão-adicionada" required autofocus
+                      placeholder="" class="form-control form-control-sm p-2 text-primary-emphasis bg-dark-subtle border border-primary
+                  opacity-75" aria-label="Sizing text input" aria-describedby="inputGroup-sizing-sm">
+                  </div>
 
-              <div class="input-group input-group mb-3 placeholder-wave">
-                <label for="networkTechnology" class="input-group-text inputGroup-sizing-default">Tecnologia de Rede:
-                </label>
-                <input type="text" id="networkTechnology" name="networkTechnology" value="Epon" required autofocus 
-                placeholder=""
-                  class="form-control form-control-sm p-2 text-primary-emphasis bg-dark-subtle border border-primary
-                  opacity-75"
-                  aria-label="Sizing text input" aria-describedby="inputGroup-sizing-sm">
-              </div>
+                  <div class="input-group input-group mb-3 placeholder-wave">
+                    <label for="locale" class="input-group-text inputGroup-sizing-default">Localização:
+                    </label>
+                    <input type="text" id="locale" name="locale" value="Prox. praça da goiaba" required autofocus
+                      placeholder="" class="form-control form-control-sm p-2 text-primary-emphasis bg-dark-subtle border border-primary
+                  opacity-75" aria-label="Sizing text input" aria-describedby="inputGroup-sizing-sm">
+                  </div>
 
-              <div class="input-group input-group mb-3 container-btn">
-                <button type="submit" class="btn btn btn-outline-light text-uppercase
+                  <div class="input-group input-group mb-3 placeholder-wave">
+                    <label for="descricao" class="input-group-text inputGroup-sizing-default">Active CTO:
+                    </label>
+                    <input type="number" id="descricao" name="activeCto" required autofocus class="form-control form-control-sm p-2 text-primary-emphasis bg-dark-subtle border border-primary
+                  opacity-75" aria-label="Sizing text input" aria-describedby="inputGroup-sizing-sm">
+                  </div>
+
+                  <div class="input-group input-group mb-3 placeholder-wave">
+                    <label for="networkTechnology" class="input-group-text inputGroup-sizing-default">Tecnologia de
+                      Rede:
+                    </label>
+                    <input type="text" id="networkTechnology" name="networkTechnology" value="Epon" required autofocus
+                      placeholder="" class="form-control form-control-sm p-2 text-primary-emphasis bg-dark-subtle border border-primary
+                  opacity-75" aria-label="Sizing text input" aria-describedby="inputGroup-sizing-sm">
+                  </div>
+
+                  <div class="input-group input-group mb-3 container-btn">
+                    <button type="submit" class="btn btn btn-outline-light text-uppercase
                 btn-content">Criar</button>
+                  </div>
+                </form>
+
               </div>
-            </form>
+              <p class="text-uppercase"><a href="http://localhost:3001/search">Home</a></p>
+            </section>
 
-          </div>
-        </section>
-
-      </main>
-      <!-- Footer da pagina -->
-      <%- include("../partials/footer") %>
+        </main>
+        <!-- Footer da pagina -->
+        <%- include("../partials/footer") %>
   </body>
 
   </html>

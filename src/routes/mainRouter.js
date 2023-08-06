@@ -4,12 +4,13 @@ const session = require("express-session");
 
 const mainController = require("../controllers/mainController");
 
-/*const { eUser } = require("../middlewares/logMiddleware");
-const { eAdmin } = require("../middlewares/authMiddleware");*/
+const { eUser } = require("../middlewares/logMiddleware");
+/*const { eAdmin } = require("../middlewares/authMiddleware");*/
 
-router.get("/search", mainController.pageSearch);
+router.get("/", mainController.home);
 
 /* ---- Action get a object ---- */
+router.get("/search", eUser,mainController.pageSearch);
 router.get("/box",  mainController.getBoxes);
 // router.get("/fusion", mainController.findFusion);
 // router.get("/color", /*eUser,*/ mainController.findColor);
