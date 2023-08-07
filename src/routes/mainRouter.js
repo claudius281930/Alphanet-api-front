@@ -10,7 +10,7 @@ const { eUser } = require("../middlewares/logMiddleware");
 router.get("/", mainController.home);
 
 /* ---- Action get a object ---- */
-router.get("/search", eUser,mainController.pageSearch);
+router.get("/search", /*eUser,*/mainController.pageSearch);
 router.get("/box",  mainController.getBoxes);
 // router.get("/fusion", mainController.findFusion);
 // router.get("/color", /*eUser,*/ mainController.findColor);

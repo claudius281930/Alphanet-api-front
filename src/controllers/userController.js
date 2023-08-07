@@ -1,59 +1,59 @@
 const userRequest = require("../requests/userRequest");
 
 const userController = {
-  // Renderize a página de login aqui
+  // Renderize a página de login;
   pageLogin: async (req, res) => {
     //Exibe a pagina de Login;
     return res.render("user/login");
   },
   // Processa o LOGIN
   processLogin: async (req, res) => {
-    const { name, password } = req.body;
-    //console.log(req.body);
-    const user = await userRequest.processLogin({ name, password });
-    // Extrai os dados do usuario que veio do servidor;
-    const userData = user;
-    // Extrai apenas o NOME;
-    let nameUser = userData.data.user.name;
-    //Verifica se os valores das credenciais(name e password) correspondem;
-    if (userData.status === 200) {
-      return res.render("user/profile", { user: nameUser });
-    } else {
-      return res.send("Dados não são compativéis!");
+    try {
+      //Receber os dados via body(corpo da requisição);
+      const { name, password } = req.body;
+
+      //Faz a REQUISIÇÃO junto ao AXIOS para o controlador serve-side. Passando os dados a ser consultados;
+      const user = await userRequest.processLogin(
+        { name, password },
+        { withCredentials: true }
+      );
+      // Extrai os dados do usuario que veio da RESPONSE do servdor;
+      const userData = user;
+
+      // Extrai apenas o NOME vindo;
+      //{name} = userData.data.user;
+      const nameUser = userData.data.user.name;
+      //console.log(nameUser);
+
+      //Verificação atraves do status code;
+      if (userData.status === 200) {
+        console.log(req.session.user);
+        // Tudo certo. Exibe a pagina do Perfil. Utiliza a variavel user para acessar os dados na pagina ejs;
+        return res.render("user/profile", { user: nameUser });
+      } else {
+        return res.send("Dados não são compativéis!");
+      }
+      // PARTE 2;
+      //let sessionUser = req.session.user;
+    } catch (error) {
+      console.error(error);
+      return res.send("Erro: dados incorretos");
     }
   },
-  // Renderize a página de perfil se login bem-sucedido
+  // Renderize a página de perfil. Precisa-se criar uma sessão para que os dados da função processLogin seja utilizados no perfil sem dar erro de "path";
   profile: async (req, res) => {
-    /*try {
-      const { name } = req.body;
-      // Validação do NOME do usuário;
-      if (!name || typeof name !== "string") {
-        return res.status(400).json({ mgs: "Nome de usuário inválido." });
-      }
-      // Pesquisar usuário;
-      const userNameProfile = await User.findOne({
-        where: {
-          name: { [db.Sequelize.Op.like]: `%${name}%` },
-        },
-        order: [["name", "desc"]],
-      });
-      // Verificar se o usuário foi encontrado;
-      const userFindName = userNameProfile;
-      if (userFindName) {
-        return res.status(200).json({
-          msg: "Usuario encontrado!",
-          page: "'Profile'",
-          userFindName,
-        });
-      } else {
-        return res
-          .status(404)
-          .json({ mgs: "Usuario inválido ou não encontrado!" });
+    try {
+      //Extrai da RESPONSE do servidor os dados do ususario da sessão;
+      let sessionUser = req.session.user;
+      console.log(sessionUser);
+      //Verifica se o status code para este usuario foi 200;
+      if (sessionUser.status === 200) {
+        return res.render("user/profile", { user: sessionUser });
       }
     } catch (error) {
-      console.log(error);
-      return res.status(500).json({ mgs: "erro no servidor" });
-    }*/
+      console.error(error);
+      return res.redirect("/login")//send("Falha na resposta do servidor.");
+    }
   },
 };
 

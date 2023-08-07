@@ -1,30 +1,40 @@
 <%- include("../partials/head") %>
 
   <body>
+
     <%- include("../partials/headerLogo") %>
-    <%- include("../partials/header") %>
+
+      <%- include("../partials/header") %>
 
       <main class="container-fluid">
-        <!-- Exibir informações do usuário -->
-        <p class="text-light h1 text-center mt-6 mb-5">Perfil do Usuário</p>
-        <p class="text-light h6 text-center mt-1 mb-1">
-          Olá, 
-          <span class="text-uppercase"><%= user %></span>
-          . Bem vindo(a) de volta.
-        </p>
-        
-        <!-- Informações adicionais do perfil do usuário -->
-        <p class="text-light text-right mt-6 mb-5">Informações do Usuário:</p>
-        <!-- Exiba aqui os detalhes do perfil do usuário, como nome, idade, foto, etc. -->
-        <!-- Exemplo: -->
-        <p class="text-light h6 text-right mt-1 mb-1">
-          Nome: <span class="text-uppercase"><%= user %></span>
-        </p>
-        <p class="text-light h6 text-right mt-1 mb-1">
-          Email: <span class="text-uppercase"><%#= user.email %></span>
-        </p>
-        <img src="<%#= user.foto %>" alt="Foto do usuário">
-        </div>
+        <%- include("../partials/videoHome") %>
+
+          <!-- Exibir informações do usuário -->
+          <p class="text-light h1 text-center mt-6 mb-5">Perfil do Usuário</p>
+          <p class="text-light h6 text-center mt-1 mb-1">
+            Olá,
+            <span class="text-uppercase">
+              <%= user.name %>
+            </span>
+            . Bem vindo(a) de volta.
+          </p>
+
+          <!-- Informações adicionais do perfil do usuário -->
+          <p class="text-light text-right mt-6 mb-5">Informações do Usuário:</p>
+          <!-- Exiba aqui os detalhes do perfil do usuário, como nome, idade, foto, etc. -->
+          <!-- Exemplo: -->
+          <p class="text-light h6 text-right mt-1 mb-1">
+            Nome: <span class="text-uppercase">
+              <%= user %>
+            </span>
+          </p>
+          <p class="text-light h6 text-right mt-1 mb-1">
+            Email: <span class="text-uppercase">
+              <%#= user.email %>
+            </span>
+          </p>
+          <img src="<%#= user.foto %>" alt="Foto do usuário">
+          </div>
       </main>
 
       <!-- Footer da pagina -->

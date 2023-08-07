@@ -1,7 +1,7 @@
 const axios = require("axios");
 const defaults = require("./defaults");
-const userCreate = "register/create";
 
+const userCreate = "register/create";
 const urlLogin = "/login";
 const urlUser = "/user";
 const urlname = "/name";
@@ -30,18 +30,20 @@ const userRequest = {
       url: `${urlFull}/${name}`, // /user/name/:name
     });
   },
-  processLogin: async ({ name, password }) => {
+  processLogin: ({ name, password }) => {
     return axios({
       ...defaults,
       method: "post",
       data: { name, password },
-      url: `${urlLogin}`, 
+      url: `${urlLogin}`,
+      // Adiciona esta opção para enviar o cookie da sessão;
+      withCredentials: true,
     });
   },
   profile: ({ name }) => {
     return axios({
       ...defaults,
-      method: "post",
+      method: "get",
       data: { name },
       url: `${urlProfile}`, // /profile
     });
