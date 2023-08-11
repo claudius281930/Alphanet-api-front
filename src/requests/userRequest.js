@@ -27,7 +27,7 @@ const userRequest = {
       data: {
         ...name,
       },
-      url: `${urlFull}/${name}`, // /user/name/:name
+      url: `${urlFull}/${name}`,
     });
   },
   processLogin: ({ name, password }) => {
@@ -37,15 +37,15 @@ const userRequest = {
       data: { name, password },
       url: `${urlLogin}`,
       // Adiciona esta opção para enviar o cookie da sessão;
-      withCredentials: true,
+      //withCredentials: true,
     });
   },
-  profile: ({ name }) => {
+  profile: (sessionJwt) => {
     return axios({
       ...defaults,
       method: "get",
-      data: { name },
-      url: `${urlProfile}`, // /profile
+      url: `${urlProfile}`,
+      headers: { authorization: `Bearer ${sessionJwt}` },
     });
   },
 };

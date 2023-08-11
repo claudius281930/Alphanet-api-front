@@ -3,7 +3,7 @@ const eUser = {
     // Verifica se o cookie da sessão está presente na RESPONSE;
     if (req.document.cookie.includes("connect.sid")) {
       // O usuário está autenticado;
-      res.status(200);
+      
       return next();
     } else {
       // O usuário não está autenticado, redirecionar para a página de login ou exibir mensagem de erro;

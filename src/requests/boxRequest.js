@@ -9,8 +9,13 @@ const urlName = "/name";
 const urlLocale = "/locale";
 const urlNetworkTechnology = "/net";
 const urlDetail = "/detail";
+// ********************************************************************
+const urlPageSearch = "/search";
+const urlPageCreate = "/box//create";
+const urlPageUpdate = "/box//update";
+const urlPageDelete = "/box//delete";
 
-// ***************************************
+// *******************************************************************
 const urlFullName = urlBox + urlName;
 const urlFullLocale = urlBox + urlLocale;
 const urlDetailFull = urlBox + urlDetail;
@@ -19,6 +24,39 @@ const urlUpdateFull = urlBox + urlUpdate;
 const urlDeleteFull = urlBox + urlDelete;
 
 const boxRequest = {
+  pagesearch: (sessionJwt) => {
+    return axios({
+      ...defaults,
+      method: "get",
+      url: `${urlPageSearch}`,
+      headers: { authorization: `Bearer ${sessionJwt}` },
+    });
+  },
+  pageCreateBox: (sessionJwt) => {
+    return axios({
+      ...defaults,
+      method: "get",
+      url: `${urlPageCreate}`,
+      headers: { authorization: `Bearer ${sessionJwt}` },
+    });
+  },
+  pageUpdate: (sessionJwt) => {
+    return axios({
+      ...defaults,
+      method: "get",
+      url: `${urlPageUpdate}`,
+      headers: { authorization: `Bearer ${sessionJwt}` },
+    });
+  },
+  pageDelete: (sessionJwt) => {
+    return axios({
+      ...defaults,
+      method: "get",
+      url: `${urlPageDelete}`,
+      headers: { authorization: `Bearer ${sessionJwt}` },
+    });
+  },
+  // ******************************************************************
   getBox: (offset, limit) => {
     return axios({
       ...defaults,
@@ -68,7 +106,7 @@ const boxRequest = {
       data: {
         ...box,
       },
-      url: `${urlBox}/${urlCreate}`,// /box/create
+      url: `${urlBox}/${urlCreate}`, // /box/create
     });
   },
   updateBox: (box, id) => {
@@ -78,14 +116,14 @@ const boxRequest = {
       data: {
         ...box,
       },
-      url: `${urlUpdateFull}/${id}`,// /box/update/:id
+      url: `${urlUpdateFull}/${id}`, // /box/update/:id
     });
   },
   deleteBox: (id) => {
     return axios({
       ...defaults,
       method: "delete",
-      url: `${urlDeleteFull}/${id}`,// /box/delete/:id
+      url: `${urlDeleteFull}/${id}`, // /box/delete/:id
     });
   },
 };
