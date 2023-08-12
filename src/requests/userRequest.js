@@ -40,12 +40,12 @@ const userRequest = {
       //withCredentials: true,
     });
   },
-  profile: (sessionJwt) => {
+  profile: (userToken) => {
     return axios({
       ...defaults,
       method: "get",
       url: `${urlProfile}`,
-      headers: { authorization: `Bearer ${sessionJwt}` },
+      headers: { authorization: `Bearer ${userToken}` },
     });
   },
 };

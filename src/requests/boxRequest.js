@@ -24,36 +24,36 @@ const urlUpdateFull = urlBox + urlUpdate;
 const urlDeleteFull = urlBox + urlDelete;
 
 const boxRequest = {
-  pagesearch: (sessionJwt) => {
+  pageSearch: (userToken) => {
     return axios({
       ...defaults,
       method: "get",
       url: `${urlPageSearch}`,
-      headers: { authorization: `Bearer ${sessionJwt}` },
+      headers: { authorization: `Bearer ${userToken}` },
     });
   },
-  pageCreateBox: (sessionJwt) => {
+  pageCreateBox: (userToken) => {
     return axios({
       ...defaults,
       method: "get",
       url: `${urlPageCreate}`,
-      headers: { authorization: `Bearer ${sessionJwt}` },
+      headers: { authorization: `Bearer ${userToken}` },
     });
   },
-  pageUpdate: (sessionJwt) => {
+  pageUpdate: (userToken) => {
     return axios({
       ...defaults,
       method: "get",
       url: `${urlPageUpdate}`,
-      headers: { authorization: `Bearer ${sessionJwt}` },
+      headers: { authorization: `Bearer ${userToken}` },
     });
   },
-  pageDelete: (sessionJwt) => {
+  pageDelete: (userToken) => {
     return axios({
       ...defaults,
       method: "get",
       url: `${urlPageDelete}`,
-      headers: { authorization: `Bearer ${sessionJwt}` },
+      headers: { authorization: `Bearer ${userToken}` },
     });
   },
   // ******************************************************************

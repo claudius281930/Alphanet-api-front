@@ -5,71 +5,114 @@ const mainController = {
     res.render("home/home"); // A partir do diretorio VIEWS;
   },
   pageSearch: async (req, res) => {
-    // Lendo a sessão no campo token;
-    const sessionJwt = req.session.jwtToken;
-    console.log({ sessionJwt: sessionJwt });
-    // Verifica se a sessão existe e se o token esta nela;
-    if (sessionJwt) {
-      // Se esiver faz a chamada a rota;
-      const profileReq = await boxRequest.pagesearch(sessionJwt);
-      console.log("Achado", { sessionJwt: profileReq });
-      // Response com a renderização da pagina e um json para ser manipulado na pagina ejs;
-      return res.render("find/search")//.json({ header: "authorization" });
-    } else {
-      return res.send("Erro: Token inexistente.");
+    try {
+      // Lendo a sessão no campo userDataAll;
+      const sessionAll = await req.session.userDataAll;
+
+      // extrai o TOKEN da SESSÃO;
+      const userToken = sessionAll.token;
+
+      // Verifica se a sessão existe e se o token esta nela;
+      if (sessionAll) {
+        // Se esiver faz a chamada a rota;
+        const profileReq = await boxRequest.pageSearch(userToken);
+
+        //Extrai o NAME do usuario da SESSÃO;
+        const userDataName = sessionAll.name;
+
+        // Response com um json autorizado;
+        return res.render("find/search", { user: userDataName });
+      } else {
+        return res.send("Erro: Token inexistente.");
+      }
+    } catch (error) {
+      console.error(error);
+      res.redirect(401, "/");
     }
   },
   pageFormCreateBox: async (req, res) => {
-    // Lendo a sessão no campo token;
-    const sessionJwt = req.session.jwtToken;
-    console.log({ sessionJwt: sessionJwt });
-    // Verifica se a sessão existe e se o token esta nela;
-    if (sessionJwt) {
-      // Se esiver faz a chamada a rota;
-      const profileReq = await boxRequest.pageCreateBox(sessionJwt);
-      console.log("Achado", { sessionJwt: profileReq });
-      // Response com um json autorizado;
-      const currentDate = new Date().toISOString().split("T")[0];
-      res.render("create/createBox", { currentDate }); //json({ header: "authorization" });
-    } else {
-      return res.send("Erro: Token inexistente.");
+    try {
+      // Lendo a sessão no campo userDataAll;
+      const sessionAll = req.session.userDataAll;
+
+      // Verifica se a sessão existe;
+      if (sessionAll) {
+        // extrai o TOKEN da SESSÃO;
+        const userToken = sessionAll.token;
+
+        // Se esiver faz a chamada a rota;
+        const profileReq = await boxRequest.pageCreateBox(userToken);
+
+        const currentDate = new Date().toISOString().split("T")[0];
+
+        return res.render("create/createBox", { currentDate });
+      } else {
+        return res.send("Erro: Token inexistente.");
+      }
+    } catch (error) {
+      console.error(error);
+      res.redirect(401, "/");
     }
   },
   pageFormUpdateBox: async (req, res) => {
-    // Lendo a sessão no campo token;
-    const sessionJwt = req.session.jwtToken;
-    console.log({ sessionJwt: sessionJwt });
-    // Verifica se a sessão existe e se o token esta nela;
-    if (sessionJwt) {
-      // Se esiver faz a chamada a rota;
-      const profileReq = await boxRequest.pageUpdate(sessionJwt);
-      console.log("Achado", { sessionJwt: profileReq });
-      // Response com a renderização da pagina e um json para ser manipulado na pagina ejs;
-      const currentDate = new Date().toISOString().split("T")[0];
-      const id = req.body.id;
-      res.render("update/updateBox", { currentDate, id: id });
-    } else {
-      return res.send("Erro: Token inexistente.");
+    try {
+      // Lendo a sessão no campo userDataAll;
+      const sessionAll = await req.session.userDataAll;
+
+      // Verifica se a sessão existe;
+      if (sessionAll) {
+        // extrai o TOKEN da SESSÃO;
+        const userToken = sessionAll.token;
+
+        // Se esiver faz a chamada a rota;
+        const profileReq = await boxRequest.pageUpdate(userToken);
+
+        // Constante que cria uma instacia da data para ser adicionada no fomrato correto na pagina ejs
+        const currentDate = new Date().toISOString().split("T")[0];
+        const id = req.body.id;
+        // Response com um json autorizado;
+        return res.render("update/updateBox", { currentDate, id: id });
+      } else {
+        return res.send("Erro: Token inexistente.");
+      }
+    } catch (error) {
+      console.error(error);
+      res.redirect(401, "/");
     }
   },
   pageFormDeleteBox: async (req, res) => {
     const id = req.body.id;
-    // Lendo a sessão no campo token;
-    const sessionJwt = req.session.jwtToken;
-    console.log({ sessionJwt: sessionJwt });
-    // Verifica se a sessão existe e se o token esta nela;
-    if (sessionJwt) {
-      // Se esiver faz a chamada a rota;
-      const profileReq = await boxRequest.pageDelete(sessionJwt);
-      console.log("Achado", { sessionJwt: profileReq });
-      // Response com a renderização da pagina e um json para ser manipulado na pagina ejs;
-      res.render("delete/deleteBox", { id: id, userName: req.session })
-        //.json({ header: "authorization" });
-    } else {
-      return res.send("Erro: Token inexistente.");
+    try {
+      // Lendo a sessão no campo userDataAll;
+      const sessionAll = await req.session.userDataAll;
+
+      // Verifica se a sessão existe e se o token esta nela;
+      if (sessionAll) {
+        // extrai o TOKEN da SESSÃO;
+        const userToken = sessionAll.token;
+
+        // Se esiver faz a chamada a rota;
+        const profileReq = await boxRequest.pageDelete(userToken);
+
+        //Extrai o NAME do usuario da SESSÃO;
+        const userDataName = sessionAll.name;
+
+        // Response com um json autorizado;
+        return res.render("delete/deleteBox", {
+          id: id,
+          userName: userDataName,
+        });
+      } else {
+        return res.res.redirect(404, "/");;
+      }
+    } catch (error) {
+      console.error(error);
+      res.redirect(401, "/");
     }
   },
   //***************************************
+
+  
   getBoxByNameBody: async (req, res) => {
     const name = req.query.name_description;
     //console.log([name]);
