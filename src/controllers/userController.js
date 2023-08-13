@@ -17,10 +17,10 @@ const userController = {
 
       // extrai os dados o ususario necessario para criar a sessão;
       const userDataAll = user.data;
-      console.log({ DADOS_DO_USUARIO: userDataAll });
+      //console.log({ DADOS_DO_USUARIO: userDataAll });
       // Criar uma sessão utilizando o dados vindo da RESPONSE;
       req.session.userDataAll = userDataAll; // O campo da sessão;
-      console.log({ SESSÃO_CRIADA: userDataAll });
+      //console.log({ SESSÃO_CRIADA: userDataAll });
 
       return res.redirect("/profile");
     } catch (error) {
@@ -33,11 +33,11 @@ const userController = {
     try {
       // Lendo a sessão no campo userDataAll;
       const sessionAll = req.session.userDataAll;
-      console.log({ SESSÃO: sessionAll });
+      //console.log({ SESSÃO: sessionAll });
 
       // extrai o TOKEN da SESSÃO;
       const userToken = sessionAll.token;
-      console.log({ SOMENTE_TOKEN: userToken });
+      //console.log({ SOMENTE_TOKEN: userToken });
 
       // Verifica se a sessão existe e se o token esta nela;
       if (sessionAll) {
@@ -47,7 +47,7 @@ const userController = {
 
         //Extrai o NAME do usuario da SESSÃO;
         const userDataName = sessionAll.name;
-        console.log({ SOMENTE_NOME: userDataName });
+        //console.log({ SOMENTE_NOME: userDataName });
 
         // Response com um json autorizado;
         return res.render("user/profile", { user: userDataName });

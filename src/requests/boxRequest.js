@@ -3,7 +3,7 @@ const defaults = require("./defaults");
 
 const urlBox = "box";
 const urlCreate = "create";
-const urlUpdate = "/update";
+const urlUpdate = "box/update";
 const urlDelete = "/delete";
 const urlName = "/name";
 const urlLocale = "/locale";
@@ -20,7 +20,7 @@ const urlFullName = urlBox + urlName;
 const urlFullLocale = urlBox + urlLocale;
 const urlDetailFull = urlBox + urlDetail;
 const urlNetworkTechnologyFull = urlBox + urlNetworkTechnology;
-const urlUpdateFull = urlBox + urlUpdate;
+//const urlUpdateFull = urlBox + urlUpdate;
 const urlDeleteFull = urlBox + urlDelete;
 
 const boxRequest = {
@@ -57,73 +57,82 @@ const boxRequest = {
     });
   },
   // ******************************************************************
-  getBox: (offset, limit) => {
+  getBox: (offset, limit, userToken) => {
     return axios({
       ...defaults,
       method: "get",
       url: `${urlBox}?page=${offset}&limit=${limit}`,
+      headers: { authorization: `Bearer ${userToken}` },
     });
   },
-  getBoxId: (id) => {
-    return axios({
-      ...defaults,
-      method: "get",
-      url: `${urlBox}/${id}`,
-    });
-  },
-  getBoxName: (name) => {
+  getBoxName: (name, userToken) => {
     return axios({
       ...defaults,
       method: "get",
       url: `${urlFullName}/${name}`,
+      headers: { authorization: `Bearer ${userToken}` },
     });
   },
-  getBoxLocale: (locale) => {
+  getBoxLocale: (locale, userToken) => {
     return axios({
       ...defaults,
       method: "get",
-      url: `${urlFullLocale}/${locale}`, // /box/locale/:locale;
+      url: `${urlFullLocale}/${locale}`,
+      headers: { authorization: `Bearer ${userToken}` },
     });
   },
-  getBoxNetworkTechnology: (networkTechnology) => {
+  getBoxNetworkTechnology: (networkTechnology, userToken) => {
     return axios({
       ...defaults,
       method: "get",
-      url: `${urlNetworkTechnologyFull}/${networkTechnology}`, // /box/net/:networkTechnology;
+      url: `${urlNetworkTechnologyFull}/${networkTechnology}`,
+      headers: { authorization: `Bearer ${userToken}` },
     });
   },
-  detailBox: (boxDetail) => {
+  detailBox: (boxDetail, userToken) => {
     return axios({
       ...defaults,
       method: "get",
-      url: `${urlDetailFull}/${boxDetail}`, // box/detail/:name_description;
+      url: `${urlDetailFull}/${boxDetail}`,
+      headers: { authorization: `Bearer ${userToken}` },
     });
   },
-  createBox: (box) => {
+  createBox: (box, userToken) => {
     return axios({
       ...defaults,
       method: "post",
       data: {
         ...box,
       },
-      url: `${urlBox}/${urlCreate}`, // /box/create
+      url: `${urlBox}/${urlCreate}`,
+      headers: { authorization: `Bearer ${userToken}` },
     });
   },
-  updateBox: (box, id) => {
+  getBoxId: (id, userToken) => {
+    return axios({
+      ...defaults,
+      method: "get",
+      url: `${urlBox}/${id}`,
+      headers: { authorization: `Bearer ${userToken}` },
+    });
+  },
+  updateBox: (box, id, userToken) => {
     return axios({
       ...defaults,
       method: "put",
       data: {
         ...box,
       },
-      url: `${urlUpdateFull}/${id}`, // /box/update/:id
+      url: `${urlUpdate}/${id}`,
+      headers: { authorization: `Bearer ${userToken}` },
     });
   },
-  deleteBox: (id) => {
+  deleteBox: (id, userToken) => {
     return axios({
       ...defaults,
       method: "delete",
-      url: `${urlDeleteFull}/${id}`, // /box/delete/:id
+      url: `${urlDeleteFull}/${id}`,
+      headers: { authorization: `Bearer ${userToken}` },
     });
   },
 };

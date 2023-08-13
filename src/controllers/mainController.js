@@ -103,7 +103,7 @@ const mainController = {
           userName: userDataName,
         });
       } else {
-        return res.res.redirect(404, "/");;
+        return res.redirect(404, "/");
       }
     } catch (error) {
       console.error(error);
@@ -112,14 +112,15 @@ const mainController = {
   },
   //***************************************
 
-  
   getBoxByNameBody: async (req, res) => {
-    const name = req.query.name_description;
-    //console.log([name]);
     try {
-      const existSessionUser = req.session.cookie;
-      if (existSessionUser) {
-        const response = await boxRequest.getBoxName(name);
+      const name = req.query.name_description;
+
+      const sessionAll = req.session.userDataAll;
+      if (sessionAll) {
+        const userToken = sessionAll.token;
+
+        const response = await boxRequest.getBoxName(name, userToken);
         let box = response.data;
 
         if (!box) {
@@ -128,9 +129,7 @@ const mainController = {
           return res.render("find/boxName", { nameBox: box });
         }
       } else {
-        return res.send(
-          "Usuário: login necessário para acessar a página pro tipo 'Nome'."
-        );
+        return res.redirect(401, "/login");
       }
     } catch (error) {
       if (error.response) {
@@ -148,14 +147,15 @@ const mainController = {
     }
   },
   getDetailBox: async (req, res) => {
-    // captura o valor passado no input e adiciona a rota url utilizando o query;
-    const boxDetail = req.query.name_description;
-    //console.log([boxDetail]);
     try {
-      const existSessionUser = req.session.cookie;
-      if (existSessionUser) {
+      // captura o valor passado no input e adiciona a rota url utilizando o query;
+      const boxDetail = req.query.name_description;
+
+      const sessionAll = req.session.userDataAll;
+      if (sessionAll) {
+        const userToken = sessionAll.token;
         //Faz a consulta;
-        const response = await boxRequest.detailBox(boxDetail);
+        const response = await boxRequest.detailBox(boxDetail, userToken);
         // Obtenha a propriedade "box" do objeto de resposta;
         let box = response.data.box;
         let boxName = response.data.msg;
@@ -168,9 +168,7 @@ const mainController = {
           return res.send("Detalhes do objeto não encontrado ou não existe");
         }
       } else {
-        return res.send(
-          "Usuário: login necessário para acessar a página com os 'Detalhes'."
-        );
+        return res.redirect(401, "/login");
       }
     } catch (error) {
       if (error.response) {
@@ -188,12 +186,13 @@ const mainController = {
     }
   },
   getBoxByLocaleBody: async (req, res) => {
-    const locale = req.query.locale;
-    //console.log([locale]);
     try {
-      const existSessionUser = req.session.cookie;
-      if (existSessionUser) {
-        const response = await boxRequest.getBoxLocale(locale);
+      const locale = req.query.locale;
+      const sessionAll = req.session.userDataAll;
+
+      if (sessionAll) {
+        const userToken = sessionAll.token;
+        const response = await boxRequest.getBoxLocale(locale, userToken);
         //console.log(response)
         let box = response.data;
 
@@ -203,9 +202,7 @@ const mainController = {
           return res.send("Objeto não encontrado ou não existe");
         }
       } else {
-        return res.send(
-          "Usuário: login necessário para acessar a página por tipo 'Localidade'."
-        );
+        return res.redirect(401, "/login");
       }
     } catch (error) {
       if (error.response) {
@@ -223,13 +220,15 @@ const mainController = {
     }
   },
   getBoxByNetworkTechnologyBody: async (req, res) => {
-    const networkTechnology = req.query.networkTechnology;
-    //console.log(networkTechnology);
     try {
-      const existSessionUser = req.session.cookie;
-      if (existSessionUser) {
+      const networkTechnology = req.query.networkTechnology;
+      const sessionAll = req.session.userDataAll;
+
+      if (sessionAll) {
+        const userToken = sessionAll.token;
         const response = await boxRequest.getBoxNetworkTechnology(
-          networkTechnology
+          networkTechnology,
+          userToken
         );
         console.log(response);
         let box = response.data;
@@ -240,9 +239,7 @@ const mainController = {
           return res.send("Objeto não encontrado ou não existe");
         }
       } else {
-        return res.send(
-          "Usuário: login necessário para acessar a página de busca por 'Tipo de Rede'."
-        );
+        return res.redirect(401, "/login");
       }
     } catch (error) {
       if (error.response) {
@@ -261,8 +258,9 @@ const mainController = {
   },
   getBoxes: async (req, res) => {
     try {
-      const existSessionUser = req.session.cookie;
-      if (existSessionUser) {
+      const sessionAll = req.session.userDataAll;
+      if (sessionAll) {
+        const userToken = sessionAll.token;
         //Extrai o valor do parâmetro page do objeto (que contém os parâmetros da URL da requisição);
         let { page = 1 } = req.query;
         //Converte o valor de page para um número inteiro usando a função;
@@ -277,7 +275,7 @@ const mainController = {
         //Calcula a paginação com os seus itens de exibição
         let offset = (page * limit) / limit; //(1 * 6) - 6 = 0(padrão)... 6... 12;
         //Faz a requisição GET junto ao controlador back-end passando os parametros necessários e amazena os dados retornados na constante;
-        let apiBoxes = await boxRequest.getBox(offset, limit);
+        let apiBoxes = await boxRequest.getBox(offset, limit, userToken);
         //Extrai os valores boxes e total do objeto apiBoxes.data, que contém os dados retornados da consulta API/
         const { boxes, total } = apiBoxes.data;
         //Acessando os dados: notação de ponto (objeto.chave) ou notação de colchetes (objeto['chave']);
@@ -292,7 +290,7 @@ const mainController = {
           total: total,
         });
       } else {
-        return res.send("Usuário: login necessário para acessar as 'Páginas'.");
+        return res.redirect(401, "/login");
       }
     } catch (error) {
       //Exibi o erro no terminal
@@ -301,13 +299,53 @@ const mainController = {
       res.render("err/error" /*{ nameBox: [] }*/);
     }
   },
-  getBoxById: async (req, res) => {
-    const id = req.body.id;
-    // console.log({ valor: id });
+  createBox: async (req, res) => {
+    //const formattedData = moment(req.body.dateModify, 'DD/MM/YYYY').format('YYYY-MM-DD');
     try {
-      const existSessionUser = req.session.cookie;
-      if (existSessionUser) {
-        const response = await boxRequest.getBoxId(id);
+      const sessionAll = req.session.userDataAll;
+
+      if (sessionAll) {
+        const userToken = sessionAll.token;
+        let body = {
+          dateModify: req.body.dateModify,
+          nameDescription: req.body.nameDescription,
+          locale: req.body.locale,
+          activeCto: req.body.activeCto,
+          networkTechnology: req.body.networkTechnology,
+        };
+        let box = body;
+        await boxRequest.createBox(box, userToken);
+
+        if (box != undefined) {
+          res.redirect("/search");
+        }
+      } else {
+        return res.redirect(401, "/login");
+      }
+    } catch (error) {
+      if (error.response) {
+        // Erro de resposta da API
+        console.log(error.response.status);
+        console.log(error.response.data);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        // Erro de requisição (sem resposta)
+        console.log(error.request);
+      } else {
+        // Outro tipo de erro
+        console.log("Erro", error.message);
+      }
+    }
+  },
+  //Descontinuada, temporariamente, esta funcionalidade;
+  getBoxById: async (req, res) => {
+    /*try {
+      const { id } = req.body;
+      const sessionAll = req.session.userDataAll;
+
+      if (sessionAll) {
+        const userToken = sessionAll.token;
+        const response = await boxRequest.getBoxId(id, userToken);
         const box = response.data;
         console.log(box);
         if (!box) {
@@ -334,77 +372,28 @@ const mainController = {
         console.log("Erro", error.message);
       }
       res.render("error", { nameBox: [] });
-    }
-  },
-  createBox: async (req, res) => {
-    //const formattedData = moment(req.body.dateModify, 'DD/MM/YYYY').format('YYYY-MM-DD');
-    try {
-      const existSessionUser = req.session.cookie;
-      if (existSessionUser) {
-        let body = {
-          dateModify: req.body.dateModify,
-          nameDescription: req.body.nameDescription,
-          locale: req.body.locale,
-          activeCto: req.body.activeCto,
-          networkTechnology: req.body.networkTechnology,
-        };
-        let box = body;
-        await boxRequest.createBox(box);
-        if (box != undefined) {
-          //Redirecionado para a rota absoluta (/);
-          res.redirect("/profile");
-        }
-      } else {
-        return res.send(
-          "Usuário: login necessário para acessar a página 'Criar os dados'."
-        );
-      }
-    } catch (error) {
-      if (error.response) {
-        // Erro de resposta da API
-        console.log(error.response.status);
-        console.log(error.response.data);
-        console.log(error.response.headers);
-      } else if (error.request) {
-        // Erro de requisição (sem resposta)
-        console.log(error.request);
-      } else {
-        // Outro tipo de erro
-        console.log("Erro", error.message);
-      }
-    }
+    }*/
   },
   updateBox: async (req, res) => {
-    // Obtém o ID do objeto a ser atualizar
     try {
-      const existSessionUser = req.session.cookie;
-      if (existSessionUser) {
-        let id = req.body.id;
-        //verificando se o objeto existe na base;
-        if (boxRequest.getBoxId(id)) {
-          console.log("Objeto encontrado");
-        } else {
-          console.log("Objeto não encontrado");
-        }
-        //Pegar os valores passados via body
-        let body = {
-          dateModify: req.body.dateModify,
-          nameDescription: req.body.nameDescription,
-          locale: req.body.locale,
-          activeCto: req.body.activeCto,
-          networkTechnology: req.body.networkTechnology,
-        };
-        //Armazenar
-        let box = body;
-        // Chama a função de requisição de atualização
-        await boxRequest.updateBox(box, id);
-        //Redirecionado para a rota absoluta (/);
-        res.redirect("/search");
-      } else {
-        return res.send(
-          "Usuário: login necessário para acessar a página 'Atualizar os dados'."
-        );
-      }
+      // Obtém o ID do objeto a ser atualizar;
+      const { id } = req.body;
+      const sessionAll = req.session.userDataAll;
+      const userToken = sessionAll.token;
+      const response = await boxRequest.getBoxId(id, userToken);
+      //Pegar os valores passados via body
+      let body = {
+        dateModify: req.body.dateModify,
+        nameDescription: req.body.nameDescription,
+        locale: req.body.locale,
+        activeCto: req.body.activeCto,
+        networkTechnology: req.body.networkTechnology,
+      };
+      //Armazenar
+      let box = body;
+      // Chama a função de requisição de atualização
+      await boxRequest.updateBox(box, id, userToken);
+      return res.redirect("/box");
     } catch (error) {
       // Houve um erro na requisição de atualização
       if (error.response) {
@@ -419,23 +408,21 @@ const mainController = {
         // Outro tipo de erro
         console.log("Erro", error.message);
       }
-      res.status(500).json({ message: "Erro interno do servidor." });
+      res.redirect(500, "/profile");
     }
   },
   deleteBox: async (req, res) => {
-    // Obtém o ID do objeto a ser deletado
     try {
-      const existSessionUser = req.session.cookie;
-      if (existSessionUser) {
-        const id = req.body.id;
-        await boxRequest.deleteBox(id);
-        //Redirecionado para a rota absoluta (/);
-        res.redirect("/search");
-      } else {
-        return res.send(
-          "Usuário: login necessário para acessar a página 'Deletar os dados'."
-        );
-      }
+      // Obtém o ID do objeto a ser deletado;
+      const { id } = req.body;
+      console.log({ID:id});
+      const sessionAll = req.session.userDataAll;
+      console.log({Sessão:sessionAll});
+      const userToken = sessionAll.token;
+
+      await boxRequest.deleteBox(id, userToken);
+
+      return res.redirect("/box");
     } catch (error) {
       // Houve um erro na requisição de atualização
       if (error.response) {
