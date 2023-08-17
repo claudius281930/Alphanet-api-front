@@ -21,7 +21,7 @@ app.use(
     cookie: {
       //name:session.locals,
       // Tempo de vida do cookie da sessão em milissegundos (1 hora neste exemplo)
-      maxAge: 40000,
+      maxAge:24 * 60 * 60 * 1000,
       // Define TRUE se o cookie só pode ser enviado através de conexões HTTPS;
       secure: false,
       // TRUE: Impede que o cookie seja acessado pelo JavaScript do cliente

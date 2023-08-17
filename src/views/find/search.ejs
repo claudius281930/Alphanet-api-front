@@ -1,14 +1,15 @@
 <!-- Metadados da página -->
 <%- include("../partials/head") %>
 
-    <body>
-        <%- include("../partials/headerLogo") %>
+    <%- include("../partials/headerLogo") %>
 
-            <%- include("../partials/header") %>
+        <%- include("../partials/header") %>
 
-                <main class="container-fluid container-main">
-                    <%- include("../partials/videoHome") %>
+            <body>
 
+                <%- include("../partials/imgSearch") %>
+
+                    <main class="container-fluid container-main">
                         <section class="container-fluid container-sm mt-6">
 
                             <p class="text-light h1 text-center mt-6 mb-5">Buscar</p>
@@ -61,16 +62,18 @@
                                 </form>
 
                             </div>
-                            <p class="text-uppercase text-light h5">
-                                <a href="http://localhost:3001/profile">
-                                    Perfil
-                                </a>
-                            </p>
+                            <div class="bg-black w-25 text-uppercase">
+                                <p class="text-uppercase text-light fw-bold text-center">
+                                    <a href="http://localhost:3001/profile" class="text-light">
+                                        Perfil
+                                    </a>
+                                </p>
+                            </div>
                         </section>
-                </main>
+                    </main>
 
-                <!-- Footer da pagina -->
-                <%- include("../partials/footer") %>
-    </body>
+                    <!-- Footer da pagina -->
+                    <%- include("../partials/footer") %>
+            </body>
 
-    </html>
+            </html>

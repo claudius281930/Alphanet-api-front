@@ -5,9 +5,10 @@
         <%- include("../partials/headerLogo") %>
 
             <%- include("../partials/header") %>
+                <%- include("../partials/imgDelete") %>
 
-                <main class="container">
-                    <%- include("../partials/videoHome") %>
+                    <main class="container">
+
 
                         <section class="container mt-6">
 
@@ -31,13 +32,19 @@
                                 btn-content">Excluir</button>
                                     </div>
                                 </form>
-                            </div>
-                            <p class="text-uppercase"><a href="http://localhost:3001/profile">Perfil</a></p>
+                            </div>                            
                         </section>
+                        <div class="bg-black w-25 text-uppercase">
+                            <p class="text-uppercase text-light fw-bold text-center">
+                                <a href="http://localhost:3001/profile" class="text-light">
+                                    Perfil
+                                </a>
+                            </p>
+                        </div>
 
-                </main>
-                <!-- Footer da pagina -->
-                <%- include("../partials/footer") %>
+                    </main>
+                    <!-- Footer da pagina -->
+                    <%- include("../partials/footer") %>
     </body>
 
     </html>

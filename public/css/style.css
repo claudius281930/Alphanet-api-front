@@ -6,7 +6,7 @@
 
  body {
    min-height: 100vh;
-   background-color: #031633;
+   /* background-color: #031633; */
    font-family: 'Simonetta', sans-serif;
  }
 
@@ -226,6 +226,15 @@
    .item-search {
      display: flex;
      justify-content: space-around;
+   }
+
+   .container-img-bg {
+     height: calc(100vh + 2em);
+   }
+
+   .img-bg {
+     min-height: 100%;
+     
    }
 
  }

@@ -1,74 +1,84 @@
 <!-- Metadados da página -->
 <%- include("../partials/head") %>
 
-    <body>
-        <%- include("../partials/headerLogo") %>
-            <%- include("../partials/header") %>
+    <%- include("../partials/headerLogo") %>
 
-                <main class="container-fluid">
-                    <section class="container-fluid container-sm mt-6 container-information">
+        <%- include("../partials/header") %>
 
-                        <p class="text-light h1 text-center mb-5 information-text">Infomações da Caixa</p>
+            <body>
+                <%- include("../partials/imgBoxes") %>
 
-                        <p class="text-light h4 text-center mb-5 information-name">
+                    <main class="container-fluid">
+                        <section class="container-fluid container-sm mt-6 container-information">
 
-                            <span class="content-name has-text-danger">
-                                <%= nameBox.box.nameDescription %>
-                            </span>
-                        </p>
-                        <div class="container content-update information-content">
+                            <p class="text-light h1 text-center mb-5 information-text">
+                                Infomações da Caixa
+                            </p>
 
-                            <% if (nameBox) { %>
-                                <ul class="container fw-bold w-100 container-information-list">
+                            <p class="text-light h4 text-center mb-5 information-name">
+                                <span class="text-warning fw-bold">
+                                    <%= nameBox.box.nameDescription %>
+                                </span>
+                            </p>
+                            <div class="container content-update information-content">
 
-                                    <li class="has-text-danger">
-                                        <span class="content-list text-light">ID:</span>
-                                        <%= nameBox.box.id %>
-                                    </li>
-                                    <li class="has-text-danger">
-                                        <span class="content-list text-light">Data de Modificação:</span>
-                                        <%= nameBox.box.dateModify %>
-                                    </li>
-                                    <li class="has-text-danger">
-                                        <span class="content-list text-light">Nome da Descrição:</span>
-                                        <span class="content-list text-warning">
-                                            <%= nameBox.box.nameDescription %>
-                                        </span>
-                                    </li>
-                                    <li class="has-text-danger">
-                                        <span class="content-list text-light">Localização:</span>
-                                        <%= nameBox.box.locale %>
-                                    </li>
-                                    <li class="has-text-danger">
-                                        <span class="content-list text-light">Active CTO:</span>
-                                        <%= nameBox.box.activeCto %>
-                                    </li>
-                                    <li class="has-text-danger">
-                                        <span class="content-list text-light">Tecnologia de Rede:</span>
-                                        <%= nameBox.box.networkTechnology %>
-                                    </li>
-                                </ul>
-                                <% } else { %>
-                                    <p>Box não encontrada.</p>
-                                    <% } %>
+                                <% if (nameBox) { %>
+                                    <ul class="container fw-bold w-100 container-information-list">
 
-                                        <form method="GET" action="/box/detail/:name_description" id="detail">
+                                        <li class="has-text-danger">
+                                            <span class="content-list text-light">ID:</span>
+                                            <%= nameBox.box.id %>
+                                        </li>
+                                        <li class="has-text-danger">
+                                            <span class="content-list text-light">Data de Modificação:</span>
+                                            <%= nameBox.box.dateModify %>
+                                        </li>
+                                        <li class="has-text-danger">
+                                            <span class="content-list text-light">Nome da Descrição:</span>
+                                            <span class="content-list text-warning">
+                                                <%= nameBox.box.nameDescription %>
+                                            </span>
+                                        </li>
+                                        <li class="has-text-danger">
+                                            <span class="content-list text-light">Localização:</span>
+                                            <%= nameBox.box.locale %>
+                                        </li>
+                                        <li class="has-text-danger">
+                                            <span class="content-list text-light">Active CTO:</span>
+                                            <%= nameBox.box.activeCto %>
+                                        </li>
+                                        <li class="has-text-danger">
+                                            <span class="content-list text-light">Tecnologia de Rede:</span>
+                                            <%= nameBox.box.networkTechnology %>
+                                        </li>
+                                    </ul>
+                                    <% } else { %>
+                                        <p>Box não encontrada.</p>
+                                        <% } %>
 
-                                            <input type="hidden" name="name_description"
-                                                value="<%= nameBox.box.nameDescription %>">
-                                            <!-- IMPORTANTISSíMO: O VALUE captura o nome passado na pesquisa para incluir na rota dinamica-->
-                                            <div class="input-group input-group mt-3 container-btn">
-                                                <button name="detail" class="btn btn-outline-light text-uppercase 
+                                            <form method="GET" action="/box/detail/:name_description" id="detail">
+
+                                                <input type="hidden" name="name_description"
+                                                    value="<%= nameBox.box.nameDescription %>">
+                                                <!-- IMPORTANTISSíMO: O VALUE captura o nome passado na pesquisa para incluir na rota dinamica-->
+                                                <div class="input-group input-group mt-3 container-btn">
+                                                    <button name="detail" class="btn btn-outline-light text-uppercase 
                                                 btn-boxname btn-content" role="alert">Detalhe</button>
-                                            </div>
-                                            <!--usar o button do BULMA para tentar resolver o problema da borda esquerda RETA -->
-                                        </form>
-                        </div>
-                        <p class="text-uppercase"><a href="http://localhost:3001/profile">Perfil</a></p>
-                    </section>
-                </main>
-                <!-- Footer da pagina -->
-                <%- include("../partials/footer") %>
-    </body>
+                                                </div>
+                                                <!--usar o button do BULMA para tentar resolver o problema da borda esquerda RETA -->
+                                            </form>
+                            </div>
+                            <div class="bg-black w-25 text-uppercase mt-1">
+                                <p class="text-uppercase text-light fw-bold text-center">
+                                    <a href="http://localhost:3001/profile" class="text-light">
+                                        Perfil
+                                    </a>
+                                </p>
+                            </div>
+                        </section>
+                    </main>
+                    <!-- Footer da pagina -->
+                    <%- include("../partials/footer") %>
+            </body>
 
-    </html>
+            </html>

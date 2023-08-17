@@ -1,60 +1,71 @@
 <!-- Metadados da pagina -->
 <%- include("../partials/head" )%>
+    <%- include("../partials/headerLogo") %>
+        <%- include("../partials/header") %>
 
-    <body>
-        <%- include("../partials/headerLogo") %>
-            <%- include("../partials/header") %>
+            <body>
+                <%- include("../partials/imgBoxes") %>
+                    <main class="container-fluid container-boxes">
+                        <section class="container-fluid content-boxesall mt-6">
 
-                <main class="container-fluid container-boxes">
-                    <section class="container-fluid content-boxesall mt-6">
+                            <p class="text-light h1 text-center">
+                                Tecnologia de Rede: <span class="text-warning fw-bold">
+                                    <%= networkTechnology.msg %>
+                                </span>
+                            </p>
 
-                        <p class="text-light h1 text-center">Tecnologia de Rede</p>
+                            <div class="content-boxes">
+                                <ul class="container-list boxes-list">
+                                    <!-- networkTechnology variável passada do controlador -->
+                                    <% networkTechnology.box.forEach(function(box) { %>
+                                        <div class="container-fluid foreach boxes-foreach-item"
+                                            id="container-boxes-item">
 
-                        <div class="content-boxes">
-                            <ul class="container-list boxes-list">
-                                <!-- networkTechnology variável passada do controlador -->
-                                <% networkTechnology.box.forEach(function(box) { %>
-                                    <div class="container-fluid foreach boxes-foreach-item" id="container-boxes-item">
+                                            <li class="has-text-danger list-item">
+                                                <span class="content-list text-light">ID:</span>
+                                                <%= box.id %>
+                                            </li>
+                                            <li class="has-text-danger list-item">
+                                                <span class="content-list text-light">Data de Modificação:</span>
+                                                <%= box.dateModify %>
+                                            </li>
+                                            <li class="has-text-danger list-item">
+                                                <span class="content-list text-light">Nome Descritivo:</span>
+                                                <%= box.nameDescription %>
+                                            </li>
+                                            <li class="has-text-danger list-item">
+                                                <span class="content-list text-light">Localização:</span>
+                                                <%= box.locale %>
 
-                                        <li class="has-text-danger list-item">
-                                            <span class="content-list text-light">ID:</span>
-                                            <%= box.id %>
-                                        </li>
-                                        <li class="has-text-danger list-item">
-                                            <span class="content-list text-light">Data de Modificação:</span>
-                                            <%= box.dateModify %>
-                                        </li>
-                                        <li class="has-text-danger list-item">
-                                            <span class="content-list text-light">Nome Descritivo:</span>
-                                            <%= box.nameDescription %>
-                                        </li>
-                                        <li class="has-text-danger list-item">
-                                            <span class="content-list text-light">Localização:</span>
-                                            <%= box.locale %>
+                                            </li>
+                                            <li class="has-text-danger list-item">
+                                                <span class="content-list text-light">Active CTO:</span>
+                                                <%= box.activeCto %>
+                                            </li>
+                                            <li class="has-text-danger list-item mb-2">
+                                                <span class="content-list text-light">Tecnologia de Rede:</span>
+                                                <span class="content-list text-warning">
+                                                    <%= box.networkTechnology %>
+                                                </span>
+                                            </li>
+                                            <div><span class="content-list text-light">
+                                                    <a href="#">Detalhe</a>
+                                                </span></div>
+                                        </div>
+                                        <% }); %>
+                                </ul>
+                            </div>
+                            <div class="bg-black w-25 text-uppercase">
+                                <p class="text-uppercase text-light fw-bold text-center">
+                                    <a href="http://localhost:3001/profile" class="text-light">
+                                        Perfil
+                                    </a>
+                                </p>
+                            </div>
+                        </section>
+                    </main>
+                    <!-- Footer da pagina -->
+                    <%- include("../partials/footer") %>
+            </body>
 
-                                        </li>
-                                        <li class="has-text-danger list-item">
-                                            <span class="content-list text-light">Active CTO:</span>
-                                            <%= box.activeCto %>
-                                        </li>
-                                        <li class="has-text-danger list-item mb-2">
-                                            <span class="content-list text-light">Tecnologia de Rede:</span>
-                                            <span class="content-list text-warning">
-                                                <%= box.networkTechnology %>
-                                            </span>
-                                        </li>
-                                        <div><span class="content-list text-light">
-                                                <a href="#">Detalhe</a>
-                                            </span></div>
-                                    </div>
-                                    <% }); %>
-                            </ul>
-                        </div>
-                        <p class="text-uppercase"><a href="http://localhost:3001/profile">Perfil</a></p>
-                    </section>
-                </main>
-                <!-- Footer da pagina -->
-                <%- include("../partials/footer") %>
-    </body>
-
-    </html>
+            </html>

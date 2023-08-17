@@ -2,14 +2,15 @@ const axios = require("axios");
 const defaults = require("./defaults");
 
 const urlBox = "box";
-const urlCreate = "create";
+const urlCreate = "create";//box/create
 const urlUpdate = "box/update";
-const urlDelete = "/delete";
+const urlDelete = "/delete";//box/delete/:id
 const urlName = "/name";
 const urlLocale = "/locale";
 const urlNetworkTechnology = "/net";
 const urlDetail = "/detail";
 // ********************************************************************
+// Exibição, somente, das paginas;
 const urlPageSearch = "/search";
 const urlPageCreate = "/box//create";
 const urlPageUpdate = "/box//update";
@@ -20,7 +21,6 @@ const urlFullName = urlBox + urlName;
 const urlFullLocale = urlBox + urlLocale;
 const urlDetailFull = urlBox + urlDetail;
 const urlNetworkTechnologyFull = urlBox + urlNetworkTechnology;
-//const urlUpdateFull = urlBox + urlUpdate;
 const urlDeleteFull = urlBox + urlDelete;
 
 const boxRequest = {

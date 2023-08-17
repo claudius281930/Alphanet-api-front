@@ -1,67 +1,84 @@
 <!-- Metadados da página -->
 <%- include("../partials/head" )%>
 
-    <body>
+    <%- include("../partials/headerLogo") %>
         <%- include("../partials/header") %>
 
-            <main class="container-fluid">
-                <section class="container-fluid container-sm mt-6">
+            <body>
+                <%- include("../partials/imgBoxDetail") %>
 
-                    <p class="text-light h1 text-center mb-4">Detalhes da Caixa</p>
+                    <main class="container-fluid">
+                        <section class="container-fluid container-sm mt-6">
 
-                    <p class="text-light h6 text-center mb-5">Objeto do detalhe:
-                        <span class="has-text-danger h5"><%= msg %></span></p>
+                            <p class="text-light h1 text-center mb-4">Detalhes da Caixa</p>
 
-                    <% if (detailBox) { %>
-                        <% const object=detailBox[0]; %>
-                            <ul class="">
+                            <p class="text-light h6 text-center mb-5">Objeto do detalhe:
+                                <span class="has-text-danger h5">
+                                    <%= msg %>
+                                </span>
+                            </p>
 
-                                <% if (object.fusions && object.fusions.length> 0) { %>
-                                    <% const fusion=object.fusions[0]; %>
-                                        <li class="has-text-danger">
-                                            <span class="content-list text-light">Numero de fusões:</span>
-                                            <%= fusion.numberFusions %>
-                                        </li>
-                                        <% if (fusion.colouring) { %>
-                                            <li class="has-text-danger">
-                                                <span class="content-list text-light">Cores:</span>
-                                                <%= fusion.colouring.colors %>
-                                            </li>
-                                            <% if (fusion.colouring.links) { %>
+                            <% if (detailBox) { %>
+                                <% const object=detailBox[0]; %>
+                                    <ul class="">
+
+                                        <% if (object.fusions && object.fusions.length> 0) { %>
+                                            <% const fusion=object.fusions[0]; %>
                                                 <li class="has-text-danger">
-                                                    <span class="content-list text-light">Nome de referencia do tubet:</span>
-                                                    <%= fusion.colouring.links.refenrenceName %>
+                                                    <span class="content-list text-light">Numero de fusões:</span>
+                                                    <%= fusion.numberFusions %>
                                                 </li>
-                                                <li  class="has-text-danger">
-                                                    <span class="content-list text-light">Chegada do Link na fibra de cor:</span>
-                                                    <%= fusion.colouring.links.comeLink %>
-                                                </li>
-                                                <li  class="has-text-danger">
-                                                    <span class="content-list text-light">Cor do tubet da chegada do Link:</span>
-                                                    <%= fusion.colouring.links.colorTubet %>
-                                                </li>
-                                                <% } %>
-                                                    <% } %>
+                                                <% if (fusion.colouring) { %>
+                                                    <li class="has-text-danger">
+                                                        <span class="content-list text-light">Cores:</span>
+                                                        <%= fusion.colouring.colors %>
+                                                    </li>
+                                                    <% if (fusion.colouring.links) { %>
+                                                        <li class="has-text-danger">
+                                                            <span class="content-list text-light">Nome de referencia do
+                                                                tubet:</span>
+                                                            <%= fusion.colouring.links.refenrenceName %>
+                                                        </li>
+                                                        <li class="has-text-danger">
+                                                            <span class="content-list text-light">Chegada do Link na
+                                                                fibra
+                                                                de cor:</span>
+                                                            <%= fusion.colouring.links.comeLink %>
+                                                        </li>
+                                                        <li class="has-text-danger">
+                                                            <span class="content-list text-light">Cor do tubet da
+                                                                chegada do
+                                                                Link:</span>
+                                                            <%= fusion.colouring.links.colorTubet %>
+                                                        </li>
                                                         <% } %>
-                            </ul>
-                            <% } %>
-                            <p class="text-uppercase"><a href="http://localhost:3001/profile">Perfil</a></p>
-                </section>
-            </main>
-            <!-- Footer da pagina -->
-            <%- include("../partials/footer") %>
-    </body>
+                                                            <% } %>
+                                                                <% } %>
+                                    </ul>
+                                    <% } %>
+                                    <div class="bg-black w-25 text-uppercase">
+                                        <p class="text-uppercase text-light fw-bold text-center">
+                                            <a href="http://localhost:3001/profile" class="text-light">
+                                                Perfil
+                                            </a>
+                                        </p>
+                                    </div>
+                        </section>
+                    </main>
+                    <!-- Footer da pagina -->
+                    <%- include("../partials/footer") %>
+            </body>
 
-    </html>
+            </html>
 
-    <!--  fusions:
+            <!--  fusions:
     "dateModify": "2023-05-09",
     "numberFusions": 2 
 -->
-    <!-- colouring:
+            <!-- colouring:
     "colors": "verde-verde, verde-amarelo" 
 -->
-    <!-- links:
+            <!-- links:
     "dateModify": "2023-05-09",
     "refenrenceName": "Beira do rio",
     "comeLink": "verde",

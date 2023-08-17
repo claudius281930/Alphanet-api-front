@@ -5,9 +5,9 @@
         <%- include("../partials/headerLogo") %>
 
             <%- include("../partials/header") %>
+                <%- include("../partials/imgUpdate") %>
 
-                <main class="container-fluid">
-                    <%- include("../partials/videoHome") %>
+                    <main class="container-fluid">
                         <section class="container-fluid container-sm mt-6">
 
                             <p class="text-light text-center h1 mb-5">Atualizar Caixa</p>
@@ -71,12 +71,18 @@
                                     </div>
                                 </form>
                             </div>
-                            <p class="text-uppercase"><a href="http://localhost:3001/profile">Perfil</a></p>
+                            <div class="bg-black w-25 text-uppercase">
+                                <p class="text-uppercase text-light fw-bold text-center">
+                                    <a href="http://localhost:3001/profile" class="text-light">
+                                        Perfil
+                                    </a>
+                                </p>
+                            </div>
                         </section>
 
-                </main>
-                <!-- Footer da pagina -->
-                <%- include("../partials/footer") %>
+                    </main>
+                    <!-- Footer da pagina -->
+                    <%- include("../partials/footer") %>
 
     </body>
 

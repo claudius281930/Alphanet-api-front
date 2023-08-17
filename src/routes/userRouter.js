@@ -8,7 +8,8 @@ const userController = require("../controllers/userController");
 router.get("/login", userController.pageLogin);
 // Exibe a página de Perfil (rota restrita para usuários autenticados).
 router.get("/profile",  userController.profile);
-
+//
+router.get("/logout",userController.logout);
 //Processa os dados para efetuar o login;
 router.post("/login", userController.processLogin);
 

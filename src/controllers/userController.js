@@ -59,6 +59,15 @@ const userController = {
       res.redirect(401, "/");
     }
   },
+  logout: async (req, res) => {
+    try {
+      req.session.userDataAll = undefined;
+      return res.redirect("/login");
+    } catch (error) {
+      console.log(error)
+      return res.redirect("/");
+    }
+  },
 };
 
 module.exports = userController;
