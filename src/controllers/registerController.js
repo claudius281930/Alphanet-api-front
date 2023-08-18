@@ -22,11 +22,7 @@ const registerController = {
       }
       //Pegar dados via formularios;
       let { name, password } = req.body;
-      //Criptografar a senha antes de salvar no DB;
-      //let hash = bcrypt.hashSync(password, 8);
-      //console.log(hash);
-      //console.log(bcrypt.compareSync(password, hash));
-      //Objeto usuario;
+
       let user = {
         name: name,
         password: password//hash,
@@ -34,9 +30,10 @@ const registerController = {
       //Faz uma requisição POST ao controlador da API(Back-end) e cria o usuario;
       const dataUser = await userRequest.createUser(user);
       res.redirect("/login");
+      
     } catch (error) {
       console.error(error);
-      res.status(400).json({ msg: "Erro: ao tentar criar o cadastro" });
+      return res.redirect(409,"/register");
     }
   },
 };

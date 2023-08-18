@@ -23,11 +23,22 @@ const mainController = {
         // Response com um json autorizado;
         return res.render("find/search", { user: userDataName });
       } else {
-        return res.send("Erro: Token inexistente.");
+        return res.status(412).send("Erro: Token inexistente.");
       }
     } catch (error) {
-      console.error(error);
-      res.redirect(401, "/");
+      if (error.response) {
+        // Erro de resposta da API
+        console.log(error.response.status);
+        console.log(error.response.data);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        // Erro de requisição (sem resposta)
+        console.log(error.request);
+      } else {
+        // Outro tipo de erro
+        console.log("Erro", error.message);
+      }
+      return res.redirect(401, "/");
     }
   },
   pageFormCreateBox: async (req, res) => {
@@ -50,8 +61,19 @@ const mainController = {
         return res.send("Erro: Token inexistente.");
       }
     } catch (error) {
-      console.error(error);
-      res.redirect(401, "/");
+      if (error.response) {
+        // Erro de resposta da API
+        console.log(error.response.status);
+        console.log(error.response.data);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        // Erro de requisição (sem resposta)
+        console.log(error.request);
+      } else {
+        // Outro tipo de erro
+        console.log("Erro", error.message);
+      }
+      return res.redirect(401, "/");
     }
   },
   pageFormUpdateBox: async (req, res) => {
@@ -76,8 +98,19 @@ const mainController = {
         return res.send("Erro: Token inexistente.");
       }
     } catch (error) {
-      console.error(error);
-      res.redirect(401, "/");
+      if (error.response) {
+        // Erro de resposta da API
+        console.log(error.response.status);
+        console.log(error.response.data);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        // Erro de requisição (sem resposta)
+        console.log(error.request);
+      } else {
+        // Outro tipo de erro
+        console.log("Erro", error.message);
+      }
+      return res.redirect(401, "/");
     }
   },
   pageFormDeleteBox: async (req, res) => {
@@ -106,8 +139,19 @@ const mainController = {
         return res.redirect(404, "/");
       }
     } catch (error) {
-      console.error(error);
-      res.redirect(401, "/");
+      if (error.response) {
+        // Erro de resposta da API
+        console.log(error.response.status);
+        console.log(error.response.data);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        // Erro de requisição (sem resposta)
+        console.log(error.request);
+      } else {
+        // Outro tipo de erro
+        console.log("Erro", error.message);
+      }
+      return res.redirect(401, "/");
     }
   },
   //***************************************
@@ -124,7 +168,7 @@ const mainController = {
         let box = response.data;
 
         if (!box) {
-          return res.send("Objeto não encontrado ou não existe");
+          return res.status(404).send("Objeto não encontrado ou não existe");
         } else {
           return res.render("find/boxName", { nameBox: box });
         }
@@ -144,6 +188,7 @@ const mainController = {
         // Outro tipo de erro
         console.log("Erro", error.message);
       }
+      return res.redirect(401, "/");
     }
   },
   getDetailBox: async (req, res) => {
@@ -183,6 +228,7 @@ const mainController = {
         // Outro tipo de erro
         console.log("Erro", error.message);
       }
+      return res.redirect(401, "/");
     }
   },
   getBoxByLocaleBody: async (req, res) => {
@@ -217,6 +263,7 @@ const mainController = {
         // Outro tipo de erro
         console.log("Erro", error.message);
       }
+      return res.redirect(401, "/");
     }
   },
   getBoxByNetworkTechnologyBody: async (req, res) => {
@@ -254,6 +301,7 @@ const mainController = {
         // Outro tipo de erro
         console.log("Erro", error.message);
       }
+      return res.redirect(401, "/");
     }
   },
   getBoxes: async (req, res) => {
@@ -293,10 +341,20 @@ const mainController = {
         return res.redirect(401, "/login");
       }
     } catch (error) {
-      //Exibi o erro no terminal
-      console.error(error);
+      if (error.response) {
+        // Erro de resposta da API
+        console.log(error.response.status);
+        console.log(error.response.data);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        // Erro de requisição (sem resposta)
+        console.log(error.request);
+      } else {
+        // Outro tipo de erro
+        console.log("Erro", error.message);
+      }
       //Renderiza a view de erro, passando um objeto vazio como contexto/
-      res.render("err/error" /*{ nameBox: [] }*/);
+      res.render("err/error");
     }
   },
   createBox: async (req, res) => {
@@ -335,6 +393,7 @@ const mainController = {
         // Outro tipo de erro
         console.log("Erro", error.message);
       }
+      return res.redirect(401, "/");
     }
   },
   //Descontinuada, temporariamente, esta funcionalidade;
@@ -374,6 +433,7 @@ const mainController = {
       res.render("error", { nameBox: [] });
     }*/
   },
+  // **************************************************;
   updateBox: async (req, res) => {
     try {
       // Obtém o ID do objeto a ser atualizar;
@@ -408,7 +468,7 @@ const mainController = {
         // Outro tipo de erro
         console.log("Erro", error.message);
       }
-      res.redirect(500, "/profile");
+      return res.redirect(500, "/profile");
     }
   },
   deleteBox: async (req, res) => {

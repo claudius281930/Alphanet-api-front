@@ -19,8 +19,7 @@ app.use(
     // Permite que uma sessão seja criada mesmo para solicitações que não têm dados da sessão
     saveUninitialized: true,
     cookie: {
-      //name:session.locals,
-      // Tempo de vida do cookie da sessão em milissegundos (1 hora neste exemplo)
+      // Tempo de vida do cookie da sessão em milissegundos (1 hora neste caso);
       maxAge:24 * 60 * 60 * 1000,
       // Define TRUE se o cookie só pode ser enviado através de conexões HTTPS;
       secure: false,

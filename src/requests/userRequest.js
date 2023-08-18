@@ -1,7 +1,7 @@
 const axios = require("axios");
 const defaults = require("./defaults");
 
-const userCreate = "register/create";
+const userCreate = "/register/create";
 const urlLogin = "/login";
 const urlUser = "/user";
 const urlname = "/name";

@@ -10,17 +10,17 @@
           <main class="container-fluid">
             <!-- Exibir informações do usuário -->
             <p class="text-light h1 text-center mt-6 mb-5">Perfil do Usuário</p>
-            
-              <div class="container-fluid bg-black w-50">
-                <p class="text-light h6 text-center mt-1 mb-1">
-                  <span class="fw-bold">Olá,</span>
-                  <span class="text-uppercase">
-                    <%= user %>.
-                  </span>
-                  <span class="fw-bold bg-subtle">
-                    Bem vindo(a)!.</span>
-                </p>
-              </div>           
+
+            <div class="container-fluid bg-black w-50">
+              <p class="text-light h6 text-center mt-1 mb-1">
+                <span class="fw-bold">Olá,</span>
+                <span class="text-uppercase">
+                  <%= user %>.
+                </span>
+                <span class="fw-bold bg-subtle">
+                  Bem vindo(a)!.</span>
+              </p>
+            </div>
 
             <!-- Informações adicionais do perfil do usuário -->
             <p class="text-light text-right mt-6 mb-5 fw-bold">
@@ -39,14 +39,17 @@
             </p>
             <img src="<%#= user.foto %>" alt="Foto do usuário">
             </div>
-            <p class="text-light h6 text-right mt-1 mb-1 fw-bold text-info">
-              <span class="text-light fw-bold">
-                <a href="/logout" class="logout">Sair</a>
-              </span>
-            </p>
-                <%#= user.email %>
-              </span>
-            </p>
+
+            <div class="container-fluid" id="logout">
+              <div class="log-out">
+                <div class="col-12 div-logout">
+                  <p class="h5 mt-3 fw-bold p-logout">
+                    <a href="/logout" class="text-uppercase">Sair</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+
           </main>
 
           <!-- Footer da pagina -->

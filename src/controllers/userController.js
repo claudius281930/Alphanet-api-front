@@ -15,17 +15,26 @@ const userController = {
       //Faz a REQUISIÇÃO junto ao AXIOS para o controlador serve-side. Passando os dados a ser consultados;
       const user = await userRequest.processLogin({ name, password });
 
-      // extrai os dados o ususario necessario para criar a sessão;
+      // extrai os dados do ususario necessario para criar a sessão;
       const userDataAll = user.data;
-      //console.log({ DADOS_DO_USUARIO: userDataAll });
       // Criar uma sessão utilizando o dados vindo da RESPONSE;
       req.session.userDataAll = userDataAll; // O campo da sessão;
-      //console.log({ SESSÃO_CRIADA: userDataAll });
 
       return res.redirect("/profile");
     } catch (error) {
-      console.error(error);
-      return res.send("Erro: dados incorretos");
+      if (error.response) {
+        // Erro de resposta da API
+        console.log(error.response.status);
+        console.log(error.response.data);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        // Erro de requisição (sem resposta)
+        console.log(error.request);
+      } else {
+        // Outro tipo de erro
+        console.log("Erro", error.message);
+      }
+      return res.redirect(401, "/login");
     }
   },
   // Renderize a página de perfil. Precisa-se criar uma sessão para que os dados da função processLogin seja utilizados no perfil sem dar erro de "path";
@@ -33,38 +42,58 @@ const userController = {
     try {
       // Lendo a sessão no campo userDataAll;
       const sessionAll = req.session.userDataAll;
-      //console.log({ SESSÃO: sessionAll });
 
       // extrai o TOKEN da SESSÃO;
       const userToken = sessionAll.token;
-      //console.log({ SOMENTE_TOKEN: userToken });
 
       // Verifica se a sessão existe e se o token esta nela;
       if (sessionAll) {
-        // Se esiver faz a chamada a rota;
+        // Se esiver faz a chamada a rota passando o TOKEN;
         const profileReq = await userRequest.profile(userToken);
-        //console.log("Achado", { sessionJwt: profileReq });
 
-        //Extrai o NAME do usuario da SESSÃO;
+        //Extrai o NAME do usuario da SESSÃO para exibir na view do perfil;
         const userDataName = sessionAll.name;
-        //console.log({ SOMENTE_NOME: userDataName });
 
         // Response com um json autorizado;
         return res.render("user/profile", { user: userDataName });
       } else {
-        return res.send("Erro: Token inexistente.");
+        return res.status(412).send("Erro: falha na solicitação.");
       }
     } catch (error) {
-      console.error(error);
-      res.redirect(401, "/");
+      if (error.response) {
+        // Erro de resposta da API
+        console.log(error.response.status);
+        console.log(error.response.data);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        // Erro de requisição (sem resposta)
+        console.log(error.request);
+      } else {
+        // Outro tipo de erro
+        console.log("Erro", error.message);
+      }
+      return res.redirect(401, "/");
     }
   },
   logout: async (req, res) => {
     try {
+      // Chama asessão e atribui um valor indefinido;
       req.session.userDataAll = undefined;
+      // Redireciona para o login;
       return res.redirect("/login");
     } catch (error) {
-      console.log(error)
+      if (error.response) {
+        // Erro de resposta da API
+        console.log(error.response.status);
+        console.log(error.response.data);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        // Erro de requisição (sem resposta)
+        console.log(error.request);
+      } else {
+        // Outro tipo de erro
+        console.log("Erro", error.message);
+      }
       return res.redirect("/");
     }
   },
