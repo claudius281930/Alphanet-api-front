@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acesso Restrito</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            padding: 20px;
+            transition: background-color 0.5s ease, color 0.5s ease; /* Transição de cores suaves */
+        }
+        h1 {
+            color: #ff5733;
+            font-size: 48px;
+            transition: color 0.5s ease; /* Transição de cor do título */
+        }
+        p {
+            font-size: 18px;
+            color: #333;
+            transition: color 0.5s ease; /* Transição de cor do texto */
+        }
+        .animation {
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-30px);
+            }
+            60% {
+                transform: translateY(-15px);
+            }
+        }
+        .button-container {
+            margin-top: 30px;
+        }
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="animation">Acesso Restrito</h1>
+    <p>Você precisa fazer login para acessar esta página.</p>
+    <div class="button-container">
+        <a class="button" href="/login">Fazer Login</a>
+    </div>
+</body>
+</html>

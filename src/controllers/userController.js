@@ -17,8 +17,8 @@ const userController = {
 
       // extrai os dados do ususario necessario para criar a sessão;
       const userDataAll = user.data;
-      // Criar uma sessão utilizando o dados vindo da RESPONSE;
-      req.session.userDataAll = userDataAll; // O campo da sessão;
+      // Criar uma sessão(do lado do cliente) utilizando o dados vindo da RESPONSE;
+      req.session.userDataAll = userDataAll; // <<= Variavel que recebe o campo da sessão;
 
       return res.redirect("/profile");
     } catch (error) {
@@ -72,7 +72,8 @@ const userController = {
         // Outro tipo de erro
         console.log("Erro", error.message);
       }
-      return res.redirect(401, "/");
+      //Renderiza a pagina erro "Acesso restrito"
+      return res.render("err/notLoggedIn");
     }
   },
   logout: async (req, res) => {

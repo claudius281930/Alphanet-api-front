@@ -188,7 +188,8 @@ const mainController = {
         // Outro tipo de erro
         console.log("Erro", error.message);
       }
-      return res.redirect(401, "/");
+      //Renderiza a pagina de erro.
+      return res.render("err/notFound");
     }
   },
   getDetailBox: async (req, res) => {
