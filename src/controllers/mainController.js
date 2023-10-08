@@ -38,7 +38,7 @@ const mainController = {
         // Outro tipo de erro
         console.log("Erro", error.message);
       }
-      return res.redirect(401, "/");
+      return res.render("err/notLoggedIn");
     }
   },
   pageFormCreateBox: async (req, res) => {
@@ -58,7 +58,7 @@ const mainController = {
 
         return res.render("create/createBox", { currentDate });
       } else {
-        return res.send("Erro: Token inexistente.");
+        return res.render("err/notLoggedIn");
       }
     } catch (error) {
       if (error.response) {
@@ -73,7 +73,7 @@ const mainController = {
         // Outro tipo de erro
         console.log("Erro", error.message);
       }
-      return res.redirect(401, "/");
+      return res.render("err/notLoggedIn");
     }
   },
   pageFormUpdateBox: async (req, res) => {
@@ -95,7 +95,7 @@ const mainController = {
         // Response com um json autorizado;
         return res.render("update/updateBox", { currentDate, id: id });
       } else {
-        return res.send("Erro: Token inexistente.");
+        return res.render("err/notLoggedIn");
       }
     } catch (error) {
       if (error.response) {
@@ -110,7 +110,7 @@ const mainController = {
         // Outro tipo de erro
         console.log("Erro", error.message);
       }
-      return res.redirect(401, "/");
+      return res.render("err/notLoggedIn");
     }
   },
   pageFormDeleteBox: async (req, res) => {
@@ -136,7 +136,7 @@ const mainController = {
           userName: userDataName,
         });
       } else {
-        return res.redirect(404, "/");
+        return res.render("err/notLoggedIn");
       }
     } catch (error) {
       if (error.response) {
@@ -151,7 +151,7 @@ const mainController = {
         // Outro tipo de erro
         console.log("Erro", error.message);
       }
-      return res.redirect(401, "/");
+      return res.render("err/notLoggedIn");
     }
   },
   //***************************************
