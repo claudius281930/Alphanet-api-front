@@ -34,7 +34,7 @@ const userController = {
         // Outro tipo de erro
         console.log("Erro", error.message);
       }
-      return res.redirect(401, "/login");
+      return res.render("err/loginFailed");
     }
   },
   // Renderize a página de perfil. Precisa-se criar uma sessão para que os dados da função processLogin seja utilizados no perfil sem dar erro de "path";
