@@ -18,6 +18,13 @@
    max-width: 50%;
  }
 
+ #hoursLocal {
+   background-color: transparent;
+   color: #ff0;
+   border: none;
+   font-family: "Lora";
+ }
+
  .bg-video {
    position: fixed;
    top: 0;
@@ -241,6 +248,16 @@
      justify-content: flex-start;
    }
 
+ }
+
+ /*---------------------------*/
+ .p-login {
+   color: #fff;
+ }
+
+ .p-login:hover {
+   font-size: smaller;
+   color: #ff0f4f;
  }
 
  /* Mobile First 

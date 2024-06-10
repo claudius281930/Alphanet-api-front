@@ -7,34 +7,32 @@
 
             <main class="container-fluid container-main home" id="homePage">
                 <%- include("../partials/videoHome") %>
-
+                    <input type="time" id="hoursLocal">
                     <section class="container-fluid container-sm mt-6 secHome">
 
                         <nav class="container container-navegation-search mt-6 fs-5 navHome">
                             <ul class="fw-bold navegation-search-list ulHome">
 
                                 <div class="container row g-0 content-navegation divHome">
-                                    <li class="col-6 text-center item-search">
+                                    <li class="col-6 text-center item-search li-item">
                                         <a class="text-uppercase link-offset-2 link-underline 
                                             link-underline-opacity-0 border-danger 
-                                            border-bottom border-info"
-                                            href="/login">
-                                            <p class="text-light text-center mt-6 mb-1">Login</p>
+                                            border-bottom border-info ancor-login" href="/login">
+                                            <p class=" text-center mt-6 mb-1 p-login">Login</p>
                                         </a>
                                     </li>
                                     <li class="col-6 text-center item-search">
                                         <a class="text-uppercase link-offset-2 link-underline 
                                             link-underline-opacity-0 border-danger
-                                            border-bottom border-info"
-                                            href="/register">
+                                            border-bottom border-info" href="/register">
                                             <p class="text-light text-center mt-6 mb-1">Cadastre-se</p>
                                         </a>
                                     </li>
-                                    <a class="text-uppercase"
-                                            href="/profile">
+                                    <li class="col-6 text-center item-search">
+                                        <a class="text-uppercase" href="/profile">
                                             <p class="text-light text-center mt-6 mb-1">Perfil</p>
                                         </a>
-
+                                    </li>
                                 </div>
                             </ul>
                         </nav>

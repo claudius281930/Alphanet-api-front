@@ -8,7 +8,7 @@ const validations = [
     .withMessage("inválido")
     //Customizando a checagem do campo nome;
     .custom((value, { req }) => {
-      //REGEX somente letras com letra maiuscula /^[\p{Lu}\s]+$/u;
+      //REGEX somente letras e com letra maiuscula /^[\p{Lu}\s]+$/u;
       const regexName = /^[\p{L}\s]+$/u;
       if (!regexName.test(value)) {
         const error = new Error('O campo "Nome" deve conter apenas letras');
@@ -22,11 +22,13 @@ const validations = [
     .notEmpty()
     .withMessage("inválido")
     .custom((value, { req }) => {
-       //Pelo menos uma letra ao criar uma senha /[a-zA-Z]/ ;
-      const regexPsw = /^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).+$/;// ^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).+$;
+      //Pelo menos uma letra ao criar uma senha /[a-zA-Z]/ ;
+      const regexPsw = /^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).+$/; // ^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).+$;
 
       if (!regexPsw.test(value)) {
-        const error = new Error('O campo "Senha" deve conter ao menos um(a) letra, numero e caractere especial');
+        const error = new Error(
+          'O campo "Senha" deve conter ao menos um(a) letra, numero e caractere especial'
+        );
         //Tratando e lançando o NOVO Error
         throw error;
       }
